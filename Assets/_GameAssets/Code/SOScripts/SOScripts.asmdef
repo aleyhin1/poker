@@ -1,0 +1,16 @@
+{
+    "name": "SOScripts",
+    "rootNamespace": "",
+    "references": [
+        "GUID:8290b5464bd1103449ef157812998951"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
