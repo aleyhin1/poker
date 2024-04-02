@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
- 
+
 public class GameManager : MonoSingleton<GameManager>
 {
     PlayerSequenceHandler playerSequenceHandler;
@@ -17,7 +17,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (Input.GetKeyDown(KeyCode.Space))
         {
             playerSequenceHandler.NextPlayerAction?.Invoke();
-        }   
+        }
     }
     private void OnDisable()
     {

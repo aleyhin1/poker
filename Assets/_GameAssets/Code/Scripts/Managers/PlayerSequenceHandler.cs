@@ -28,9 +28,7 @@ public class PlayerSequenceHandler
             return;
 
         foreach (PlayerController player in _playerList)
-        {
             _playersQueue.Enqueue(player);
-        }
 
         _currentPlayer = _playersQueue.Peek();
         _currentPlayer.IsMyTurn = true;
@@ -43,7 +41,6 @@ public class PlayerSequenceHandler
 
         if (_playersQueue.Count > 0)
             _playersQueue.Peek().IsMyTurn = true;
-        
         else
             InitializePlayerList();
     }
