@@ -5,33 +5,21 @@ public class PlayerSequenceHandler
 {
     public Action NextPlayerAction;
 
-    private List<Player> _playerList;
     private Queue<Player> _playersQueue;
     private Player _currentPlayer;
 
-    public PlayerSequenceHandler(List<Player> playerList)
+    public PlayerSequenceHandler(Queue<Player> playerQueue)
     {
-        _playersQueue = new Queue<Player>();
-        _playerList = playerList;
-        InitializePlayerQueue();
+        _playersQueue = playerQueue;
         NextPlayerAction += NextPlayer;
+
+        _currentPlayer = _playersQueue.Peek();
+        _currentPlayer.IsMyTurn = true;
     }
 
     public void OnDisable()
     {
         NextPlayerAction -= NextPlayer; 
-    }
-
-    private void InitializePlayerQueue()
-    {
-        if (_playerList == null || _playerList.Count <= 0)
-            return;
-
-        foreach (Player player in _playerList)
-            _playersQueue.Enqueue(player);
-
-        _currentPlayer = _playersQueue.Peek();
-        _currentPlayer.IsMyTurn = true;
     }
 
     private void NextPlayer()
@@ -42,6 +30,9 @@ public class PlayerSequenceHandler
         if (_playersQueue.Count > 0)
             _playersQueue.Peek().IsMyTurn = true;
         else
-            InitializePlayerQueue();
+        {
+            //Next Turn
+            GameManager.Instance.NextState();
+        }
     }
 }

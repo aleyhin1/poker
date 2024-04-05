@@ -6,7 +6,7 @@ public class RealPlayer : Player
 {
     private void Start()
     {
-        SetSpriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public override bool IsMyTurn 
@@ -18,7 +18,12 @@ public class RealPlayer : Player
 
             if(IsMyTurn)
             {
+                SpriteRenderer.color = Color.green;
                 //Oyuncuya butonlar açýlacak
+            }
+            else
+            {
+                SpriteRenderer.color = DefaultColor;
             }
         } 
     }

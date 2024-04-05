@@ -6,16 +6,16 @@ public class Preflop : IPokerState
 {
     public void EnterState()
     {
-        //Debug.Log("Enter State");
+        Debug.Log("Preflop starting");
     }
 
     public void UpdateState()
     {
-        //Debug.Log("update");
+   
     }
 
     public void ExitState()
     {
-        //Debug.Log("Exit State");
+   
     }
 }

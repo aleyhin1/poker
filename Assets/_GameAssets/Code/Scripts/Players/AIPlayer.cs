@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
+    [SerializeField] private float _decisionDuration = 1f;
+
     private void Start()
     {
-        SetSpriteRenderer = GetComponent<SpriteRenderer>();   
+        SpriteRenderer = GetComponent<SpriteRenderer>();   
     }
 
     public override bool IsMyTurn
@@ -18,9 +20,43 @@ public class AIPlayer : Player
 
             if (IsMyTurn)
             {
-                //Bot ne yapmasý geriyorsa burada yapýcak
+                SpriteRenderer.color = Color.green;
+
+                if (IsBigBlind)
+                {
+                    StartCoroutine(BigBlindBetDecision());
+                }
+                StartCoroutine(NextPlayer());
+            }
+            else
+            {
+                SpriteRenderer.color = DefaultColor;
             }
         }
     }
+    private IEnumerator BigBlindBetDecision()
+    {
+        //Wait
+
+        yield return new WaitForSeconds(_decisionDuration);
+
+        var minBet = GameManager.Instance.MinBet;
+        var betAmount = Random.Range(minBet, minBet * 2);
+        Bet(betAmount);
+
+        if (betAmount > minBet)
+            GameManager.Instance.MinBet = betAmount;
+
+        IsBigBlind = false;
+
+        Debug.Log("Bet : " + GameManager.Instance.MinBet);
+    }
+
+    private IEnumerator NextPlayer()
+    {
+        yield return new WaitForSeconds(_decisionDuration);
+        GameManager.Instance.NextPlayer();
+    }
+
 
 }

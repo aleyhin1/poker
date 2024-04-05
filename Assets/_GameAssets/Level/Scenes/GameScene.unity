@@ -511,8 +511,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
+  _decisionDuration: 3
 --- !u!1 &338769705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,8 +1349,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
+  _decisionDuration: 3
 --- !u!1 &962453199
 GameObject:
   m_ObjectHideFlags: 0
@@ -1528,8 +1536,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
+  _decisionDuration: 3
 --- !u!1001 &1168756939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1640,8 +1652,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
+  _decisionDuration: 3
 --- !u!1 &1323502782
 GameObject:
   m_ObjectHideFlags: 0
@@ -1743,7 +1759,7 @@ MonoBehaviour:
   - {fileID: 2098335979}
   - {fileID: 934177129}
   - {fileID: 1959666251}
-  _smallBlindBet: 0
+  _smallBlindBet: 200
 --- !u!4 &1378035970
 Transform:
   m_ObjectHideFlags: 0
@@ -2474,8 +2490,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
+  _decisionDuration: 3
 --- !u!1 &2098335977 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
@@ -2493,8 +2513,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  _defaultColor: {r: 1, g: 1, b: 1, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
+  _decisionDuration: 3
 --- !u!1001 &2801572052067742483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2581,8 +2605,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69fee0ce72ac22345869789cd5bc0690, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultColor: {r: 1, g: 0, b: 0, a: 1}
+  _defaultColor: {r: 1, g: 0.10980392, b: 0, a: 1}
   Cards: []
+  _isMyTurn: 0
+  _isSmallBlindPaid: 0
+  _isBigBlind: 0
 --- !u!4 &2801572052849747237 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5538991253520334891, guid: 0fd18bfa1ece2b84daf79ff3c06c2838, type: 3}

@@ -1,15 +1,16 @@
 public class StateContext
 {
-    private IPokerState currentState;
-
+    private IPokerState _pokerState;
+ 
     public void TransitionTo(IPokerState state)
     {
-        currentState?.ExitState();
-        currentState = state;
-        currentState.EnterState();
+        _pokerState?.ExitState();
+        _pokerState = state;
+        _pokerState.EnterState();
     }
+     
     public void UpdateState()
     {
-        currentState?.UpdateState();
+        _pokerState?.UpdateState();
     }
 }
