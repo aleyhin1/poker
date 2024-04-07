@@ -9,14 +9,14 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Card _cardPrefab;
     [Header("Card Textures")]
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Texture2D[] _clubTexturesInOrder = new Texture2D[13];
+    [SerializeField] private Sprite[] _clubTexturesInOrder = new Sprite[13];
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Texture2D[] _diamondTexturesInOrder = new Texture2D[13];
+    [SerializeField] private Sprite[] _diamondTexturesInOrder = new Sprite[13];
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Texture2D[] _heartTexturesInOrder = new Texture2D[13];
+    [SerializeField] private Sprite[] _heartTexturesInOrder = new Sprite[13];
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Texture2D[] _spadeTexturesInOrder = new Texture2D[13];
-    private Dictionary<CardSuit, Texture2D[]> _suitTexturesPairs;
+    [SerializeField] private Sprite[] _spadeTexturesInOrder = new Sprite[13];
+    private Dictionary<CardSuit, Sprite[]> _suitTexturesPairs;
 
 
     private void Awake()
@@ -27,7 +27,7 @@ public class DeckManager : MonoBehaviour
 
     private void FillSuitTexturesPairs()
     {
-        _suitTexturesPairs = new Dictionary<CardSuit, Texture2D[]>
+        _suitTexturesPairs = new Dictionary<CardSuit, Sprite[]>
         {
             { CardSuit.Club, _clubTexturesInOrder },
             { CardSuit.Diamond, _diamondTexturesInOrder },
@@ -44,8 +44,8 @@ public class DeckManager : MonoBehaviour
             {
                 Card spawnedCard = CreateCardObject();
 
-                _suitTexturesPairs.TryGetValue(suit, out Texture2D[] cardTextures);
-                Texture2D cardTexture = cardTextures.GetValue((int)rank) as Texture2D;
+                _suitTexturesPairs.TryGetValue(suit, out Sprite[] cardTextures);
+                Sprite cardTexture = cardTextures.GetValue((int)rank) as Sprite;
 
                 spawnedCard.CreateCard(suit, rank, cardTexture);
 
