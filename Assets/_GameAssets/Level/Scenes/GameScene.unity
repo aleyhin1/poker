@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &38946644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2842871180116237977, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+  m_PrefabInstance: {fileID: 841933959113524827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &81533419
 GameObject:
   m_ObjectHideFlags: 0
@@ -154,9 +165,42 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &86798008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2842871180495461517, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+  m_PrefabInstance: {fileID: 841933959113524827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &201630662 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 841933958911911325, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+  m_PrefabInstance: {fileID: 841933959113524827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &262931006 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2842871180045651333, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+  m_PrefabInstance: {fileID: 841933959113524827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &274806524 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2842871181168891073, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
   m_PrefabInstance: {fileID: 841933959113524827}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -561,6 +605,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1268500587 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2842871181187559923, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+  m_PrefabInstance: {fileID: 841933959113524827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c39f309fcf5d094d8747a7a84bb7fa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1323502782
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,11 +1036,11 @@ PrefabInstance:
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: _players.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 274806524}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: _players.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 86798008}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: _players.Array.data[3]
       value: 
@@ -993,15 +1048,15 @@ PrefabInstance:
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: _players.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 262931006}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: _players.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 38946644}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: _players.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1268500587}
     - target: {fileID: 4604134518607472347, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: m_Name
       value: GameManager

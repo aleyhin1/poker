@@ -6,7 +6,7 @@ public class AIPlayer : Player
 {
     [SerializeField] private float _decisionDuration = 1f;
 
-    private void Start()
+    private void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();   
     }
