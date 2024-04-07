@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 166090427}
   - component: {fileID: 166090426}
   m_Layer: 5
-  m_Name: Raise_Panel
+  m_Name: RaisePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,7 +423,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
       propertyPath: m_Name
-      value: AI_4
+      value: AI4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
@@ -485,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
       propertyPath: m_Name
-      value: AI_1
+      value: AI1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
@@ -530,7 +530,7 @@ GameObject:
   - component: {fileID: 338769708}
   - component: {fileID: 338769707}
   m_Layer: 5
-  m_Name: Fold_Button
+  m_Name: FoldButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -718,7 +718,7 @@ GameObject:
   - component: {fileID: 428108227}
   - component: {fileID: 428108226}
   m_Layer: 0
-  m_Name: poker-table
+  m_Name: PokerTable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,7 +1178,7 @@ GameObject:
   - component: {fileID: 701505429}
   - component: {fileID: 701505431}
   m_Layer: 5
-  m_Name: Buttons_Panel
+  m_Name: ButtonsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1328,7 +1328,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
       propertyPath: m_Name
-      value: AI_5
+      value: AI5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
@@ -1510,7 +1510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
       propertyPath: m_Name
-      value: AI_3
+      value: AI3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
@@ -1595,7 +1595,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
       propertyPath: m_Name
-      value: AI_2
+      value: AI2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
@@ -1793,7 +1793,7 @@ GameObject:
   - component: {fileID: 1483266499}
   - component: {fileID: 1483266498}
   m_Layer: 5
-  m_Name: Call_Button
+  m_Name: CallButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2185,7 +2185,7 @@ GameObject:
   - component: {fileID: 1722284984}
   - component: {fileID: 1722284983}
   m_Layer: 5
-  m_Name: Bob_Button
+  m_Name: BobButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2307,7 +2307,7 @@ GameObject:
   - component: {fileID: 1798249667}
   - component: {fileID: 1798249666}
   m_Layer: 5
-  m_Name: Raise_Button
+  m_Name: RaiseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2469,7 +2469,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2801572053478302906, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
       propertyPath: m_Name
-      value: AI_6
+      value: AI6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a61f94abd7a55724d8b4ff134ae12e62, type: 3}
