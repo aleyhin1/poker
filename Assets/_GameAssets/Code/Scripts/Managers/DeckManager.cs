@@ -9,13 +9,14 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Card _cardPrefab;
     [Header("Card Textures")]
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Sprite[] _clubTexturesInOrder = new Sprite[13];
+    [SerializeField] private Sprite[] _clubSpritesInOrder = new Sprite[13];
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Sprite[] _diamondTexturesInOrder = new Sprite[13];
+    [SerializeField] private Sprite[] _diamondSpritesInOrder = new Sprite[13];
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Sprite[] _heartTexturesInOrder = new Sprite[13];
+    [SerializeField] private Sprite[] _heartSpritesInOrder = new Sprite[13];
     [Tooltip("Order in according to CardRank Enum")]
-    [SerializeField] private Sprite[] _spadeTexturesInOrder = new Sprite[13];
+    [SerializeField] private Sprite[] _spadeSpritesInOrder = new Sprite[13];
+    [SerializeField] private Sprite _cardBack;
     private Dictionary<CardSuit, Sprite[]> _suitTexturesPairs;
 
 
@@ -29,10 +30,10 @@ public class DeckManager : MonoBehaviour
     {
         _suitTexturesPairs = new Dictionary<CardSuit, Sprite[]>
         {
-            { CardSuit.Club, _clubTexturesInOrder },
-            { CardSuit.Diamond, _diamondTexturesInOrder },
-            { CardSuit.Heart, _heartTexturesInOrder },
-            { CardSuit.Spade, _spadeTexturesInOrder },
+            { CardSuit.Club, _clubSpritesInOrder },
+            { CardSuit.Diamond, _diamondSpritesInOrder },
+            { CardSuit.Heart, _heartSpritesInOrder },
+            { CardSuit.Spade, _spadeSpritesInOrder },
         };
     }
 
@@ -45,11 +46,11 @@ public class DeckManager : MonoBehaviour
                 Card spawnedCard = CreateCardObject();
 
                 _suitTexturesPairs.TryGetValue(suit, out Sprite[] cardTextures);
-                Sprite cardTexture = cardTextures.GetValue((int)rank) as Sprite;
+                Sprite cardFront = cardTextures.GetValue((int)rank) as Sprite;
 
-                spawnedCard.CreateCard(suit, rank, cardTexture);
+                spawnedCard.CreateCard(suit, rank, cardFront, _cardBack);
 
-                Debug.Log($"{spawnedCard.Value} spawned with texture {cardTexture}");
+                Debug.Log($"{spawnedCard.Value} spawned with texture {cardFront}");
             }
         }
     }

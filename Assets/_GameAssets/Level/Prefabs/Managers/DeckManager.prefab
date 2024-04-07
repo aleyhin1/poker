@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _cardPrefab: {fileID: 713243202038459098, guid: e8d0be52a1e936f43988230282d5dfba, type: 3}
-  _clubTexturesInOrder:
+  _clubSpritesInOrder:
   - {fileID: 21300000, guid: 0139256cbbec51546ae19367c26da78a, type: 3}
   - {fileID: 21300000, guid: 78e1819a159795646abd8b95fa143681, type: 3}
   - {fileID: 21300000, guid: 8276036874fb8614fa62bd47fcd0b7c5, type: 3}
@@ -59,7 +59,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 3c529242aef125b438f39da76ec7578e, type: 3}
   - {fileID: 21300000, guid: 7574c17e6edb6194ab95b5fc0615d852, type: 3}
   - {fileID: 21300000, guid: f27dbe7c5b2ccb744b1d9c4b254e2469, type: 3}
-  _diamondTexturesInOrder:
+  _diamondSpritesInOrder:
   - {fileID: 21300000, guid: a3272bdd0a376fd4cb2e06142f499bcf, type: 3}
   - {fileID: 21300000, guid: f99a1b4916aef8047b3f7ff4a3f37f71, type: 3}
   - {fileID: 21300000, guid: b2a49a067b5d6fd4c8cbd14f9b28e6d8, type: 3}
@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: aecd8e0cd7a20ac4996432a7a6698aba, type: 3}
   - {fileID: 21300000, guid: 81449cb04995ab64dbee1338de88e020, type: 3}
   - {fileID: 21300000, guid: 7e1b1a36eae793c4bb3a531a55f6ae23, type: 3}
-  _heartTexturesInOrder:
+  _heartSpritesInOrder:
   - {fileID: 21300000, guid: ec82ef9409d09f244b2eb3e579c03799, type: 3}
   - {fileID: 21300000, guid: 75d90851c43ee0b4d8719aba37567ec0, type: 3}
   - {fileID: 21300000, guid: 71d07081cdc11244c8d59992913203fb, type: 3}
@@ -87,7 +87,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 6f6d455a080c1de4abde396101fcd985, type: 3}
   - {fileID: 21300000, guid: 39b8c2cc4b2482647a61c22ab1f29b14, type: 3}
   - {fileID: 21300000, guid: 92c89d8bcd3740d4a9a0c3d951a6fb47, type: 3}
-  _spadeTexturesInOrder:
+  _spadeSpritesInOrder:
   - {fileID: 21300000, guid: c8d5165e93ac53145805699e3a31b42a, type: 3}
   - {fileID: 21300000, guid: 9828c122b97325e4faa7cdf166e9f4a0, type: 3}
   - {fileID: 21300000, guid: 5726eae8e5e9a204fa138d733d657b6e, type: 3}
@@ -101,3 +101,4 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 129e6f9e06cca164db72d612bbab307b, type: 3}
   - {fileID: 21300000, guid: 9131a6ad24b37a644af27fc5983592f3, type: 3}
   - {fileID: 21300000, guid: 6914af8a329e93e45a865076227ea5e1, type: 3}
+  _cardBack: {fileID: 21300000, guid: 5ed1e68e3d57704448bd62f12511f0c6, type: 3}

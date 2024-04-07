@@ -6,7 +6,8 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     public Tuple<CardSuit, CardRank> Value { get; private set; }
-    private Sprite _sprite;
+    private Sprite _front;
+    private Sprite _back;
     private SpriteRenderer _renderer;
 
     private void Awake()
@@ -14,10 +15,21 @@ public class Card : MonoBehaviour
         _renderer = GetComponent<SpriteRenderer>();
     }
 
-    public void CreateCard(CardSuit suit, CardRank rank, Sprite sprite)
+    public void CreateCard(CardSuit suit, CardRank rank, Sprite front, Sprite back)
     {
         Value = new Tuple<CardSuit, CardRank>(suit, rank);
-        _sprite = sprite;
-        _renderer.sprite = _sprite;
+        _front = front;
+        _back = back;
+        FaceUp();
+    }
+
+    public void FaceUp()
+    {
+        _renderer.sprite = _front;
+    }
+
+    public void FaceDown()
+    {
+        _renderer.sprite = _back;
     }
 }
