@@ -1,56 +1,40 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private MoveManager _moveManager;
-    public MoveManager GetMoveManager { get { return _moveManager; } }
-    
     private PlayerSequenceHandler _playerSequenceHandler;
     private StateContext _stateContext;
-
-    [SerializeField] private Transform _dealerTransform;
-    public Transform GetDealerTransform { get { return _dealerTransform; } }
     [SerializeField] private List<Player> _players = new List<Player>();
-    public List<Player> GetPlayers { get { return _players; } }
 
-    #region Setting SO
+    //bets
     [SerializeField] private int _smallBlindBet;
-    [SerializeField] private int _totalMoney;
-    #endregion
-
-    [SerializeField] private int _minBet;
-    public int GetSmallBlindBet { get { return _smallBlindBet; }}
+    private int _minBet;
+    public int SmallBlindBet { get { return _smallBlindBet; }}
     public int MinBet { get { return _minBet; } set { _minBet = value; } }
 
     //All States
     PokerState _currentState;
     private StartingState _startingState;
-    private DealingCards _dealingCards;
     private Preflop _preflopState;
     
     private void Awake()
     {
         _stateContext = new StateContext();
-        _minBet = _smallBlindBet;
-
-        foreach (var player in _players)
-        {
-            player.TotalMoney = _totalMoney;
-        }
+        _minBet = _smallBlindBet * 2;
     }
 
     private void Start()
     {
+       
         _startingState = new StartingState(_players);
-        _dealingCards = new DealingCards();
         _preflopState = new Preflop();
 
         _currentState = PokerState.StaringState;
         _stateContext.TransitionTo(_startingState);
-
-        _playerSequenceHandler.SelectPlayer();
     }
 
     private void Update()
@@ -75,11 +59,6 @@ public class GameManager : MonoSingleton<GameManager>
         switch (_currentState)
         {
             case PokerState.StaringState:
-                nextState = PokerState.DealingCards;
-                SetPlayerQueue(0);
-                _stateContext.TransitionTo(_dealingCards);
-                break;
-            case PokerState.DealingCards:
                 nextState = PokerState.Preflop;
                 SetPlayerQueue(0);
                 _stateContext.TransitionTo(_preflopState);

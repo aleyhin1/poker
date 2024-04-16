@@ -12,10 +12,7 @@ public class PlayerSequenceHandler
     {
         _playersQueue = playerQueue;
         NextPlayerAction += NextPlayer;
-    }
 
-    public void SelectPlayer()
-    {
         _currentPlayer = _playersQueue.Peek();
         _currentPlayer.IsMyTurn = true;
     }
@@ -31,9 +28,10 @@ public class PlayerSequenceHandler
         _currentPlayer.IsMyTurn = false;
 
         if (_playersQueue.Count > 0)
-            SelectPlayer();
+            _playersQueue.Peek().IsMyTurn = true;
         else
         {
+            //Next Turn
             GameManager.Instance.NextState();
         }
     }

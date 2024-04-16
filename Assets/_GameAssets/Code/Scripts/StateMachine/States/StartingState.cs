@@ -4,37 +4,22 @@ using UnityEngine;
 
 public class StartingState : IPokerState
 {
+    /* TODO
+     * Küçük bahisi oynamayan oyuncu belirlenecek 
+     * Küçük bahis oynanacak
+     * Küçük bahisi oyunayan oyuncudan sonraki oyuncu büyük bahisi oynayacak
+     */
+    
     private Player _player;
     private Player _nextPlayer;
     private int _playerIndex;
     private int _nextPlayerIndex;
 
     public StartingState(List<Player> players)
-    {  
+    {
         SetPlayers(players);
     }
-
-    public void EnterState()
-    {
-        var betAmount = GameManager.Instance.GetSmallBlindBet;
-        GameManager.Instance.GetMoveManager.Bet(_player,betAmount);
-        _player.IsSmallBlindPaid = true;
-
-        _nextPlayer.IsBigBlind = true;
-
-        GameManager.Instance.SetPlayerQueue(_nextPlayerIndex);
-    }
-
-    public void UpdateState()
-    {
-        
-    }
-
-    public void ExitState()
-    {
-         
-    }
-
+     
     private void SetPlayers(List<Player> players)
     {
         for (int i = 0; i < players.Count; i++)
@@ -63,5 +48,30 @@ public class StartingState : IPokerState
             _nextPlayerIndex = 0;
 
         _nextPlayer = players[_nextPlayerIndex];
+    }
+
+    public void EnterState()
+    {
+        var betAmount = GameManager.Instance.SmallBlindBet;
+        _player.Bet(betAmount);
+        _player.IsSmallBlindPaid = true;
+
+        _nextPlayer.IsBigBlind = true;
+
+        GameManager.Instance.SetPlayerQueue(_nextPlayerIndex);
+
+        Debug.Log(_player + " : " + betAmount);
+        Debug.Log("next Player : " + _nextPlayer);
+
+    }
+
+    public void UpdateState()
+    {
+         
+    }
+
+    public void ExitState()
+    {
+         
     }
 }

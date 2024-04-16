@@ -4,16 +4,11 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
-    private MoveManager _moveManager;
+    [SerializeField] private float _decisionDuration = 1f;
 
     private void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();   
-    }
-
-    private void Start()
-    {
-        _moveManager = GameManager.Instance.GetMoveManager;
     }
 
     public override bool IsMyTurn
@@ -29,10 +24,9 @@ public class AIPlayer : Player
 
                 if (IsBigBlind)
                 {
-                    StartCoroutine(MoveManager.Instance.BlidBet(this));
-                    return;
+                    StartCoroutine(BigBlindBetDecision());
                 }
-                StartCoroutine(Move());
+                StartCoroutine(NextPlayer());
             }
             else
             {
@@ -40,14 +34,29 @@ public class AIPlayer : Player
             }
         }
     }
-
-    private IEnumerator Move()
+    private IEnumerator BigBlindBetDecision()
     {
-        yield return new WaitForSeconds(1f);
+        //Wait
 
-        var betAmount = ProbabilitySystem.SetBetRate(TotalMoney, GameManager.Instance.MinBet);
-        GameManager.Instance.GetMoveManager.Bet(this, betAmount);
-        
+        yield return new WaitForSeconds(_decisionDuration);
+
+        var minBet = GameManager.Instance.MinBet;
+        var betAmount = Random.Range(minBet, minBet * 2);
+        Bet(betAmount);
+
+        if (betAmount > minBet)
+            GameManager.Instance.MinBet = betAmount;
+
+        IsBigBlind = false;
+
+        Debug.Log("Bet : " + GameManager.Instance.MinBet);
+    }
+
+    private IEnumerator NextPlayer()
+    {
+        yield return new WaitForSeconds(_decisionDuration);
         GameManager.Instance.NextPlayer();
     }
+
+
 }
