@@ -27,4 +27,13 @@ public class RealPlayer : Player
             }
         } 
     }
+
+    public void FaceUpCards()
+    {
+        List<Card> cards = GetCards;
+        foreach (var card in cards)
+        {
+            card.FaceUp();
+        }
+    }
 }
