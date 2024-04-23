@@ -21,7 +21,7 @@ public class StartingState : IPokerState
         _player.IsSmallBlind = true;
         _nextPlayer.IsBigBlind = true;
 
-        GameManager.Instance.SetPlayerQueue();
+        GameManager.Instance.SetPlayerQueue(_playerIndex);
     }
 
     public void UpdateState()

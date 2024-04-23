@@ -18,7 +18,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     #region Setting SO
     [SerializeField] private int _smallBlindBet;
-    [SerializeField] private int _totalMoney = 100000;
+    [SerializeField] private int _totalMoney;
     #endregion
 
     [SerializeField] private int _minBet;
