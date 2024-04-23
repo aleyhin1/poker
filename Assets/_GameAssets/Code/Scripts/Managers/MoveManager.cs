@@ -4,25 +4,30 @@ using UnityEngine;
 
 public class MoveManager : MonoSingleton<MoveManager>, IPokerMoves
 {
-    [SerializeField] private float _decisionDuration = 1f;
 
-    public IEnumerator BlidBet(Player player)
+    public void SmallBlindBet(Player player)
+    {
+        Debug.Log("Small Blind Player : " + player + " Bet : " );
+        GameManager.Instance.NextPlayer();
+    }
+
+    public void BigBlidBet(Player player)
     {
         var minBet = GameManager.Instance.MinBet;
         var newBetValue = minBet * 2;
         GameManager.Instance.MinBet = newBetValue;
 
-        yield return new WaitForSeconds(_decisionDuration);
+        Debug.Log("Big Blind Player : " + player + " Bet : " + newBetValue);
 
-        Debug.Log("Blind Player : " + player + " Bet : " + newBetValue);
-        player.IsBigBlind = false;
- 
-        GameManager.Instance.NextState();
+        GameManager.Instance.GetPokerStateManager.EnterDealingCardsState();
     }
 
     public void Bet(Player player, int betAmount)
     {
-        Debug.Log("Player : " + player + " Bet : " + betAmount);
+        Debug.Log("Normal : " + player + " Bet : " + betAmount);
+
+        GameManager.Instance.NextPlayer();
+
     }
 
     public void Bob(Player player)

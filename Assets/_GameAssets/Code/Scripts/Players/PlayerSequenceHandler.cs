@@ -10,8 +10,9 @@ public class PlayerSequenceHandler
 
     public PlayerSequenceHandler(Queue<Player> playerQueue)
     {
+        NextPlayerAction += NextPlayer;  
         _playersQueue = playerQueue;
-        NextPlayerAction += NextPlayer;
+        SelectPlayer();
     }
 
     public void SelectPlayer()
@@ -32,9 +33,5 @@ public class PlayerSequenceHandler
 
         if (_playersQueue.Count > 0)
             SelectPlayer();
-        else
-        {
-            GameManager.Instance.NextState();
-        }
     }
 }

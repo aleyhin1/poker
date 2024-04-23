@@ -23,17 +23,9 @@ public class RealPlayer : Player
             }
             else
             {
-                SpriteRenderer.color = DefaultColor;
+                if (SpriteRenderer != null)
+                    SpriteRenderer.color = DefaultColor;
             }
         } 
-    }
-
-    public void FaceUpCards()
-    {
-        List<Card> cards = GetCards;
-        foreach (var card in cards)
-        {
-            card.FaceUp();
-        }
     }
 }

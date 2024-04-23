@@ -16,13 +16,12 @@ public class StartingState : IPokerState
 
     public void EnterState()
     {
-        var betAmount = GameManager.Instance.GetSmallBlindBet;
-        GameManager.Instance.GetMoveManager.Bet(_player,betAmount);
-        _player.IsSmallBlindPaid = true;
+        Debug.Log("-StartingState-");
 
+        _player.IsSmallBlind = true;
         _nextPlayer.IsBigBlind = true;
 
-        GameManager.Instance.SetPlayerQueue(_nextPlayerIndex);
+        GameManager.Instance.SetPlayerQueue();
     }
 
     public void UpdateState()

@@ -1,21 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using System.Collections; 
 using UnityEngine;
 
 public class AIPlayer : Player
 {
-    private MoveManager _moveManager;
 
     private void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();   
     }
-
-    private void Start()
-    {
-        _moveManager = GameManager.Instance.GetMoveManager;
-    }
-
+ 
     public override bool IsMyTurn
     {
         get => base.IsMyTurn;
@@ -27,27 +20,51 @@ public class AIPlayer : Player
             {
                 SpriteRenderer.color = Color.green;
 
-                if (IsBigBlind)
+                if (IsSmallBlind)
                 {
-                    StartCoroutine(MoveManager.Instance.BlidBet(this));
-                    return;
+                    StartCoroutine(SmallBlindBet());
                 }
-                StartCoroutine(Move());
+                else if (IsBigBlind)
+                {
+                    StartCoroutine(BigBlindBet());
+                }
+                else
+                {
+                    StartCoroutine(Move());
+                }
             }
             else
             {
-                SpriteRenderer.color = DefaultColor;
+                if (SpriteRenderer != null)
+                    SpriteRenderer.color = DefaultColor;
             }
         }
     }
 
+    private IEnumerator SmallBlindBet()
+    {
+        IsSmallBlind = false;
+        IsSmallBlindPaid = true;
+
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.GetMoveManager.SmallBlindBet(this);
+    }
+
+    private IEnumerator BigBlindBet()
+    {
+        IsBigBlind = false;
+        IsBigBlindPaid = true;
+
+        yield return new WaitForSeconds(1.5f);
+        GameManager.Instance.GetMoveManager.BigBlidBet(this);
+    }
+
     private IEnumerator Move()
     {
-        yield return new WaitForSeconds(1f);
-
         var betAmount = ProbabilitySystem.SetBetRate(TotalMoney, GameManager.Instance.MinBet);
-        GameManager.Instance.GetMoveManager.Bet(this, betAmount);
+
+        yield return new WaitForSeconds(1.5f);
         
-        GameManager.Instance.NextPlayer();
+        GameManager.Instance.GetMoveManager.Bet(this, betAmount);
     }
 }

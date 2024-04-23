@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using UnityEditor;
-using DG.Tweening;
 
 public abstract class Player : MonoBehaviour
 {
@@ -15,44 +13,46 @@ public abstract class Player : MonoBehaviour
     private bool _isFold;
 
     [SerializeField] private bool _isSmallBlindPaid;
+    [SerializeField] private bool _isBigBlindPaid;
+
     [SerializeField] private bool _isBigBlind;
+    [SerializeField] private bool _isSmallBlind;
 
     private int _totalMoney;
-    private int _betAmount;
 
     public virtual List<Card> GetCards { get { return _cards; } }
     public Color DefaultColor { get { return _defaultColor; }}
     public SpriteRenderer SpriteRenderer { get { return _spriteRenderer; } set { _spriteRenderer = value; } }
-    
-    public int BetAmount { get { return _betAmount; }}
+  
     public int TotalMoney { get { return _totalMoney; } set { _totalMoney = value; } }
 
     public bool IsFold { get { return _isFold; } set { _isFold = value; } }
 
+    public bool IsSmallBlind { get { return _isSmallBlind; } set { _isSmallBlind = value; } }
     public bool IsSmallBlindPaid { get { return _isSmallBlindPaid; } set { _isSmallBlindPaid = value; } }
     public bool IsBigBlind { get { return _isBigBlind; } set { _isBigBlind = value; } }
+    public bool IsBigBlindPaid { get { return _isBigBlindPaid; } set { _isBigBlindPaid = value; } }
 
     public virtual bool IsMyTurn{ get { return _isMyTurn; } set {_isMyTurn = value; } }
 
-    public void AddCards(Card card)
+    public (Vector3 pos, Quaternion rot) AddCards(Card card)
     {
-        var nextPos = new Vector3(0,3,0);
-        card.transform.position = nextPos;
-
+        Quaternion rot = card.transform.rotation;
+        Vector3 pos = card.transform.position;
+        
         if (_cards.Count < 1)
         {
-            nextPos = _cardPos1.position;
-            card.transform.rotation = _cardPos1.rotation;
+            pos = _cardPos1.position;
+            rot = _cardPos1.rotation;
         }
         else
         {
-            nextPos = _cardPos2.position;
-            card.transform.rotation = _cardPos2.rotation;
+            pos = _cardPos2.position;
+            rot = _cardPos2.rotation;
         }
-
-        card.transform.DOMove(nextPos, 1f);
-
         _cards.Add(card);
         card.gameObject.SetActive(true);
+
+        return (pos, rot);
     }
 }
