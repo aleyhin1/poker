@@ -4,20 +4,15 @@ using System.Collections.Generic;
 public abstract class Player : MonoBehaviour
 {
     [SerializeField] private List<Card> _cards = new List<Card>(2);
-
     [SerializeField] private Transform _cardPos1, _cardPos2;
-    private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _defaultColor;
-
     [SerializeField] private bool _isMyTurn;
-    private bool _isFold;
-
     [SerializeField] private bool _isSmallBlindPaid;
     [SerializeField] private bool _isBigBlindPaid;
-
     [SerializeField] private bool _isBigBlind;
     [SerializeField] private bool _isSmallBlind;
-
+    private SpriteRenderer _spriteRenderer;
+    private bool _isFold;
     private int _totalMoney;
 
     public virtual List<Card> GetCards { get { return _cards; } }

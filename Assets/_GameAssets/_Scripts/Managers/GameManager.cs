@@ -4,33 +4,22 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    [SerializeField] private PokerStateManager _pokerStateManager;
-    public PokerStateManager GetPokerStateManager { get { return _pokerStateManager; } }
-
-    [SerializeField] private MoveManager _moveManager;
-    public MoveManager GetMoveManager { get { return _moveManager; } }
-    
+    public int MinBet;
+    [field: SerializeField] public List<Player> Players { get; private set; } = new List<Player>();
     private PlayerSequenceHandler _playerSequenceHandler;
     private StateContext _stateContext;
 
-    [SerializeField] private List<Player> _players = new List<Player>();
-    public List<Player> GetPlayers { get { return _players; } }
-
     #region Setting SO
-    [SerializeField] private int _smallBlindBet;
+    [field : SerializeField] public int SmallBlindBet { get; private set; }
     [SerializeField] private int _totalMoney;
     #endregion
-
-    [SerializeField] private int _minBet;
-    public int GetSmallBlindBet { get { return _smallBlindBet; }}
-    public int MinBet { get { return _minBet; } set { _minBet = value; } }
 
     private void Awake()
     {
         _stateContext = new StateContext();
-        _minBet = _smallBlindBet;
+        MinBet = SmallBlindBet;
 
-        foreach (var player in _players)
+        foreach (var player in Players)
         {
             player.TotalMoney = _totalMoney;
         }
@@ -38,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        _pokerStateManager.EnterStartingState();
+        PokerStateManager.Instance.EnterStartingState();
     }
 
     private void Update()
@@ -61,15 +50,15 @@ public class GameManager : MonoSingleton<GameManager>
         int currentIndex = currentPlayerIndex;
         Queue<Player> playersQueue = new Queue<Player>();
         
-        foreach (var player in _players)
+        foreach (var player in Players)
             player.IsMyTurn = false;
         
-        for (int i = 0; i < _players.Count; i++)
+        for (int i = 0; i < Players.Count; i++)
         {
-            if (currentIndex >= _players.Count)
+            if (currentIndex >= Players.Count)
                 break;
 
-            playersQueue.Enqueue(_players[currentIndex]);
+            playersQueue.Enqueue(Players[currentIndex]);
             currentIndex++;
         }
 

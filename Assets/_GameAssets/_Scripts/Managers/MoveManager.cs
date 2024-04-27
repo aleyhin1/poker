@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveManager : MonoSingleton<MoveManager>, IPokerMoves
+public class MoveManager : MonoSingleton<MoveManager>
 {
     public void SmallBlindBet(Player player , int bet)
     {
@@ -10,15 +10,16 @@ public class MoveManager : MonoSingleton<MoveManager>, IPokerMoves
         GameManager.Instance.NextPlayer();
     }
 
-    public void BigBlidBet(Player player)
+    public void BigBlindBet(Player player)
     {
-        var minBet = GameManager.Instance.MinBet;
-        var newBetValue = minBet * 2;
+        int minBet = GameManager.Instance.MinBet;
+        int newBetValue = minBet * 2;
+
         GameManager.Instance.MinBet = newBetValue;
 
         Debug.Log("Big Blind Player : " + player + " Bet : " + newBetValue);
 
-        GameManager.Instance.GetPokerStateManager.EnterDealingCardsState();
+        PokerStateManager.Instance.EnterDealingCardsState();
     }
 
     public void Bet(Player player, int betAmount)

@@ -2,16 +2,11 @@ using UnityEngine;
 
 public class PokerStateManager : MonoSingleton<PokerStateManager>
 {
-    StateContext _stateContext;
-
-    //All States
-    PokerState _currentState;
+    public PokerState CurrentState { get; private set; }
+    private StateContext _stateContext;
     private StartingState _startingState;
     private DealingCards _dealingCards;
     private Preflop _preflopState;
-
-    public PokerState GetCurrentState { get { return _currentState; } }
-
 
     private void Awake()
     {
@@ -25,33 +20,33 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
 
     public void EnterStartingState()
     {
-        _startingState = new StartingState(GameManager.Instance.GetPlayers);
-        _currentState = PokerState.StaringState;
+        _startingState = new StartingState(GameManager.Instance.Players);
+        CurrentState = PokerState.StaringState;
         _stateContext.TransitionTo(_startingState);
     } 
 
     public void EnterDealingCardsState()
     {
-        if (_currentState != PokerState.StaringState)
+        if (CurrentState != PokerState.StaringState)
         {
-            Debug.Log("HATA !!! : " + _currentState);
+            Debug.Log("HATA !!! : " + CurrentState);
             return;
         }
         _dealingCards = new DealingCards();
 
-        _currentState = PokerState.DealingCards;
+        CurrentState = PokerState.DealingCards;
         _stateContext.TransitionTo(_dealingCards);
     } 
 
     public void EnterPreflopState()
     {
-        if (_currentState != PokerState.DealingCards)
+        if (CurrentState != PokerState.DealingCards)
         {
-            Debug.Log("HATA !!! : " + _currentState);
+            Debug.Log("HATA !!! : " + CurrentState);
             return;
         }
         _preflopState = new Preflop();
-        _currentState = PokerState.Preflop;
+        CurrentState = PokerState.Preflop;
         _stateContext.TransitionTo(_preflopState);
     } 
 }

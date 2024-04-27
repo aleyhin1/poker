@@ -10,7 +10,7 @@ public class Preflop : IPokerState
     {
         Debug.Log("-Preflop-");
 
-        List<Player> players = GameManager.Instance.GetPlayers;
+        List<Player> players = GameManager.Instance.Players;
 
         for (int i = 0; i < players.Count; i++)
         {

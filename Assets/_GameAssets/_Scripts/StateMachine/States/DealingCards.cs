@@ -15,7 +15,7 @@ public class DealingCards : IPokerState
     {
         Debug.Log("-DealingCards-");
 
-        List<Player> players = GameManager.Instance.GetPlayers;
+        List<Player> players = GameManager.Instance.Players;
      
         DealingCard(players);
     }
@@ -54,7 +54,7 @@ public class DealingCards : IPokerState
         }
         else
         {
-            GameManager.Instance.GetPokerStateManager.EnterPreflopState();
+            PokerStateManager.Instance.EnterPreflopState();
         }
     }
 

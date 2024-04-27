@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
+    private const float MOVE_TIME = 1f;
+
     private void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();   
@@ -20,46 +22,47 @@ public class AIPlayer : Player
                 SpriteRenderer.color = Color.green;
                 CheckState();
             }
-            else
+            else if (SpriteRenderer != null)
             {
-                if (SpriteRenderer != null)
-                    SpriteRenderer.color = DefaultColor;
+                SpriteRenderer.color = DefaultColor;
             }
         }
     }
 
     private void CheckState()
     {
-        var pokerState = PokerStateManager.Instance.GetCurrentState;
+        var pokerState = PokerStateManager.Instance.CurrentState;
 
         switch (pokerState)
         {
             case PokerState.StaringState:
-
-                if (IsSmallBlind)
-                    StartCoroutine(SmallBlindBet());
-                else if (IsBigBlind)
-                    StartCoroutine(BigBlindBet());
+                HandleStaringState();
                 break;
-
             case PokerState.Preflop:
                 StartCoroutine(PreflopStateMove());
                 break;
-
             case PokerState.Flop:
                 break;
-
             case PokerState.Turn:
                 break;
-
             case PokerState.River:
                 break;
-
             case PokerState.EndState:
                 break;
-
             default:
                 break;
+        }
+    }
+
+    private void HandleStaringState()
+    {
+        if (IsSmallBlind)
+        {
+            StartCoroutine(SmallBlindBet());
+        }
+        else if (IsBigBlind)
+        {
+            StartCoroutine(BigBlindBet());
         }
     }
 
@@ -67,17 +70,17 @@ public class AIPlayer : Player
     {
         IsSmallBlind = false;
         IsSmallBlindPaid = true;
-        yield return new WaitForSeconds(1f);
-        var smallBlindBet = GameManager.Instance.GetSmallBlindBet;
-        GameManager.Instance.GetMoveManager.SmallBlindBet(this, smallBlindBet);
+        yield return new WaitForSeconds(MOVE_TIME);
+        var smallBlindBet = GameManager.Instance.SmallBlindBet;
+        MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
     }
 
     private IEnumerator BigBlindBet()
     {
         IsBigBlind = false;
         IsBigBlindPaid = true;
-        yield return new WaitForSeconds(1f);
-        GameManager.Instance.GetMoveManager.BigBlidBet(this);
+        yield return new WaitForSeconds(MOVE_TIME);
+        MoveManager.Instance.BigBlindBet(this);
     }
 
     private IEnumerator PreflopStateMove()

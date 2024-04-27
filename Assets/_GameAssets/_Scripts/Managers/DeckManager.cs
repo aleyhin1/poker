@@ -48,10 +48,9 @@ public class DeckManager : MonoBehaviour
                 Sprite cardFront = cardTextures.GetValue((int)rank) as Sprite;
 
                 spawnedCard.CreateCard(suit, rank, cardFront, _cardBack);
-
-               //Debug.Log($"{spawnedCard.Value} spawned with texture {cardFront}");
             }
         }
+
         ShuffleTheCards(Deck);
     }
 
@@ -66,12 +65,13 @@ public class DeckManager : MonoBehaviour
 
     private void ShuffleTheCards(Stack<Card> deck)
     {
-        var array = deck.ToArray();
+        Card[] array = deck.ToArray();
 
         var rnd = new System.Random();
         var shuffledArray = array.OrderBy(item => rnd.Next()).ToArray();
 
         deck.Clear(); 
+
         foreach (var card in shuffledArray)
         {
             deck.Push(card);
