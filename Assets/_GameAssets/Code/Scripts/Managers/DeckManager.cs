@@ -1,6 +1,5 @@
 using System.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,7 +18,6 @@ public class DeckManager : MonoBehaviour
     [SerializeField] private Sprite[] _spadeSpritesInOrder = new Sprite[13];
     [SerializeField] private Sprite _cardBack;
     private Dictionary<CardSuit, Sprite[]> _suitTexturesPairs;
-
 
     private void Awake()
     {

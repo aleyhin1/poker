@@ -10,6 +10,9 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
     private DealingCards _dealingCards;
     private Preflop _preflopState;
 
+    public PokerState GetCurrentState { get { return _currentState; } }
+
+
     private void Awake()
     {
         _stateContext = new StateContext();

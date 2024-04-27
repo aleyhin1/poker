@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class MoveManager : MonoSingleton<MoveManager>, IPokerMoves
 {
-
-    public void SmallBlindBet(Player player)
+    public void SmallBlindBet(Player player , int bet)
     {
-        Debug.Log("Small Blind Player : " + player + " Bet : " );
+        Debug.Log("Small Blind Player : " + player + " Bet : " + bet);
         GameManager.Instance.NextPlayer();
     }
 
@@ -42,7 +41,8 @@ public class MoveManager : MonoSingleton<MoveManager>, IPokerMoves
 
     public void Fold(Player player)
     {
-        throw new System.NotImplementedException();
+        player.IsFold = true;
+        GameManager.Instance.NextPlayer();
     }
 
     public void Raise(Player player, int raiseAmount)
