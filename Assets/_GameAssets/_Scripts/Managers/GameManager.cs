@@ -56,7 +56,7 @@ public class GameManager : MonoSingleton<GameManager>
         for (int i = 0; i < Players.Count; i++)
         {
             if (currentIndex >= Players.Count)
-                break;
+                currentIndex = 0;
 
             playersQueue.Enqueue(Players[currentIndex]);
             currentIndex++;

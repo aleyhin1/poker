@@ -9,7 +9,12 @@ public abstract class Player : MonoBehaviour
     public bool IsBigBlindPaid;
     public bool IsBigBlind;
     public bool IsSmallBlind;
+
     public bool IsFold;
+    public bool IsCall;
+    public bool IsBob;
+    public bool IsRaise;
+
     [field : SerializeField] public List<Card> Cards { get; private set; } = new List<Card>(2);
     [SerializeField] private Transform _cardPos1, _cardPos2;
     [field : SerializeField] public Color DefaultColor { get; private set; }

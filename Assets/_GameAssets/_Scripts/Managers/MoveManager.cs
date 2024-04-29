@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class MoveManager : MonoSingleton<MoveManager>
 {
-    public void SmallBlindBet(Player player , int bet)
+    public void SmallBlindBet(Player player , int betAmount)
     {
-        Debug.Log("Small Blind Player : " + player + " Bet : " + bet);
+        Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);
+
+        player.TotalMoney -= betAmount;
         GameManager.Instance.NextPlayer();
     }
 
@@ -15,39 +17,51 @@ public class MoveManager : MonoSingleton<MoveManager>
         int minBet = GameManager.Instance.MinBet;
         int newBetValue = minBet * 2;
 
+        Debug.Log("Big Blind Player : " + player.name + " Bet : " + newBetValue);
+
+        player.TotalMoney -= newBetValue;
         GameManager.Instance.MinBet = newBetValue;
-
-        Debug.Log("Big Blind Player : " + player + " Bet : " + newBetValue);
-
         PokerStateManager.Instance.EnterDealingCardsState();
     }
 
     public void Bet(Player player, int betAmount)
     {
-        Debug.Log("Normal : " + player + " Bet : " + betAmount);
+        Debug.Log(player.name + " Bet : " + betAmount);
 
+        player.TotalMoney -= betAmount;
         GameManager.Instance.NextPlayer();
-
     }
 
     public void Bob(Player player)
     {
-        throw new System.NotImplementedException();
+
     }
 
-    public void Call(Player player)
+    public void Call(Player player , int minBet)
     {
-        throw new System.NotImplementedException();
+        Debug.Log(player.name + " : Call : " + minBet);
+
+        player.TotalMoney -= minBet;
+        player.IsCall = true;
+        GameManager.Instance.NextPlayer();
     }
 
     public void Fold(Player player)
     {
+        Debug.Log(player.name + " : Fold");
+
         player.IsFold = true;
         GameManager.Instance.NextPlayer();
     }
 
     public void Raise(Player player, int raiseAmount)
     {
-        throw new System.NotImplementedException();
+        Debug.Log(player.name + " : Raise :" + raiseAmount);
+
+        player.TotalMoney -= raiseAmount;
+
+        GameManager.Instance.MinBet = raiseAmount;
+        player.IsRaise = true;
+        GameManager.Instance.NextPlayer();
     }
 }

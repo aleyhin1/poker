@@ -790,6 +790,118 @@ PrefabInstance:
       propertyPath: m_Name
       value: PokerTable
       objectReference: {fileID: 0}
+    - target: {fileID: 841933958911911325, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933958911911325, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933958911911325, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933958911911325, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933959113524829, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933959113524829, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933959113524829, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 841933959113524829, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180045651333, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180045651333, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180045651333, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180045651333, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180116237977, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180116237977, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180116237977, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180116237977, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180495461517, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180495461517, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180495461517, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871180495461517, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181168891073, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181168891073, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181168891073, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181168891073, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181187559923, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181187559923, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181187559923, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2842871181187559923, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: <DefaultColor>k__BackingField.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
 --- !u!1001 &1744400745183317602
@@ -1105,6 +1217,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
+      propertyPath: <SmallBlindBet>k__BackingField
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <Players>k__BackingField.Array.data[0]
       value: 
       objectReference: {fileID: 201630662}
@@ -1119,19 +1235,19 @@ PrefabInstance:
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <Players>k__BackingField.Array.data[3]
       value: 
-      objectReference: {fileID: 262931006}
+      objectReference: {fileID: 2801572052067742485}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <Players>k__BackingField.Array.data[4]
       value: 
-      objectReference: {fileID: 38946644}
+      objectReference: {fileID: 262931006}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <Players>k__BackingField.Array.data[5]
       value: 
-      objectReference: {fileID: 1268500587}
+      objectReference: {fileID: 38946644}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <Players>k__BackingField.Array.data[6]
       value: 
-      objectReference: {fileID: 2801572052067742485}
+      objectReference: {fileID: 1268500587}
     - target: {fileID: 4604134518607472347, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: m_Name
       value: GameManager

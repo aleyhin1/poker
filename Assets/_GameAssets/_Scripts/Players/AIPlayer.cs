@@ -85,7 +85,23 @@ public class AIPlayer : Player
 
     private IEnumerator PreflopStateMove()
     {
-        //Hamle yapacak 
-        yield break;
+        int minBet = GameManager.Instance.MinBet;
+
+        yield return new WaitForSeconds(MOVE_TIME);
+
+        if (ProbabilitySystem.FoldProbability(TotalMoney,minBet))
+        {
+            MoveManager.Instance.Fold(this);
+            yield break;
+        }
+
+        if (ProbabilitySystem.CallProbability())
+        {
+            MoveManager.Instance.Call(this, minBet);
+            yield break;
+        }
+
+        minBet = ProbabilitySystem.SetBetRate(TotalMoney,minBet);
+        MoveManager.Instance.Raise(this,minBet);
     }
 }

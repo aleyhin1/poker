@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class PlayerSequenceHandler
 {
@@ -10,6 +11,13 @@ public class PlayerSequenceHandler
 
     public PlayerSequenceHandler(Queue<Player> playerQueue)
     {
+        //Debug.Log("---------------");
+        //foreach (var item in playerQueue)
+        //{
+        //    Debug.Log(item.name);
+        //}
+        //Debug.Log("---------------");
+
         NextPlayerAction += NextPlayer;  
         _playersQueue = playerQueue;
         SelectPlayer();
