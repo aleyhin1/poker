@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class PlayerSequenceHandler
 {
-    public Action NextPlayerAction;
-
     private Queue<Player> _playersQueue;
     private Player _currentPlayer;
 
-    public PlayerSequenceHandler(Queue<Player> playerQueue)
+    public void SetPlayers(Queue<Player> playerQueue)
     {
-        //Debug.Log("---------------");
-        //foreach (var item in playerQueue)
-        //{
-        //    Debug.Log(item.name);
-        //}
-        //Debug.Log("---------------");
-
-        NextPlayerAction += NextPlayer;  
         _playersQueue = playerQueue;
+
+        Debug.Log("---------------");
+        foreach (var item in playerQueue)
+        {
+            Debug.Log(item.name);
+        }
+        Debug.Log("---------------");
+       
         SelectPlayer();
     }
 
@@ -29,17 +27,16 @@ public class PlayerSequenceHandler
         _currentPlayer.IsMyTurn = true;
     }
 
-    public void OnDisable()
-    {
-        NextPlayerAction -= NextPlayer; 
-    }
-
-    private void NextPlayer()
+    public void NextPlayer()
     {
         _currentPlayer = _playersQueue.Dequeue();
         _currentPlayer.IsMyTurn = false;
 
         if (_playersQueue.Count > 0)
             SelectPlayer();
+        else
+        {
+            PokerStateManager.Instance.NextState();
+        }    
     }
 }

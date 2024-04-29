@@ -6,17 +6,15 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public int MinBet;
     [field: SerializeField] public List<Player> Players { get; private set; } = new List<Player>();
-    private PlayerSequenceHandler _playerSequenceHandler;
-    private StateContext _stateContext;
-
+    public PlayerSequenceHandler PlayerSequenceHandler { get; private set; }
+ 
     #region Setting SO
     [field : SerializeField] public int SmallBlindBet { get; private set; }
     [SerializeField] private int _totalMoney;
     #endregion
 
     private void Awake()
-    {
-        _stateContext = new StateContext();
+    {    
         MinBet = SmallBlindBet;
 
         foreach (var player in Players)
@@ -27,46 +25,15 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        PokerStateManager.Instance.EnterStartingState();
+        PlayerSequenceHandler = new PlayerSequenceHandler();
+        PokerStateManager.Instance.EnterState(PokerState.StaringState);
     }
 
     private void Update()
     {
-        _stateContext.UpdateState();
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            _playerSequenceHandler.NextPlayerAction?.Invoke();
+            PlayerSequenceHandler.NextPlayer();
         }
-    }
-
-    public void NextPlayer()
-    {
-        _playerSequenceHandler.NextPlayerAction?.Invoke();
-    }
-
-    public void SetPlayerQueue(int currentPlayerIndex = 0)
-    {
-        int currentIndex = currentPlayerIndex;
-        Queue<Player> playersQueue = new Queue<Player>();
-        
-        foreach (var player in Players)
-            player.IsMyTurn = false;
-        
-        for (int i = 0; i < Players.Count; i++)
-        {
-            if (currentIndex >= Players.Count)
-                currentIndex = 0;
-
-            playersQueue.Enqueue(Players[currentIndex]);
-            currentIndex++;
-        }
-
-        _playerSequenceHandler = new PlayerSequenceHandler(playersQueue);
-    }
-
-    private void OnDisable()
-    {
-        _playerSequenceHandler.OnDisable();
-    }
+    } 
 }

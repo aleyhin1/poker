@@ -16,10 +16,10 @@ public class RealPlayer : Player
         {
             base.IsMyTurn = value;
 
-            if(IsMyTurn)
+            if(IsMyTurn && SpriteRenderer != null)
             {
                 SpriteRenderer.color = Color.green;
-                //Oyuncuya butonlar açýlacak
+                HandleStaringState();
             }
             else
             {
@@ -28,4 +28,33 @@ public class RealPlayer : Player
             }
         } 
     }
+
+    private void HandleStaringState()
+    {
+        if (IsSmallBlind)
+        {
+            SmallBlindBet();
+        }
+        else if (IsBigBlind)
+        {
+            BigBlindBet();
+        }
+    }
+
+    private void SmallBlindBet()
+    {
+        IsSmallBlind = false;
+        IsSmallBlindPaid = true;
+
+        var smallBlindBet = GameManager.Instance.SmallBlindBet;
+        MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
+    }
+
+    private void BigBlindBet()
+    {
+        IsBigBlind = false;
+        IsBigBlindPaid = true;
+        MoveManager.Instance.BigBlindBet(this);
+    }
+
 }

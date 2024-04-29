@@ -54,7 +54,7 @@ public class DealingCards : IPokerState
         }
         else
         {
-            PokerStateManager.Instance.EnterPreflopState();
+            PokerStateManager.Instance.EnterState(PokerState.Preflop);
         }
     }
 

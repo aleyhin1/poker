@@ -9,7 +9,7 @@ public class MoveManager : MonoSingleton<MoveManager>
         Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);
 
         player.TotalMoney -= betAmount;
-        GameManager.Instance.NextPlayer();
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void BigBlindBet(Player player)
@@ -21,7 +21,9 @@ public class MoveManager : MonoSingleton<MoveManager>
 
         player.TotalMoney -= newBetValue;
         GameManager.Instance.MinBet = newBetValue;
-        PokerStateManager.Instance.EnterDealingCardsState();
+
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+
     }
 
     public void Bet(Player player, int betAmount)
@@ -29,7 +31,8 @@ public class MoveManager : MonoSingleton<MoveManager>
         Debug.Log(player.name + " Bet : " + betAmount);
 
         player.TotalMoney -= betAmount;
-        GameManager.Instance.NextPlayer();
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+
     }
 
     public void Bob(Player player)
@@ -43,7 +46,8 @@ public class MoveManager : MonoSingleton<MoveManager>
 
         player.TotalMoney -= minBet;
         player.IsCall = true;
-        GameManager.Instance.NextPlayer();
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+
     }
 
     public void Fold(Player player)
@@ -51,7 +55,8 @@ public class MoveManager : MonoSingleton<MoveManager>
         Debug.Log(player.name + " : Fold");
 
         player.IsFold = true;
-        GameManager.Instance.NextPlayer();
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+
     }
 
     public void Raise(Player player, int raiseAmount)
@@ -62,6 +67,7 @@ public class MoveManager : MonoSingleton<MoveManager>
 
         GameManager.Instance.MinBet = raiseAmount;
         player.IsRaise = true;
-        GameManager.Instance.NextPlayer();
+
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 }
