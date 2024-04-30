@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    [field: SerializeField] public UIManager UIManager { get; private set; }
+
     public int MinBet;
     [field: SerializeField] public List<Player> Players { get; private set; } = new List<Player>();
     [field: SerializeField] public List<Transform> CardLocationOnTheTable { get; private set;} = new List<Transform>();
     [field: SerializeField] public List<Card> CardsOnTheTable { get; private set;} = new List<Card>();
+
     public PlayerSequenceHandler PlayerSequenceHandler { get; private set; }
     public RealPlayer RealPlayer { get; private set;}
 

@@ -19,28 +19,30 @@ public class RealPlayer : Player
             if(IsMyTurn && SpriteRenderer != null)
             {
                 SpriteRenderer.color = Color.green;
-                HandleStaringState();
+               
+                if (IsSmallBlind)
+                {
+                    SmallBlindBet();
+                }
+                else if (IsBigBlind)
+                {
+                    BigBlindBet();
+                }
+                else
+                {
+                    GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(true);   
+                }
             }
             else
             {
                 if (SpriteRenderer != null)
                     SpriteRenderer.color = DefaultColor;
+
+                GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(false);
             }
         } 
     }
-
-    private void HandleStaringState()
-    {
-        if (IsSmallBlind)
-        {
-            SmallBlindBet();
-        }
-        else if (IsBigBlind)
-        {
-            BigBlindBet();
-        }
-    }
-
+ 
     private void SmallBlindBet()
     {
         IsSmallBlind = false;

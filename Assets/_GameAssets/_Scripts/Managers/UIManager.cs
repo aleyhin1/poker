@@ -7,6 +7,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private MoveManager _moveManager;
 
+    [SerializeField] private GameObject _buttonsPanel;
     [SerializeField] private Button _foldButton, _callButton, _bobButton , _raisePanelButton;
 
     [Header("Raise Panel")]
@@ -21,8 +22,8 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+        ChangeVisibilityButtonsPanel(false);
         _raisePanelUI.SetActive(false);
-
         _realPlayer = GameManager.Instance.RealPlayer;
 
         _foldButton.onClick.AddListener(() =>
@@ -79,4 +80,8 @@ public class UIManager : MonoBehaviour
         #endregion
     }
 
+    public void ChangeVisibilityButtonsPanel(bool isActive)
+    {
+        _buttonsPanel.SetActive(isActive);
+    }
 }

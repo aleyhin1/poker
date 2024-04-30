@@ -987,6 +987,11 @@ Transform:
   m_Father: {fileID: 1340210266}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &731634513 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1951822000461325622, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+  m_PrefabInstance: {fileID: 1951821999812262565}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &796247863
 GameObject:
   m_ObjectHideFlags: 0
@@ -2164,6 +2169,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1951822000461325622, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1951822000738002026, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_Name
       value: PokerCanvas
@@ -2594,6 +2603,10 @@ PrefabInstance:
       propertyPath: _raiseButton
       value: 
       objectReference: {fileID: 435967052}
+    - target: {fileID: 6675431252589511993, guid: 3b7c7d10c1cfeb54d89bd39f1662d54a, type: 3}
+      propertyPath: _buttonsPanel
+      value: 
+      objectReference: {fileID: 731634513}
     - target: {fileID: 6675431252589511993, guid: 3b7c7d10c1cfeb54d89bd39f1662d54a, type: 3}
       propertyPath: _raisePanelUI
       value: 
