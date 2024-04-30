@@ -4,7 +4,7 @@ using DG.Tweening;
 
 public class DealingCards : IPokerState
 {
-    private const int _cardCount = 2;
+    private const int CARD_COUNT = 2;
     private int _currentCardCount = 0;
     private int _currentPlayerIndex = 0;
     private List<Player> _players;
@@ -41,7 +41,7 @@ public class DealingCards : IPokerState
 
     private void Dealing()
     {
-        if (_currentCardCount < _cardCount && _currentPlayerIndex < _players.Count)
+        if (_currentCardCount < CARD_COUNT && _currentPlayerIndex < _players.Count)
         {
             var card = DeckManager.Deck.Pop();
 

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveManager : MonoSingleton<MoveManager>
@@ -23,7 +21,6 @@ public class MoveManager : MonoSingleton<MoveManager>
         GameManager.Instance.MinBet = newBetValue;
 
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
-
     }
 
     public void Bet(Player player, int betAmount)
@@ -32,7 +29,6 @@ public class MoveManager : MonoSingleton<MoveManager>
 
         player.TotalMoney -= betAmount;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
-
     }
 
     public void Bob(Player player)
@@ -47,7 +43,6 @@ public class MoveManager : MonoSingleton<MoveManager>
         player.TotalMoney -= minBet;
         player.IsCall = true;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
-
     }
 
     public void Fold(Player player)
@@ -56,7 +51,6 @@ public class MoveManager : MonoSingleton<MoveManager>
 
         player.IsFold = true;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
-
     }
 
     public void Raise(Player player, int raiseAmount)
