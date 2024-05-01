@@ -1,11 +1,10 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using static UnityEditor.FilePathAttribute;
 
 public class Flop : IPokerState
 {
+    private int _currentCardCount = 0;
     private const int CARD_COUNT = 3;
     private const float DealingCardDuration = 0.5f;
 
@@ -39,8 +38,6 @@ public class Flop : IPokerState
         }
         GameManager.Instance.PlayerSequenceHandler.SetPlayers(playerQueue);
     }
-
-    int _currentCardCount = 0;
 
     private void RevealingCards()
     {

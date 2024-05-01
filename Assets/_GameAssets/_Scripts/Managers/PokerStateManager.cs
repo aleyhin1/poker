@@ -10,6 +10,9 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
     private Preflop _preflopState;
     private Flop _flopState;
 
+
+
+
     private void Awake()
     {
         _stateContext = new StateContext();
@@ -60,6 +63,7 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
                 nextState = PokerState.Flop;
                 break;
             case PokerState.Flop:
+                nextState = PokerState.Turn;
                 break;
             case PokerState.Turn:
                 break;
@@ -80,11 +84,6 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
 
     private void EnterDealingCardsState()
     {
-        if (CurrentState != PokerState.StaringState)
-        {
-            Debug.Log("HATA !!! : " + CurrentState);
-            return;
-        }
         _dealingCards = new DealingCards();
 
         CurrentState = PokerState.DealingCards;
@@ -93,25 +92,16 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
 
     private void EnterPreflopState()
     {
-        if (CurrentState != PokerState.DealingCards)
-        {
-            Debug.Log("HATA !!! : " + CurrentState);
-            return;
-        }
         _preflopState = new Preflop();
         CurrentState = PokerState.Preflop;
         _stateContext.TransitionTo(_preflopState);
     }
 
     private void EnterFlopState()
-    {
-        if (CurrentState != PokerState.Preflop)
-        {
-            Debug.Log("HATA !!! : " + CurrentState);
-            return;
-        }
+    {   
         _flopState = new Flop();
         CurrentState = PokerState.Flop;
         _stateContext.TransitionTo(_flopState);
+        UIManager.Instance.ChangeVisibilityBobButton(true);
     }
 }

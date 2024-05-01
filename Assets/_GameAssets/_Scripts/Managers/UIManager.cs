@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
-public class UIManager : MonoBehaviour
+public class UIManager : MonoSingleton<UIManager>
 {
     [SerializeField] private MoveManager _moveManager;
 
@@ -19,9 +18,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Slider _raiseAmountSlider;
     [SerializeField] private TextMeshProUGUI _raiseText;
 
-
     private void Start()
     {
+        ChangeVisibilityBobButton(false);
         ChangeVisibilityButtonsPanel(false);
         _raisePanelUI.SetActive(false);
         _realPlayer = GameManager.Instance.RealPlayer;
@@ -83,5 +82,10 @@ public class UIManager : MonoBehaviour
     public void ChangeVisibilityButtonsPanel(bool isActive)
     {
         _buttonsPanel.SetActive(isActive);
+    }
+
+    public void ChangeVisibilityBobButton(bool isActive)
+    {
+        _bobButton.gameObject.SetActive(isActive);
     }
 }

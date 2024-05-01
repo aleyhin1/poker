@@ -20,7 +20,19 @@ public class AIPlayer : Player
             if (IsMyTurn)
             {
                 SpriteRenderer.color = Color.green;
-                CheckState();
+
+                if (IsSmallBlind)
+                {
+                    StartCoroutine(SmallBlindBet());
+                }
+                else if (IsBigBlind)
+                {
+                    StartCoroutine(BigBlindBet());
+                }
+                else
+                {
+                    StartCoroutine(Move());
+                }
             }
             else if (SpriteRenderer != null)
             {
@@ -28,44 +40,7 @@ public class AIPlayer : Player
             }
         }
     }
-
-    private void CheckState()
-    {
-        var pokerState = PokerStateManager.Instance.CurrentState;
-
-        switch (pokerState)
-        {
-            case PokerState.StaringState:
-                HandleStaringState();
-                break;
-            case PokerState.Preflop:
-                StartCoroutine(PreflopStateMove());
-                break;
-            case PokerState.Flop:
-                break;
-            case PokerState.Turn:
-                break;
-            case PokerState.River:
-                break;
-            case PokerState.EndState:
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void HandleStaringState()
-    {
-        if (IsSmallBlind)
-        {
-            StartCoroutine(SmallBlindBet());
-        }
-        else if (IsBigBlind)
-        {
-            StartCoroutine(BigBlindBet());
-        }
-    }
-
+ 
     private IEnumerator SmallBlindBet()
     {
         IsSmallBlind = false;
@@ -83,11 +58,17 @@ public class AIPlayer : Player
         MoveManager.Instance.BigBlindBet(this);
     }
 
-    private IEnumerator PreflopStateMove()
+    private IEnumerator Move()
     {
         int minBet = GameManager.Instance.MinBet;
 
         yield return new WaitForSeconds(MOVE_TIME);
+
+        if (ProbabilitySystem.BobProbability(PokerStateManager.Instance.CurrentState))
+        {
+            MoveManager.Instance.Bob(this);
+            yield break;
+        }
 
         if (ProbabilitySystem.FoldProbability(TotalMoney,minBet))
         {
@@ -104,4 +85,6 @@ public class AIPlayer : Player
         minBet = ProbabilitySystem.SetBetRate(TotalMoney,minBet);
         MoveManager.Instance.Raise(this,minBet);
     }
+
+   
 }

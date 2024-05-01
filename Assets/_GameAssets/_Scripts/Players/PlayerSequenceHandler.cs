@@ -11,17 +11,17 @@ public class PlayerSequenceHandler
     {
         _playersQueue = playerQueue;
 
-        Debug.Log("---------------");
-        foreach (var item in playerQueue)
-        {
-            Debug.Log(item.name);
-        }
-        Debug.Log("---------------");
+        //Debug.Log("---------------");
+        //foreach (var item in playerQueue)
+        //{
+        //    Debug.Log(item.name);
+        //}
+        //Debug.Log("---------------");
        
         SelectPlayer();
     }
 
-    public void SelectPlayer()
+    private void SelectPlayer()
     {
         _currentPlayer = _playersQueue.Peek();
         _currentPlayer.IsMyTurn = true;

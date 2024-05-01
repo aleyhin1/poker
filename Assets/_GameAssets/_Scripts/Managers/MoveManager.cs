@@ -33,7 +33,14 @@ public class MoveManager : MonoSingleton<MoveManager>
 
     public void Bob(Player player)
     {
+        var pokerState = PokerStateManager.Instance.CurrentState;
+        if (pokerState == PokerState.Preflop || pokerState == PokerState.StaringState) 
+            return;
 
+        Debug.Log(player.name + " : Bob");
+
+        player.IsBob = true;
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void Call(Player player , int minBet)
