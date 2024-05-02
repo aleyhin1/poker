@@ -6,9 +6,8 @@ public abstract class Player : MonoBehaviour
 {
     [field: SerializeField] public List<Card> Cards { get; private set; } = new List<Card>(2);
     [SerializeField] private Transform _cardPos1, _cardPos2;
-    [field: SerializeField] public Color DefaultColor { get; private set; }
 
-    public SpriteRenderer SpriteRenderer;
+    public GameObject SelectedCircle;
 
     public virtual bool IsMyTurn { get; set; }
 

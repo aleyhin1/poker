@@ -5,11 +5,6 @@ public class AIPlayer : Player
 {
     private const float MOVE_TIME = 1f;
 
-    private void Awake()
-    {
-        SpriteRenderer = GetComponent<SpriteRenderer>();   
-    }
- 
     public override bool IsMyTurn
     {
         get => base.IsMyTurn;
@@ -19,7 +14,7 @@ public class AIPlayer : Player
 
             if (IsMyTurn)
             {
-                SpriteRenderer.color = Color.green;
+                SelectedCircle.SetActive(true);
 
                 if (IsSmallBlind)
                 {
@@ -34,9 +29,9 @@ public class AIPlayer : Player
                     StartCoroutine(Move());
                 }
             }
-            else if (SpriteRenderer != null)
+            else
             {
-                SpriteRenderer.color = DefaultColor;
+                SelectedCircle.SetActive(false);
             }
         }
     }

@@ -2,11 +2,7 @@ using UnityEngine;
 
 public class RealPlayer : Player
 {
-    private void Start()
-    {
-        SpriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
+   
     public override bool IsMyTurn 
     { 
         get => base.IsMyTurn; 
@@ -14,10 +10,9 @@ public class RealPlayer : Player
         {
             base.IsMyTurn = value;
 
-            if(IsMyTurn && SpriteRenderer != null)
+            if(IsMyTurn)
             {
-                SpriteRenderer.color = Color.green;
-               
+                SelectedCircle.SetActive(true);
                 if (IsSmallBlind)
                 {
                     SmallBlindBet();
@@ -33,9 +28,7 @@ public class RealPlayer : Player
             }
             else
             {
-                if (SpriteRenderer != null)
-                    SpriteRenderer.color = DefaultColor;
-
+                SelectedCircle.SetActive(false);
                 GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(false);
             }
         } 
