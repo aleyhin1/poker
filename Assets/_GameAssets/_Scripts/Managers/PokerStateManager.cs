@@ -9,9 +9,9 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
     private DealingCards _dealingCards;
     private Preflop _preflopState;
     private Flop _flopState;
-
-
-
+    private Turn _turnState;
+    private River _riverState;
+    private EndState _endState;
 
     private void Awake()
     {
@@ -40,10 +40,13 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
                 EnterFlopState();
                 break;
             case PokerState.Turn:
+                EnterTurnState();
                 break;
             case PokerState.River:
+                EnterRiverState();
                 break;
             case PokerState.EndState:
+                EnterEndState();
                 break;
         }
     }
@@ -66,10 +69,14 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
                 nextState = PokerState.Turn;
                 break;
             case PokerState.Turn:
+                nextState = PokerState.River;
                 break;
             case PokerState.River:
+                nextState = PokerState.EndState;
                 break;
+
             case PokerState.EndState:
+                
                 break;
         }
         EnterState(nextState);
@@ -104,4 +111,26 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
         _stateContext.TransitionTo(_flopState);
         UIManager.Instance.ChangeVisibilityBobButton(true);
     }
+
+    private void EnterTurnState()
+    {
+        _turnState = new Turn();
+        CurrentState = PokerState.Turn;
+        _stateContext.TransitionTo(_turnState);
+    }
+
+    private void EnterRiverState()
+    {
+        _riverState = new River();
+        CurrentState= PokerState.River;
+        _stateContext.TransitionTo(_riverState);
+    }
+
+    private void EnterEndState()
+    {
+        _endState = new EndState();
+        CurrentState = PokerState.EndState;
+        _stateContext.TransitionTo(_endState);
+    }
+
 }

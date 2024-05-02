@@ -2044,6 +2044,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+--- !u!114 &841933959113524828 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6326809835869097272, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+  m_PrefabInstance: {fileID: 841933959113524827}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4896ce31c2d68141a1aeefce10db8b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1744400745183317602
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2420,6 +2431,10 @@ PrefabInstance:
       propertyPath: <SmallBlindBet>k__BackingField
       value: 200
       objectReference: {fileID: 0}
+    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
+      propertyPath: <DealerController>k__BackingField
+      value: 
+      objectReference: {fileID: 841933959113524828}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <Players>k__BackingField.Array.data[0]
       value: 

@@ -1,26 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class Turn : IPokerState
+public class River : IPokerState
 {
     private const int CARD_COUNT = 1;
-    private const int CARD_LOCATION_INDEX = 3;
-   
+    private const int CARD_LOCATION_INDEX = 4;
+
     public void EnterState()
     {
-        Debug.Log("-----Turn-----");
+        Debug.Log("--------River----------");
         GameManager.Instance.DealerController.StartDealing(CARD_COUNT, CARD_LOCATION_INDEX);
-    }
-
-    public void UpdateState()
-    {
-         
     }
 
     public void ExitState()
     {
          
+    }
+
+    public void UpdateState()
+    {
+        
     }
 }
