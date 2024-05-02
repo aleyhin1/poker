@@ -54,7 +54,12 @@ public class UIManager : MonoSingleton<UIManager>
         {
             if (_realPlayer.IsMyTurn)
             {
-                _raiseAmountSlider.minValue = GameManager.Instance.MinBet * 2;
+                var minValue = GameManager.Instance.MinBet * 2;
+
+                if (minValue > _realPlayer.TotalMoney)
+                    minValue = 0;
+                 
+                _raiseAmountSlider.minValue = minValue;
                 _raiseAmountSlider.maxValue = _realPlayer.TotalMoney;
                 _raisePanelUI.SetActive(true);
             }

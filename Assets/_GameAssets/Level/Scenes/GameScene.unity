@@ -2108,6 +2108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PokerTable
       objectReference: {fileID: 0}
+    - target: {fileID: 6785819584720720986, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
 --- !u!114 &841933959113524828 stripped
@@ -2224,22 +2228,22 @@ PrefabInstance:
     - target: {fileID: 1951821999927749663, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 21300000, guid: 4a5006b444bfce947a9fa65f9e62900a, type: 3}
     - target: {fileID: 1951821999927749663, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1951821999927749663, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_Color.b
-      value: 0.21698111
+      value: 0.80784315
       objectReference: {fileID: 0}
     - target: {fileID: 1951821999927749663, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_Color.g
-      value: 0.21698111
+      value: 0.88235295
       objectReference: {fileID: 0}
     - target: {fileID: 1951821999927749663, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_Color.r
-      value: 0.21698111
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1951821999927749663, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_UseSpriteMesh
@@ -2280,6 +2284,30 @@ PrefabInstance:
     - target: {fileID: 1951822000148909455, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951822000461325616, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951822000461325616, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4a5006b444bfce947a9fa65f9e62900a, type: 3}
+    - target: {fileID: 1951822000461325616, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951822000461325616, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_Color.b
+      value: 0.8066038
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951822000461325616, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_Color.g
+      value: 0.88292307
+      objectReference: {fileID: 0}
+    - target: {fileID: 1951822000461325616, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1951822000461325622, guid: 6f1b131fcbaf657408b2087e7feb6ef4, type: 3}
       propertyPath: m_IsActive
