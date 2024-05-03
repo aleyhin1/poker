@@ -14,21 +14,61 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private GameObject _dialogBox;
     [SerializeField] private TextMeshPro _dialogText;
 
+    [SerializeField] private TextMeshPro _totalMoneyText;
+
     public virtual bool IsMyTurn { get; set; }
 
-    public int TotalMoney;
+    public int _totalMoney;
 
     public bool IsSmallBlindPaid;
     public bool IsBigBlindPaid;
     public bool IsBigBlind;
     public bool IsSmallBlind;
 
-    public bool IsCall;
-    public bool IsBob;
-    
+    private bool _isBob;
+    private bool _isCall;
     private bool _isFold;
     private bool _isRaise;
 
+
+    private void Start()
+    {
+        _dialogBox.SetActive(false);
+    }
+
+    public int TotalMoney 
+    {
+        get { return _totalMoney; }
+        set 
+        {
+            if (_totalMoney != value)
+                _totalMoneyText.text = "$"+value.ToString();
+           
+            _totalMoney = value;
+        }
+    }
+
+    public bool IsBob 
+    {
+        get { return _isBob; }
+        set 
+        {  
+            _isBob = value;
+            if (_isBob)
+                StartCoroutine(ShowDialogue("Bob"));
+        }
+    }
+
+    public bool IsCall
+    {
+        get { return _isCall; } 
+        set 
+        { 
+            _isCall = value;
+            if (_isCall)
+                StartCoroutine(ShowDialogue($"Call"));
+        }
+    }
     public bool IsRaise 
     {
         get {  return _isRaise; }
@@ -36,9 +76,7 @@ public abstract class Player : MonoBehaviour
         {
             _isRaise = value;
             if (_isRaise)
-            {
-                StartCoroutine(ShowDialogue("Raise"));
-            }
+                StartCoroutine(ShowDialogue($"Raise"));
         }
     }
     public bool IsFold 
@@ -47,7 +85,6 @@ public abstract class Player : MonoBehaviour
         set 
         {
             _isFold = value;
-            
             if (_isFold)
             {
                 StartCoroutine(ShowDialogue("Fold"));
@@ -106,5 +143,4 @@ public abstract class Player : MonoBehaviour
         
         _dialogBox.gameObject.SetActive(false);
     }
-
 }
