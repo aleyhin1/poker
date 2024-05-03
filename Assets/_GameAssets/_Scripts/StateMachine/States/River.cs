@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class River : IPokerState
@@ -11,15 +9,5 @@ public class River : IPokerState
     {
         Debug.Log("--------River----------");
         GameManager.Instance.DealerController.StartDealing(CARD_COUNT, CARD_LOCATION_INDEX);
-    }
-
-    public void ExitState()
-    {
-         
-    }
-
-    public void UpdateState()
-    {
-        
     }
 }

@@ -76,6 +76,7 @@ public class UIManager : MonoSingleton<UIManager>
             _sliderValue = Mathf.FloorToInt(value);
             _raiseText.text = _sliderValue.ToString();
         });
+
         _raiseButton.onClick.AddListener(() =>
         {
             _moveManager.Raise(_realPlayer, _sliderValue);

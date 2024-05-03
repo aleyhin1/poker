@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
+using System.Collections;
 
 public abstract class Player : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public abstract class Player : MonoBehaviour
     [SerializeField] private Transform _cardPos1, _cardPos2;
 
     public GameObject SelectedCircle;
+
+    [SerializeField] private GameObject _dialogBox;
+    [SerializeField] private TextMeshPro _dialogText;
 
     public virtual bool IsMyTurn { get; set; }
 
@@ -20,10 +25,22 @@ public abstract class Player : MonoBehaviour
 
     public bool IsCall;
     public bool IsBob;
-    public bool IsRaise;
+    
     private bool _isFold;
+    private bool _isRaise;
 
-
+    public bool IsRaise 
+    {
+        get {  return _isRaise; }
+        set 
+        {
+            _isRaise = value;
+            if (_isRaise)
+            {
+                StartCoroutine(ShowDialogue("Raise"));
+            }
+        }
+    }
     public bool IsFold 
     {
         get { return _isFold; }
@@ -33,6 +50,7 @@ public abstract class Player : MonoBehaviour
             
             if (_isFold)
             {
+                StartCoroutine(ShowDialogue("Fold"));
                 PutDownCards();
             }
         } 
@@ -78,4 +96,15 @@ public abstract class Player : MonoBehaviour
                 card.gameObject.SetActive (false);
             });
     }
+
+    private IEnumerator ShowDialogue(string dialogue)
+    {
+        _dialogText.text = dialogue;
+        _dialogBox.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(0.5f);
+        
+        _dialogBox.gameObject.SetActive(false);
+    }
+
 }

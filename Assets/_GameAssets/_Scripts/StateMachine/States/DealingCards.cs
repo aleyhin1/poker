@@ -20,16 +20,6 @@ public class DealingCards : IPokerState
         DealingCard(players);
     }
 
-    public void UpdateState()
-    {
-         
-    }
-
-    public void ExitState()
-    {
-
-    }
-
     private void DealingCard(List<Player> players)
     {
         _players = players;

@@ -14,16 +14,24 @@ public class GameManager : MonoSingleton<GameManager>
     [field: SerializeField] public List<Transform> CardLocationOnTheTable { get; private set;} = new List<Transform>();
     [field: SerializeField] public List<Card> CardsOnTheTable { get; private set;} = new List<Card>();
 
+    
     public PlayerSequenceHandler PlayerSequenceHandler { get; private set; }
     public RealPlayer RealPlayer { get; private set;}
+
+    public Stack<Player> LeaderBoardPlayerStack { get; private set;} = new Stack<Player> ();
 
     #region Setting SO
     [field : SerializeField] public int SmallBlindBet { get; private set; }
     [SerializeField] private int _totalMoney;
     #endregion
+ 
+    private void Start()
+    {
+        StartGame();
+    }
 
-    private void Awake()
-    {    
+    private void StartGame()
+    {
         MinBet = SmallBlindBet;
 
         foreach (var player in Players)
@@ -33,19 +41,14 @@ public class GameManager : MonoSingleton<GameManager>
 
             player.TotalMoney = _totalMoney;
         }
-    }
 
-    private void Start()
-    {
         PlayerSequenceHandler = new PlayerSequenceHandler();
         PokerStateManager.Instance.EnterState(PokerState.StaringState);
     }
 
-    private void Update()
+    public void EndGame()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayerSequenceHandler.NextPlayer();
-        }
-    } 
+        if (PokerStateManager.Instance.CurrentState != PokerState.EndState)
+            PokerStateManager.Instance.EnterState(PokerState.EndState);
+    }
 }

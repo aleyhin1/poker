@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,16 +26,6 @@ public class StartingState : IPokerState
         playerQueue.Enqueue(_nextPlayer);
 
         GameManager.Instance.PlayerSequenceHandler.SetPlayers(playerQueue);
-    }
-
-    public void UpdateState()
-    {
-        
-    }
-
-    public void ExitState()
-    {
-         
     }
 
     private void SetPlayers(List<Player> players)

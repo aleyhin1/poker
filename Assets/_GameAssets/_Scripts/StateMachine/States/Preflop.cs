@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -30,15 +29,5 @@ public class Preflop : IPokerState
                 break;
             }
         }
-    }
-
-    public void UpdateState()
-    {
-        
-    }
-
-    public void ExitState()
-    {
-   
     }
 }

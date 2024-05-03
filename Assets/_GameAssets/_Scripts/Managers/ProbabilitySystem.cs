@@ -4,6 +4,16 @@ public static class ProbabilitySystem
 {
     private static float _probabilityValue = 0f;
 
+    public static bool ForceToFold()
+    {
+        _probabilityValue = Random.value;
+
+        if (_probabilityValue >= 0f && _probabilityValue <= 0.5f)
+            return true;
+         
+        return false;
+    }
+
     public static bool BobProbability(PokerState currentState)
     {
         if (currentState == PokerState.Preflop)

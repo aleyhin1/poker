@@ -18,11 +18,6 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
         _stateContext = new StateContext();
     }
 
-    private void Update()
-    {
-        _stateContext.UpdateState();
-    }
-
     public void EnterState(PokerState pokerState)
     {
         switch (pokerState)

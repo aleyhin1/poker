@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class Flop : IPokerState
 {
@@ -11,15 +9,5 @@ public class Flop : IPokerState
     {
         Debug.Log("-----Flop-----");
         GameManager.Instance.DealerController.StartDealing(CARD_COUNT, CARD_LOCATION_INDEX);
-    }
-
-    public void UpdateState()
-    {
-    
-    }
-
-    public void ExitState()
-    {
-    
     }
 }

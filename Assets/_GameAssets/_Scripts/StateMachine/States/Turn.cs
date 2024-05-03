@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
 public class Turn : IPokerState
 {
@@ -12,15 +9,5 @@ public class Turn : IPokerState
     {
         Debug.Log("-----Turn-----");
         GameManager.Instance.DealerController.StartDealing(CARD_COUNT, CARD_LOCATION_INDEX);
-    }
-
-    public void UpdateState()
-    {
-         
-    }
-
-    public void ExitState()
-    {
-         
     }
 }
