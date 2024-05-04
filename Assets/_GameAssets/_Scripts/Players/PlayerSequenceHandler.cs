@@ -10,14 +10,6 @@ public class PlayerSequenceHandler
     public void SetPlayers(Queue<Player> playerQueue)
     {
         _playersQueue = playerQueue;
-
-        //Debug.Log("---------------");
-        //foreach (var item in playerQueue)
-        //{
-        //    Debug.Log(item.name);
-        //}
-        //Debug.Log("---------------");
-       
         SelectPlayer();
     }
 

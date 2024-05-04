@@ -15,6 +15,9 @@ public class DealingCards : IPokerState
     {
         Debug.Log("-DealingCards-");
 
+
+        GameManager.Instance.DealerController.CollectBets();
+
         List<Player> players = GameManager.Instance.Players;
      
         DealingCard(players);

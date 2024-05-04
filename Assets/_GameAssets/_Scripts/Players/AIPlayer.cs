@@ -47,10 +47,15 @@ public class AIPlayer : Player
 
     private IEnumerator BigBlindBet()
     {
+        int minBet = GameManager.Instance.MinBet;
+        int bigBlindBet = minBet * 2;
+
         IsBigBlind = false;
         IsBigBlindPaid = true;
+
+        GameManager.Instance.MinBet = bigBlindBet;
         yield return new WaitForSeconds(MOVE_TIME);
-        MoveManager.Instance.BigBlindBet(this);
+        MoveManager.Instance.BigBlindBet(this, bigBlindBet);
     }
 
     private IEnumerator Move()
@@ -78,6 +83,13 @@ public class AIPlayer : Player
         }
 
         minBet = ProbabilitySystem.SetBetRate(TotalMoney,minBet);
+
+        if (minBet > _totalMoney)
+        {
+            MoveManager.Instance.Fold(this);
+            yield break;
+        }
+
         MoveManager.Instance.Raise(this,minBet);
     }
 

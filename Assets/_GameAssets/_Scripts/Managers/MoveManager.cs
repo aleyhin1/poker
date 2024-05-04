@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Monetization;
 
 public class MoveManager : MonoSingleton<MoveManager>
 {
@@ -8,18 +9,19 @@ public class MoveManager : MonoSingleton<MoveManager>
         Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);
 
         player.TotalMoney -= betAmount;
+
+        player.ShowBetBox(betAmount);
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
-    public void BigBlindBet(Player player)
+    public void BigBlindBet(Player player, int betAmount)
     {
-        int minBet = GameManager.Instance.MinBet;
-        int newBetValue = minBet * 2;
+        Debug.Log("Big Blind Player : " + player.name + " Bet : " + betAmount);
 
-        Debug.Log("Big Blind Player : " + player.name + " Bet : " + newBetValue);
+        player.TotalMoney -= betAmount;
+        GameManager.Instance.MinBet = betAmount;
 
-        player.TotalMoney -= newBetValue;
-        GameManager.Instance.MinBet = newBetValue;
+        player.ShowBetBox(betAmount);
 
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
@@ -42,6 +44,7 @@ public class MoveManager : MonoSingleton<MoveManager>
 
         player.TotalMoney -= minBet;
         player.IsCall = true;
+        player.ShowBetBox(minBet);
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
@@ -78,6 +81,7 @@ public class MoveManager : MonoSingleton<MoveManager>
         GameManager.Instance.MinBet = raiseAmount;
         player.IsRaise = true;
 
+        player.ShowBetBox(raiseAmount);
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 }

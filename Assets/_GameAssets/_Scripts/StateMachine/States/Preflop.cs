@@ -7,6 +7,8 @@ public class Preflop : IPokerState
     {
         Debug.Log("-Preflop-");
 
+        GameManager.Instance.DealerController.CollectBets();
+
         List<Player> players = GameManager.Instance.Players;
         Queue<Player> playerQueue = new Queue<Player>();
 

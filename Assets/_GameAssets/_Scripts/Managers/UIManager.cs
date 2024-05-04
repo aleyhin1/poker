@@ -20,8 +20,8 @@ public class UIManager : MonoSingleton<UIManager>
 
     private void Start()
     {
+        _buttonsPanel.SetActive(false);
         ChangeVisibilityBobButton(false);
-        ChangeVisibilityButtonsPanel(false);
         _raisePanelUI.SetActive(false);
         _realPlayer = GameManager.Instance.RealPlayer;
 
@@ -87,6 +87,12 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ChangeVisibilityButtonsPanel(bool isActive)
     {
+        if (_realPlayer.TotalMoney < GameManager.Instance.MinBet)
+        {
+            _callButton.gameObject.SetActive(false);
+            _raisePanelButton.gameObject.SetActive(false);
+        }
+
         _buttonsPanel.SetActive(isActive);
     }
 

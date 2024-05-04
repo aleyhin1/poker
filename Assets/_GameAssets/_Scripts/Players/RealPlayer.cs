@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class RealPlayer : Player
 {
-   
     public override bool IsMyTurn 
     { 
         get => base.IsMyTurn; 
@@ -41,13 +40,20 @@ public class RealPlayer : Player
 
         var smallBlindBet = GameManager.Instance.SmallBlindBet;
         MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
+        ShowBetBox(smallBlindBet);
     }
 
     private void BigBlindBet()
     {
         IsBigBlind = false;
         IsBigBlindPaid = true;
-        MoveManager.Instance.BigBlindBet(this);
-    }
 
+        int minbet = GameManager.Instance.MinBet;
+        int bigBlindBet = minbet * 2;
+
+        GameManager.Instance.MinBet = bigBlindBet;
+
+        MoveManager.Instance.BigBlindBet(this,bigBlindBet);
+        ShowBetBox(bigBlindBet);
+    }
 }

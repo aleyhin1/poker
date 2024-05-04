@@ -11,6 +11,12 @@ public abstract class Player : MonoBehaviour
 
     public GameObject SelectedCircle;
 
+    public GameObject BetBox;
+
+    private Vector2 _betBoxPos;
+    [SerializeField] private GameObject _betBox => BetBox;
+    [SerializeField] private TextMeshPro _betText;
+
     [SerializeField] private GameObject _dialogBox;
     [SerializeField] private TextMeshPro _dialogText;
 
@@ -19,7 +25,9 @@ public abstract class Player : MonoBehaviour
     public virtual bool IsMyTurn { get; set; }
 
     public int _totalMoney;
+    public int LastBet;
 
+    public bool IsBet;
     public bool IsSmallBlindPaid;
     public bool IsBigBlindPaid;
     public bool IsBigBlind;
@@ -30,9 +38,10 @@ public abstract class Player : MonoBehaviour
     private bool _isFold;
     private bool _isRaise;
 
-
     private void Start()
     {
+        _betBoxPos = _betBox.transform.position;
+        _betBox.SetActive(false);
         _dialogBox.SetActive(false);
     }
 
@@ -47,7 +56,6 @@ public abstract class Player : MonoBehaviour
             _totalMoney = value;
         }
     }
-
     public bool IsBob 
     {
         get { return _isBob; }
@@ -58,7 +66,6 @@ public abstract class Player : MonoBehaviour
                 StartCoroutine(ShowDialogue("Bob"));
         }
     }
-
     public bool IsCall
     {
         get { return _isCall; } 
@@ -91,6 +98,29 @@ public abstract class Player : MonoBehaviour
                 PutDownCards();
             }
         } 
+    }
+
+    public void ResetBetBox()
+    {
+        IsBet = false;
+        _betBox.SetActive(false);
+        _betBox.transform.position = _betBoxPos;
+    }
+
+    public void ShowBetBox(int bet)
+    {
+        IsBet = true;
+
+        LastBet = bet;
+
+        var targetPos = _betBox.transform.position;
+        _betBox.transform.position = transform.position;
+
+        _betText.text = "$" + bet.ToString();
+        _betBox.SetActive(true);
+
+        _betBox.transform.DOMove(targetPos, 0.5f)
+            .SetEase(Ease.Linear);
     }
 
     public (Vector3 pos, Quaternion rot) AddCards(Card card)

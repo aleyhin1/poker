@@ -58,6 +58,7 @@ public class DeckManager : MonoBehaviour
     {
         Card spawnedCard = Instantiate<Card>(_cardPrefab, transform);
         spawnedCard.gameObject.SetActive(false);
+        spawnedCard.GetComponent<SpriteRenderer>().sortingOrder = 3;
         Deck.Push(spawnedCard);
 
         return spawnedCard;

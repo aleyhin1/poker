@@ -1494,17 +1494,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1323291763 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1323291763, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-  m_PrefabInstance: {fileID: 841933959113524827}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1323502782
 GameObject:
   m_ObjectHideFlags: 0
@@ -2119,10 +2108,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PokerTable
       objectReference: {fileID: 0}
-    - target: {fileID: 841933958911911325, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-      propertyPath: _totalMoneyText
-      value: 
-      objectReference: {fileID: 1323291763}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
 --- !u!114 &841933959113524828 stripped
