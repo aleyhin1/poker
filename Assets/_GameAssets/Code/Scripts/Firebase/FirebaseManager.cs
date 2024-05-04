@@ -13,7 +13,7 @@ public class FirebaseManager : MonoBehaviour
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
-    public FirebaseAuth auth;    
+    public FirebaseAuth auth;
     public FirebaseUser User;
     public DatabaseReference DBreference;
 
@@ -38,6 +38,8 @@ public class FirebaseManager : MonoBehaviour
     public TMP_Text scoreText;
     public GameObject scoreElement;
     public Transform scoreboardContent;
+    public int myScore;
+
 
     void Awake()
     {
@@ -55,6 +57,8 @@ public class FirebaseManager : MonoBehaviour
                 Debug.LogError("Could not resolve all Firebase dependencies: " + dependencyStatus);
             }
         });
+
+        DontDestroyOnLoad(this);
     }
 
     private void InitializeFirebase()
@@ -66,7 +70,7 @@ public class FirebaseManager : MonoBehaviour
 
         FirebaseAnalytics.SetAnalyticsCollectionEnabled(true);
         FirebaseAnalytics.LogEvent(FirebaseAnalytics.EventAppOpen);
-        
+
     }
     public void ClearLoginFeilds()
     {
@@ -94,25 +98,43 @@ public class FirebaseManager : MonoBehaviour
         StartCoroutine(Register(emailRegisterField.text, passwordRegisterField.text, usernameRegisterField.text));
     }
     //Function for the sign out button
-  /*  public void SignOutButton()
+    /*  public void SignOutButton()
+      {
+          auth.SignOut();
+          FirebaseUIManager.instance.LoginScreen();
+          ClearRegisterFeilds();
+          ClearLoginFeilds();
+      }*/
+    public void TestSaveButton()
     {
-        auth.SignOut();
-        FirebaseUIManager.instance.LoginScreen();
-        ClearRegisterFeilds();
-        ClearLoginFeilds();
-    }*/
+        StartCoroutine(UpdateScore(myScore+5));
+        StartCoroutine(LoadUserData());
+        StartCoroutine(Wait());
+
+        IEnumerator Wait()
+        {
+            yield return new WaitForSeconds(2);
+            StartCoroutine(LoadScoreboardData());
+        }
+
+       
+
+    }
     //Function for the save button
     public void SaveDataButton()
     {
         //StartCoroutine(UpdateUsernameAuth(usernameText.text));
-        //StartCoroutine(UpdateUsernameDatabase(usernameText.text));
+        // StartCoroutine(UpdateUsernameDatabase(usernameText.text));
 
-        StartCoroutine(UpdateScore(int.Parse(scoreText.text)));
-       
+        //StartCoroutine(UpdateScore(int.Parse(scoreText.text)));
+
+        StartCoroutine(UpdateUsernameDatabase(usernameRegisterField.text));
+        StartCoroutine(UpdateScore(0));
+
     }
     //Function for the scoreboard button
     public void ScoreboardButton()
-    {        
+    {
         StartCoroutine(LoadScoreboardData());
     }
 
@@ -163,7 +185,7 @@ public class FirebaseManager : MonoBehaviour
 
             yield return new WaitForSeconds(2);
 
-            usernameText.text = User.DisplayName;
+            usernameText.text ="UserName:"+ User.DisplayName;
             FirebaseUIManager.instance.UserDataScreen(); // Change to user data UI
             ScoreboardButton(); // Load the scoreboard
             confirmLoginText.text = "";
@@ -171,7 +193,7 @@ public class FirebaseManager : MonoBehaviour
             ClearRegisterFeilds();
 
             FirebaseAnalytics.LogEvent("player_won", "game_status", "won");
-            
+
         }
     }
 
@@ -182,17 +204,19 @@ public class FirebaseManager : MonoBehaviour
             //If the username field is blank show a warning
             warningRegisterText.text = "Missing Username";
         }
-        else if(passwordRegisterField.text != passwordRegisterVerifyField.text)
+        else if (passwordRegisterField.text != passwordRegisterVerifyField.text)
         {
             //If the password does not match show a warning
             warningRegisterText.text = "Password Does Not Match!";
         }
-        else 
+        else
         {
             //Call the Firebase auth signin function passing the email and password
             Task<AuthResult> RegisterTask = auth.CreateUserWithEmailAndPasswordAsync(_email, _password);
             //Wait until the task completes
             yield return new WaitUntil(predicate: () => RegisterTask.IsCompleted);
+
+
 
             if (RegisterTask.Exception != null)
             {
@@ -228,7 +252,7 @@ public class FirebaseManager : MonoBehaviour
                 if (User != null)
                 {
                     //Create a user profile and set the username
-                    UserProfile profile = new UserProfile{DisplayName = _username};
+                    UserProfile profile = new UserProfile { DisplayName = _username };
 
                     //Call the Firebase auth update user profile function passing the profile with the username
                     Task ProfileTask = User.UpdateUserProfileAsync(profile);
@@ -245,7 +269,10 @@ public class FirebaseManager : MonoBehaviour
                     {
                         //Username is now set
                         //Now return to login screen
-                        FirebaseUIManager.instance.LoginScreen();                        
+
+                        SaveDataButton();
+
+                        FirebaseUIManager.instance.LoginScreen();
                         warningRegisterText.text = "";
                         ClearRegisterFeilds();
                         ClearLoginFeilds();
@@ -255,27 +282,27 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-   /* private IEnumerator UpdateUsernameAuth(string _username)
-    {
-        //Create a user profile and set the username
-        UserProfile profile = new UserProfile { DisplayName = _username };
+    /* private IEnumerator UpdateUsernameAuth(string _username)
+     {
+         //Create a user profile and set the username
+         UserProfile profile = new UserProfile { DisplayName = _username };
 
-        //Call the Firebase auth update user profile function passing the profile with the username
-        Task ProfileTask = User.UpdateUserProfileAsync(profile);
-        //Wait until the task completes
-        yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
+         //Call the Firebase auth update user profile function passing the profile with the username
+         Task ProfileTask = User.UpdateUserProfileAsync(profile);
+         //Wait until the task completes
+         yield return new WaitUntil(predicate: () => ProfileTask.IsCompleted);
 
-        if (ProfileTask.Exception != null)
-        {
-            Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
-        }
-        else
-        {
-            //Auth username is now updated
-        }        
-    }*/
+         if (ProfileTask.Exception != null)
+         {
+             Debug.LogWarning(message: $"Failed to register task with {ProfileTask.Exception}");
+         }
+         else
+         {
+             //Auth username is now updated
+         }        
+     }*/
 
-   /* private IEnumerator UpdateUsernameDatabase(string _username)
+    private IEnumerator UpdateUsernameDatabase(string _username)
     {
         //Set the currently logged in user username in the database
         Task DBTask = DBreference.Child("users").Child(User.UserId).Child("username").SetValueAsync(_username);
@@ -291,7 +318,7 @@ public class FirebaseManager : MonoBehaviour
             //Database username is now updated
         }
     }
-    */
+
 
     private IEnumerator UpdateScore(int _score)
     {
@@ -312,6 +339,8 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LoadUserData()
     {
+
+
         //Get the currently logged in user data
         Task<DataSnapshot> DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
 
@@ -324,16 +353,18 @@ public class FirebaseManager : MonoBehaviour
         else if (DBTask.Result.Value == null)
         {
             //No data exists yet
+            myScore = 0;
             scoreText.text = "0";
-          
+
         }
         else
         {
             //Data has been retrieved
             DataSnapshot snapshot = DBTask.Result;
 
-            scoreText.text = snapshot.Child("score").Value.ToString();
-            
+            myScore =int.Parse(snapshot.Child("score").Value.ToString());
+            scoreText.text ="MyScore:"+ myScore.ToString();
+
         }
     }
 
@@ -370,9 +401,9 @@ public class FirebaseManager : MonoBehaviour
             }
 
             //Go to scoareboard screen
-           // FirebaseUIManager.instance.ScoreboardScreen();
+            // FirebaseUIManager.instance.ScoreboardScreen();
         }
 
-        //SaveDataButton();
+
     }
 }

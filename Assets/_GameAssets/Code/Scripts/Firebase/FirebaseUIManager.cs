@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FirebaseUIManager : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class FirebaseUIManager : MonoBehaviour
     public GameObject loginUI;
     public GameObject registerUI;
     public GameObject userDataUI;
-   // public GameObject scoreboardUI;
+    // public GameObject scoreboardUI;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class FirebaseUIManager : MonoBehaviour
             Debug.Log("Instance already exists, destroying object!");
             Destroy(this);
         }
+        DontDestroyOnLoad(this);
     }
 
     //Functions to change the login screen UI
@@ -32,7 +34,7 @@ public class FirebaseUIManager : MonoBehaviour
         loginUI.SetActive(false);
         registerUI.SetActive(false);
         userDataUI.SetActive(false);
-       // scoreboardUI.SetActive(false);
+        // scoreboardUI.SetActive(false);
     }
 
     public void LoginScreen() //Back button
@@ -49,13 +51,14 @@ public class FirebaseUIManager : MonoBehaviour
     public void UserDataScreen() //Logged in
     {
         ClearScreen();
+        SceneManager.LoadScene(1);
         userDataUI.SetActive(true);
     }
 
-  /*  public void ScoreboardScreen() //Scoreboard button
-    {
-        ClearScreen();
-        scoreboardUI.SetActive(true);
-    }
-    */
+    /*  public void ScoreboardScreen() //Scoreboard button
+      {
+          ClearScreen();
+          scoreboardUI.SetActive(true);
+      }
+      */
 }
