@@ -11,6 +11,8 @@ public class EndState : IPokerState
     public void EnterState()
     {
         Debug.Log("-------EndState--------");
+        GameManager.Instance.DealerController.CollectBets();
+
 
         Debug.Log("oyuncularýn kartlarý hesaplanýyor..");
 
