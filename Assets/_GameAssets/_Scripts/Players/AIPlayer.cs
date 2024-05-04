@@ -5,6 +5,22 @@ public class AIPlayer : Player
 {
     private const float MOVE_TIME = 1f;
 
+    private bool _isActive;
+
+    public bool IsActive 
+    {
+        get { return _isActive; }
+        set
+        {
+            _isActive = value;
+
+            if (!_isActive)
+                gameObject.SetActive(false);
+            else
+                gameObject.SetActive(true); 
+        } 
+    }
+
     public override bool IsMyTurn
     {
         get => base.IsMyTurn;
@@ -41,7 +57,7 @@ public class AIPlayer : Player
         IsSmallBlind = false;
         IsSmallBlindPaid = true;
         yield return new WaitForSeconds(MOVE_TIME);
-        var smallBlindBet = GameManager.Instance.SmallBlindBet;
+        var smallBlindBet = GameManager.Instance.MinBet;
         MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
     }
 

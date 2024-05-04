@@ -38,7 +38,7 @@ public class RealPlayer : Player
         IsSmallBlind = false;
         IsSmallBlindPaid = true;
 
-        var smallBlindBet = GameManager.Instance.SmallBlindBet;
+        var smallBlindBet = GameManager.Instance.MinBet;
         MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
         ShowBetBox(smallBlindBet);
     }

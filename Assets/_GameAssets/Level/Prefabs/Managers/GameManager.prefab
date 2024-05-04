@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6982811df2d6f344abba6a67c7026a49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Players>k__BackingField:
+  _settingsSO: {fileID: 11400000, guid: e9128a8fc005c5c4289ae9cc3d9d6495, type: 2}
+  MinBet: 0
+  <UIManager>k__BackingField: {fileID: 0}
+  <DealerController>k__BackingField: {fileID: 0}
+  <AllPlayers>k__BackingField:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -52,6 +56,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  _minBet: 0
-  SmallBlindBet: 200
-  _totalMoney: 10000
+  <CardLocationOnTheTable>k__BackingField:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  <CardsOnTheTable>k__BackingField: []
