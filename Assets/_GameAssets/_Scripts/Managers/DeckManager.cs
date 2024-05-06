@@ -70,7 +70,8 @@ public class DeckManager : MonoBehaviour
         }
 
 
-        List<Card> flushCardsInHand = HandCalculator.GetFlushCards(hand);
+        
+        Debug.Log("Is Hand Flush : " + HandCalculator.IsHandFlush(hand, out List<Card> flushCardsInHand));
         Debug.Log("Flush cards in hand = ");
 
         if (flushCardsInHand != null)
@@ -81,7 +82,7 @@ public class DeckManager : MonoBehaviour
             }
         }
 
-        List<Card> straightCardsInHand = HandCalculator.GetStraightCards(hand);
+        Debug.Log("Is hand straight : " + HandCalculator.IsHandStraight(hand, out List<Card> straightCardsInHand));
         Debug.Log("Straight cards in hand = ");
 
         if (straightCardsInHand != null)

@@ -3,30 +3,52 @@ using System.Collections.Generic;
 
 public static class HandCalculator
 {
-    public static List<Card> GetStraightCards(List<Card> hand)
-    {
-        if (hand.Count < 5) return null;
+    //public static (HandRank, CardRank) GetHandValue(List<Card> hand)
+    //{
+    //    else if ()
+    //    {
 
-        Card highestCard = GetHighestCard(hand);
+    //    }
+
+    //    Card highCard = GetHighCard(hand);
+    //    return (HandRank.HighCard, highCard.Value.Item2);
+    //}
+
+    public static bool IsHandStraight(List<Card> hand, out List<Card> straightCards)
+    {
+        straightCards = null;
+
+        if (hand.Count < 5) { return false; }
+
+        Card highestCard = GetHighCard(hand);
 
         if (highestCard.Value.Item2 == CardRank.Ace)
         {
-            List<Card> chainDown = GetFiveChainCards(hand, highestCard, true);
+            straightCards = GetFiveChainCards(hand, highestCard, true);
 
-            if (chainDown != null)
+            if (straightCards != null)
             {
-                chainDown.Reverse();
-                return chainDown;
+                straightCards.Reverse();
+                return true;
             }
         }
 
-        List<Card> chain = GetFiveChainCards(hand, highestCard, false);
-        return chain;
+
+        straightCards = GetFiveChainCards(hand, highestCard, false);
+
+        if (straightCards != null)
+        {
+            return true;
+        }
+
+        return false;
     }
 
-    public static List<Card> GetFlushCards(List<Card> hand)
+    public static bool IsHandFlush(List<Card> hand, out List<Card> flushCards)
     {
-        if (hand.Count < 5) return null;
+        flushCards = null;
+
+        if (hand.Count < 5) { return false; }
 
         Tuple<CardSuit, List<Card>> _clubCards = new Tuple<CardSuit, List<Card>>(CardSuit.Club, new List<Card>());
         Tuple<CardSuit, List<Card>> _diamondCards = new Tuple<CardSuit, List<Card>>(CardSuit.Diamond, new List<Card>());
@@ -54,20 +76,39 @@ public static class HandCalculator
             }
         }
 
-        List<Card> flushHand = new List<Card>();
+        flushCards = new List<Card>();
         int maxCardCount = 0;
 
         foreach (Tuple<CardSuit, List<Card>> suitAndCards in _suitCardsPairs)
         {
             if (suitAndCards.Item2.Count > maxCardCount)
             {
-                flushHand = suitAndCards.Item2;
+                flushCards = suitAndCards.Item2;
                 maxCardCount = suitAndCards.Item2.Count;
             }
         }
 
-        return GetTopFiveCards(flushHand);
+        flushCards = GetTopFiveCards(flushCards);
+
+        if (flushCards.Count >= 5)
+        {
+            return true;
+        }
+
+        return false;
     }
+
+    //private static bool IsHandPair(List<Card> hand, out List<Card> pairs)
+    //{
+    //    pairs = null;
+    //    hand.Sort();
+
+    //    foreach (Card card in hand)
+    //    {
+    //        pairs.Add(card);
+
+    //    }
+    //}
 
     private static List<Card> GetFiveChainCards(List<Card> hand, Card pivotCard, bool isIncreasing)
     {
@@ -121,7 +162,7 @@ public static class HandCalculator
         return null;
     }
 
-    private static Card GetHighestCard(List<Card> hand)
+    private static Card GetHighCard(List<Card> hand)
     {
         List<Card> tempHand = new List<Card>(hand);
         tempHand.Sort();
