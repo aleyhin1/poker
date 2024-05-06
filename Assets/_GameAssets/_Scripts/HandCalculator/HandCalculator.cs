@@ -98,6 +98,35 @@ public static class HandCalculator
         return false;
     }
 
+    public static bool IsHandTwoPairs(List<Card> hand, out List<Card> twoPairs)
+    {
+        twoPairs = null;
+        List<Card> tempHand = new List<Card>(hand);
+
+        if (IsHandPair(hand, out List<Card> pairs))
+        {
+            twoPairs = new List<Card>();
+
+            foreach(Card card in pairs)
+            {
+                twoPairs.Add(card);
+                tempHand.Remove(card);
+            }
+
+            if (IsHandPair(tempHand, out List<Card> anotherPairs))
+            {
+                foreach(Card card in anotherPairs)
+                {
+                    twoPairs.Add(card);
+                }
+
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     public static bool IsHandPair(List<Card> hand, out List<Card> pairs)
     {
         pairs = null;

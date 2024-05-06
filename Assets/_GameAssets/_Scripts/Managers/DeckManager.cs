@@ -48,15 +48,15 @@ public class DeckManager : MonoBehaviour
         hand.Add(card2);
 
         Card card3 = CreateCardObject();
-        card3.CreateCard(CardSuit.Diamond, CardRank.Three, null, null);
+        card3.CreateCard(CardSuit.Diamond, CardRank.Two, null, null);
         hand.Add(card3);
 
         Card card4 = CreateCardObject();
-        card4.CreateCard(CardSuit.Diamond, CardRank.Two, null, null);
+        card4.CreateCard(CardSuit.Diamond, CardRank.Three, null, null);
         hand.Add(card4);
 
         Card card5 = CreateCardObject();
-        card5.CreateCard(CardSuit.Diamond, CardRank.Ace, null, null);
+        card5.CreateCard(CardSuit.Diamond, CardRank.Three, null, null);
         hand.Add(card5);
 
 
@@ -99,6 +99,17 @@ public class DeckManager : MonoBehaviour
         if (pairs != null)
         {
             foreach (Card card in pairs)
+            {
+                Debug.Log(card.Value);
+            }
+        }
+
+        Debug.Log("Is hand TwoPairs: " + HandCalculator.IsHandTwoPairs(hand, out List<Card> twoPairs));
+        Debug.Log("Two pairs ");
+
+        if (twoPairs != null)
+        {
+            foreach(Card card in twoPairs)
             {
                 Debug.Log(card.Value);
             }
