@@ -25,6 +25,77 @@ public class DeckManager : MonoBehaviour
         FillDeck();
     }
 
+    private void Start()
+    {
+        // TEST *************************************************************************************
+
+        List<Card> hand = new List<Card>();
+
+        Card card6 = CreateCardObject();
+        card6.CreateCard(CardSuit.Spade, CardRank.Ace, null, null);
+        hand.Add(card6);
+
+        Card card7 = CreateCardObject();
+        card7.CreateCard(CardSuit.Diamond, CardRank.Two, null, null);
+        hand.Add(card7);
+
+        Card card1 = CreateCardObject();
+        card1.CreateCard(CardSuit.Diamond, CardRank.Four, null, null);
+        hand.Add(card1);
+
+        Card card2 = CreateCardObject();
+        card2.CreateCard(CardSuit.Spade, CardRank.Queen, null, null);
+        hand.Add(card2);
+
+        Card card3 = CreateCardObject();
+        card3.CreateCard(CardSuit.Diamond, CardRank.Three, null, null);
+        hand.Add(card3);
+
+        Card card4 = CreateCardObject();
+        card4.CreateCard(CardSuit.Diamond, CardRank.Two, null, null);
+        hand.Add(card4);
+
+        Card card5 = CreateCardObject();
+        card5.CreateCard(CardSuit.Diamond, CardRank.Five, null, null);
+        hand.Add(card5);
+
+
+
+        hand.Sort();
+
+        Debug.Log("Sorted cards");
+        foreach(Card card in hand)
+        {
+            Debug.Log(card.Value);
+        }
+
+
+        List<Card> flushCardsInHand = HandCalculator.GetFlushCards(hand);
+        Debug.Log("Flush cards in hand = ");
+
+        if (flushCardsInHand != null)
+        {
+            foreach (Card card in flushCardsInHand)
+            {
+                Debug.Log(card.Value);
+            }
+        }
+
+        List<Card> straightCardsInHand = HandCalculator.GetStraightCards(hand);
+        Debug.Log("Straight cards in hand = ");
+
+        if (straightCardsInHand != null)
+        {
+            foreach (Card card in straightCardsInHand)
+            {
+                Debug.Log(card.Value);
+            }
+        }
+
+
+        // TEST *************************************************************************************
+    }
+
     private void FillSuitTexturesPairs()
     {
         _suitTexturesPairs = new Dictionary<CardSuit, Sprite[]>

@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Card : MonoBehaviour
+public class Card : MonoBehaviour, IComparable<Card>
 {
-    public Tuple<CardSuit, CardRank> Value { get; private set; }
+    public (CardSuit, CardRank) Value { get; private set; }
     private Sprite _front;
     private Sprite _back;
     private SpriteRenderer _renderer;
@@ -17,7 +17,7 @@ public class Card : MonoBehaviour
 
     public void CreateCard(CardSuit suit, CardRank rank, Sprite front, Sprite back)
     {
-        Value = new Tuple<CardSuit, CardRank>(suit, rank);
+        Value = (suit, rank);
         _front = front;
         _back = back;
         FaceUp();
@@ -31,5 +31,10 @@ public class Card : MonoBehaviour
     public void FaceDown()
     {
         _renderer.sprite = _back;
+    }
+
+    int IComparable<Card>.CompareTo(Card cardToCompare)
+    {
+        return Value.Item2 > cardToCompare.Value.Item2 ? 1 : -1;
     }
 }

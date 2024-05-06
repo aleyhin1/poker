@@ -27,7 +27,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void Start()
     {
-        PokerStateManager.Instance.EnterStartingState();
+        //PokerStateManager.Instance.EnterStartingState();
     }
 
     private void Update()
