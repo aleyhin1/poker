@@ -40,7 +40,7 @@ public class DeckManager : MonoBehaviour
         hand.Add(card7);
 
         Card card1 = CreateCardObject();
-        card1.CreateCard(CardSuit.Diamond, CardRank.Four, null, null);
+        card1.CreateCard(CardSuit.Diamond, CardRank.Ace, null, null);
         hand.Add(card1);
 
         Card card2 = CreateCardObject();
@@ -56,7 +56,7 @@ public class DeckManager : MonoBehaviour
         hand.Add(card4);
 
         Card card5 = CreateCardObject();
-        card5.CreateCard(CardSuit.Diamond, CardRank.Five, null, null);
+        card5.CreateCard(CardSuit.Diamond, CardRank.Ace, null, null);
         hand.Add(card5);
 
 
@@ -88,6 +88,17 @@ public class DeckManager : MonoBehaviour
         if (straightCardsInHand != null)
         {
             foreach (Card card in straightCardsInHand)
+            {
+                Debug.Log(card.Value);
+            }
+        }
+
+        Debug.Log("Is hand pair : " + HandCalculator.IsHandPair(hand, out List<Card> pairs));
+        Debug.Log("Pairs: ");
+
+        if (pairs != null)
+        {
+            foreach (Card card in pairs)
             {
                 Debug.Log(card.Value);
             }

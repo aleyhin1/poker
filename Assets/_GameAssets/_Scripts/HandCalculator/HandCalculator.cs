@@ -98,17 +98,23 @@ public static class HandCalculator
         return false;
     }
 
-    //private static bool IsHandPair(List<Card> hand, out List<Card> pairs)
-    //{
-    //    pairs = null;
-    //    hand.Sort();
+    public static bool IsHandPair(List<Card> hand, out List<Card> pairs)
+    {
+        pairs = null;
+        hand.Sort();
 
-    //    foreach (Card card in hand)
-    //    {
-    //        pairs.Add(card);
+        foreach (Card card in hand)
+        {
+            pairs = GetDuplicateCards(hand, card.Value.Item2, 2);
 
-    //    }
-    //}
+            if (pairs != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private static List<Card> GetFiveChainCards(List<Card> hand, Card pivotCard, bool isIncreasing)
     {
@@ -157,6 +163,29 @@ public static class HandCalculator
                 hand.RemoveAt(6);
                 hand.RemoveAt(7);
                 return hand;
+        }
+
+        return null;
+    }
+
+    private static List<Card> GetDuplicateCards(List<Card> hand, CardRank rank, int count)
+    {
+        List<Card> duplicates = new List<Card>();
+        List<Card> tempHand = new List<Card>(hand);
+
+        for (int i = 0; i < count; i++)
+        {
+            Card duplicate = GetCardWithRank(tempHand, rank);
+            if (duplicate != null)
+            {
+                duplicates.Add(duplicate);
+                tempHand.Remove(duplicate);
+            }
+        }
+
+        if (duplicates.Count == count)
+        {
+            return duplicates;
         }
 
         return null;
