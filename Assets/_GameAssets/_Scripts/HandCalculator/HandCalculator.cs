@@ -14,6 +14,42 @@ public static class HandCalculator
     //    return (HandRank.HighCard, highCard.Value.Item2);
     //}
 
+    public static bool IsHandRoyalFlush(List<Card> hand, out List<Card> royalFlush)
+    {
+        royalFlush = null;
+
+        if (IsHandStraight(hand, out List<Card> straightCards))
+        {
+            Card aceCard = GetCardWithRank(straightCards, CardRank.Ace);
+            Card kingCard = GetCardWithRank(straightCards,CardRank.King);
+
+            if (aceCard != null && kingCard != null)
+            {
+                if (IsHandFlush(straightCards, out List<Card> flushCards))
+                {
+                    royalFlush = flushCards;
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public static bool IsHandStraightFlush(List<Card> hand, out List<Card> straightFlush)
+    {
+        straightFlush = null;
+
+        if (IsHandFlush(hand, out List<Card> flushCards))
+        {
+            if (IsHandStraight(flushCards, out List<Card> straightCards))
+            {
+                straightFlush = straightCards;
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static bool IsHandStraight(List<Card> hand, out List<Card> straightCards)
     {
         straightCards = null;
@@ -90,11 +126,94 @@ public static class HandCalculator
 
         flushCards = GetTopFiveCards(flushCards);
 
-        if (flushCards.Count >= 5)
+        if (flushCards != null && flushCards.Count >= 5)
         {
             return true;
         }
 
+        return false;
+    }
+
+    public static bool IsHandFourOfAKind(List<Card> hand, out List<Card> fourOfAKind)
+    {
+        fourOfAKind = null;
+        List<Card> tempHand = new List<Card>(hand);
+        tempHand.Sort();
+        int handCount = tempHand.Count;
+
+        for(int i = 0; i < handCount; i++)
+        {
+            Card card = tempHand[0];
+            List<Card> duplicateCards = GetDuplicateCards(tempHand, card.Value.Item2, 4);
+
+            if (duplicateCards != null)
+            {
+                fourOfAKind = duplicateCards;
+                return true;
+            }
+            else
+            {
+                tempHand.Remove(card);
+            }
+        }
+        return false;
+    }
+
+    public static bool IsHandFullHouse(List<Card> hand, out List<Card> fullHouse)
+    {
+        fullHouse = null;
+        List<Card> tempHand = new List<Card>(hand);
+
+        if (IsHandThreeOfAKind(tempHand, out List<Card> threeOfAKind))
+        {
+            fullHouse = new List<Card>();
+
+            foreach(Card card in threeOfAKind)
+            {
+                fullHouse.Add(card);
+                tempHand.Remove(card);
+            }
+
+            if (IsHandPair(tempHand, out List<Card> pairs))
+            {
+                foreach(Card card in pairs)
+                {
+                    fullHouse.Add(card);
+                }
+
+                return true;
+            }
+            else
+            {
+                fullHouse = null;
+            }
+        }
+
+        return false;
+    }
+
+    public static bool IsHandThreeOfAKind(List<Card> hand, out List<Card> threeOfAKind)
+    {
+        threeOfAKind = null;
+        List<Card> tempHand = new List<Card>(hand);
+        tempHand.Sort();
+        int handCount = tempHand.Count;
+
+        for (int i = 0; i < handCount; i++)
+        {
+            Card card = tempHand[0];
+            List<Card> duplicateCards = GetDuplicateCards(tempHand, card.Value.Item2, 3);
+
+            if (duplicateCards != null)
+            {
+                threeOfAKind = duplicateCards;
+                return true;
+            }
+            else
+            {
+                tempHand.Remove(card);
+            }
+        }
         return false;
     }
 

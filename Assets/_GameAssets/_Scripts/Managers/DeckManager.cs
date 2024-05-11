@@ -32,89 +32,32 @@ public class DeckManager : MonoBehaviour
         List<Card> hand = new List<Card>();
 
         Card card6 = CreateCardObject();
-        card6.CreateCard(CardSuit.Spade, CardRank.Ace, null, null);
+        card6.CreateCard(CardSuit.Diamond, CardRank.Queen, null, null);
         hand.Add(card6);
 
         Card card7 = CreateCardObject();
-        card7.CreateCard(CardSuit.Diamond, CardRank.Two, null, null);
+        card7.CreateCard(CardSuit.Diamond, CardRank.Ten, null, null);
         hand.Add(card7);
 
         Card card1 = CreateCardObject();
-        card1.CreateCard(CardSuit.Diamond, CardRank.Ace, null, null);
+        card1.CreateCard(CardSuit.Heart, CardRank.Jack, null, null);
         hand.Add(card1);
 
         Card card2 = CreateCardObject();
-        card2.CreateCard(CardSuit.Spade, CardRank.Queen, null, null);
+        card2.CreateCard(CardSuit.Spade, CardRank.Four, null, null);
         hand.Add(card2);
 
         Card card3 = CreateCardObject();
-        card3.CreateCard(CardSuit.Diamond, CardRank.Two, null, null);
+        card3.CreateCard(CardSuit.Diamond, CardRank.King, null, null);
         hand.Add(card3);
 
         Card card4 = CreateCardObject();
-        card4.CreateCard(CardSuit.Diamond, CardRank.Three, null, null);
+        card4.CreateCard(CardSuit.Spade, CardRank.Three, null, null);
         hand.Add(card4);
 
         Card card5 = CreateCardObject();
-        card5.CreateCard(CardSuit.Diamond, CardRank.Three, null, null);
+        card5.CreateCard(CardSuit.Diamond, CardRank.Ace, null, null);
         hand.Add(card5);
-
-
-
-        hand.Sort();
-
-        Debug.Log("Sorted cards");
-        foreach(Card card in hand)
-        {
-            Debug.Log(card.Value);
-        }
-
-
-        
-        Debug.Log("Is Hand Flush : " + HandCalculator.IsHandFlush(hand, out List<Card> flushCardsInHand));
-        Debug.Log("Flush cards in hand = ");
-
-        if (flushCardsInHand != null)
-        {
-            foreach (Card card in flushCardsInHand)
-            {
-                Debug.Log(card.Value);
-            }
-        }
-
-        Debug.Log("Is hand straight : " + HandCalculator.IsHandStraight(hand, out List<Card> straightCardsInHand));
-        Debug.Log("Straight cards in hand = ");
-
-        if (straightCardsInHand != null)
-        {
-            foreach (Card card in straightCardsInHand)
-            {
-                Debug.Log(card.Value);
-            }
-        }
-
-        Debug.Log("Is hand pair : " + HandCalculator.IsHandPair(hand, out List<Card> pairs));
-        Debug.Log("Pairs: ");
-
-        if (pairs != null)
-        {
-            foreach (Card card in pairs)
-            {
-                Debug.Log(card.Value);
-            }
-        }
-
-        Debug.Log("Is hand TwoPairs: " + HandCalculator.IsHandTwoPairs(hand, out List<Card> twoPairs));
-        Debug.Log("Two pairs ");
-
-        if (twoPairs != null)
-        {
-            foreach(Card card in twoPairs)
-            {
-                Debug.Log(card.Value);
-            }
-        }
-
 
         // TEST *************************************************************************************
     }
