@@ -32,7 +32,7 @@ public class DeckManager : MonoBehaviour
         List<Card> hand = new List<Card>();
 
         Card card6 = CreateCardObject();
-        card6.CreateCard(CardSuit.Diamond, CardRank.Queen, null, null);
+        card6.CreateCard(CardSuit.Diamond, CardRank.Six, null, null);
         hand.Add(card6);
 
         Card card7 = CreateCardObject();
@@ -40,7 +40,7 @@ public class DeckManager : MonoBehaviour
         hand.Add(card7);
 
         Card card1 = CreateCardObject();
-        card1.CreateCard(CardSuit.Heart, CardRank.Jack, null, null);
+        card1.CreateCard(CardSuit.Diamond, CardRank.Jack, null, null);
         hand.Add(card1);
 
         Card card2 = CreateCardObject();
@@ -48,16 +48,19 @@ public class DeckManager : MonoBehaviour
         hand.Add(card2);
 
         Card card3 = CreateCardObject();
-        card3.CreateCard(CardSuit.Diamond, CardRank.King, null, null);
+        card3.CreateCard(CardSuit.Spade, CardRank.King, null, null);
         hand.Add(card3);
 
         Card card4 = CreateCardObject();
-        card4.CreateCard(CardSuit.Spade, CardRank.Three, null, null);
+        card4.CreateCard(CardSuit.Spade, CardRank.Queen, null, null);
         hand.Add(card4);
 
         Card card5 = CreateCardObject();
-        card5.CreateCard(CardSuit.Diamond, CardRank.Ace, null, null);
+        card5.CreateCard(CardSuit.Diamond, CardRank.Seven, null, null);
         hand.Add(card5);
+
+        (HandRank, CardRank) value = HandCalculator.GetHandValue(hand);
+        Debug.Log(value.Item1 + " " + value.Item2);
 
         // TEST *************************************************************************************
     }

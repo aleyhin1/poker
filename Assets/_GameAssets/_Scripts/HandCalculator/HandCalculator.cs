@@ -3,16 +3,48 @@ using System.Collections.Generic;
 
 public static class HandCalculator
 {
-    //public static (HandRank, CardRank) GetHandValue(List<Card> hand)
-    //{
-    //    else if ()
-    //    {
+    public static (HandRank, CardRank) GetHandValue(List<Card> hand)
+    {
+        if (IsHandRoyalFlush(hand, out List<Card> royalFlush))
+        {
+            return (HandRank.RoyalFlush, CardRank.Ace);
+        }
+        else if (IsHandStraightFlush(hand, out List<Card> straightFlush))
+        {
+            return (HandRank.StraightFlush, straightFlush[0].Value.Item2);
+        }
+        else if (IsHandFourOfAKind(hand, out List<Card> fourOfAKind))
+        {
+            return (HandRank.FourOfAKind, fourOfAKind[0].Value.Item2);
+        }
+        else if (IsHandFullHouse(hand, out List<Card> fullHouse))
+        {
+            return (HandRank.FullHouse, fullHouse[0].Value.Item2);
+        }
+        else if (IsHandFlush(hand, out List<Card> flush))
+        {
+            return (HandRank.Flush, flush[0].Value.Item2);
+        }
+        else if (IsHandStraight(hand, out List<Card> straight))
+        {
+            return (HandRank.Straight, straight[0].Value.Item2);
+        }
+        else if (IsHandThreeOfAKind(hand, out List<Card> threeOfAKind))
+        {
+            return (HandRank.ThreeOfAKind, threeOfAKind[0].Value.Item2);
+        }
+        else if (IsHandTwoPairs(hand, out List<Card> twoPairs))
+        {
+            return (HandRank.TwoPairs, twoPairs[0].Value.Item2);
+        }
+        else if (IsHandPair(hand, out List<Card> pairs))
+        {
+            return (HandRank.Pair, pairs[0].Value.Item2); 
+        }
 
-    //    }
-
-    //    Card highCard = GetHighCard(hand);
-    //    return (HandRank.HighCard, highCard.Value.Item2);
-    //}
+        Card highCard = GetHighCard(hand);
+        return (HandRank.HighCard, highCard.Value.Item2);
+    }
 
     public static bool IsHandRoyalFlush(List<Card> hand, out List<Card> royalFlush)
     {
@@ -181,6 +213,7 @@ public static class HandCalculator
                     fullHouse.Add(card);
                 }
 
+                fullHouse.Sort();
                 return true;
             }
             else
