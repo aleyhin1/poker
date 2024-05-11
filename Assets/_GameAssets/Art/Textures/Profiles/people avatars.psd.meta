@@ -1,0 +1,915 @@
+fileFormatVersion: 2
+guid: 9aebc522ca91a9a41996773cab6b16ee
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 280
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: people avatars_0
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 3533
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 625d7d944c8c1d34ea1475433ac27161
+      internalID: 1883603647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_1
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 3533
+        width: 571
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 347e27b8d42bbcf4993bb3127e5b3cad
+      internalID: 920771224
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_2
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 3533
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 379213bfcf273754f86aa3dbb867fbb1
+      internalID: -956919125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_3
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 3533
+        width: 572
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 688cb2fbe4d1c5647b7b8aca34816333
+      internalID: -1073844216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_4
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 3533
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6c5330a3c361d749bee9e23ba845814
+      internalID: 562215982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_5
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 3533
+        width: 571
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19de79975a68eea4aa41936e3b4708ae
+      internalID: 1202404793
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_6
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 2855
+        width: 569
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2f57fbea93345e4da8461ade28acc8d
+      internalID: -877161837
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_7
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 2855
+        width: 571
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 61cff7cc04092ef428d924e465beebea
+      internalID: 389685282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_8
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 2855
+        width: 569
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6abac7853bf8d1849957b26c814a1cd5
+      internalID: 1006393784
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_9
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 2855
+        width: 572
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e55f50ba954e869499e9023bc77f6adf
+      internalID: -1164544258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_10
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 2855
+        width: 569
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c2d64e759ec123418dace82d8a9104b
+      internalID: 1133602758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_11
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 2855
+        width: 571
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8fa78e8b3db04b4381b2137f0578cd4
+      internalID: -200604464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_12
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 2175
+        width: 569
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 702fc3a5e4d539d40814e998f4e3b12d
+      internalID: 1848600466
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_13
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 2175
+        width: 571
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3b3b22d5a2631f428cab5993f25626b
+      internalID: 54820771
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_14
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 2175
+        width: 569
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0293b1179bf7eaa4e88282d96749b4ac
+      internalID: 939835193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_15
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 2175
+        width: 572
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86b609cd1b48ebb4eac68e3e97ab8068
+      internalID: -1996291082
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_16
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 2175
+        width: 569
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f11d3866eb92e04aae64a2afc745985
+      internalID: -613444738
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_17
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 2175
+        width: 571
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cd320399b581294b894e82b346c7f07
+      internalID: -1672766786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_18
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 1502
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7486659648384994ea835c437febe22c
+      internalID: -1532637330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_19
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 1502
+        width: 571
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca2a5503b37a2ec42a3e15d8784d8c8f
+      internalID: 126866850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_20
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 1502
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddc3e9f092a041541b20bf12596d5f79
+      internalID: -474322056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_21
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 1504
+        width: 572
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05ad6ed85c8bc904fb508270487cf2d7
+      internalID: 298147218
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_22
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 1504
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 444f2e323e580ae4bac5cf75659ea6bf
+      internalID: -1836919338
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_23
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 1504
+        width: 571
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93decbe6222f30e408799921f816ccdb
+      internalID: 2132925392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_24
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 822
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eca3675f397e2c8418c8b998009eefa9
+      internalID: -730396640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_25
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 822
+        width: 571
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 89af8bcccc5e13e4c8f5e49d62d7e637
+      internalID: -1923000210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_26
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 822
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc3a9f439f4b9974eadc7257a6ef74b5
+      internalID: -1386546426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_27
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 826
+        width: 572
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c72fc11990ebc448be526a4250cdf05
+      internalID: -367054444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_28
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 826
+        width: 569
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a803f18fa4946004d9b81fdf9b3da0b4
+      internalID: 666133640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_29
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 826
+        width: 571
+        height: 569
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a67ad137240baf542b7344343c3e8647
+      internalID: -1408925399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_30
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 144
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84af19711dcd4df4989ec6b3f1eade3b
+      internalID: 973812515
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_31
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 144
+        width: 571
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dcc790c570e0d1943a7e166ad6d00c01
+      internalID: -1595684132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_32
+      rect:
+        serializedVersion: 2
+        x: 1478
+        y: 144
+        width: 569
+        height: 571
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 922dbfff763777544b37cf02e0035c01
+      internalID: -1407235096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_33
+      rect:
+        serializedVersion: 2
+        x: 2196
+        y: 146
+        width: 572
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7038740b6fd15fa40b872ba2d319bbde
+      internalID: -204705384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_34
+      rect:
+        serializedVersion: 2
+        x: 2876
+        y: 146
+        width: 569
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 392b3b0aa101e6140b765bf6fb2a0a50
+      internalID: 1138891226
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: people avatars_35
+      rect:
+        serializedVersion: 2
+        x: 3554
+        y: 146
+        width: 571
+        height: 572
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 929145e8b7a037d499f586ee40b7eb3b
+      internalID: 1720422087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      people avatars_24: -730396640
+      people avatars_31: -1595684132
+      people avatars_27: -367054444
+      people avatars_16: -613444738
+      people avatars_20: -474322056
+      people avatars_35: 1720422087
+      people avatars_34: 1138891226
+      people avatars_10: 1133602758
+      people avatars_5: 1202404793
+      people avatars_17: -1672766786
+      people avatars_3: -1073844216
+      people avatars_6: -877161837
+      people avatars_11: -200604464
+      people avatars_29: -1408925399
+      people avatars_15: -1996291082
+      people avatars_1: 920771224
+      people avatars_7: 389685282
+      people avatars_28: 666133640
+      people avatars_33: -204705384
+      people avatars_2: -956919125
+      people avatars_23: 2132925392
+      people avatars_14: 939835193
+      people avatars_4: 562215982
+      people avatars_22: -1836919338
+      people avatars_21: 298147218
+      people avatars_25: -1923000210
+      people avatars_8: 1006393784
+      people avatars_30: 973812515
+      people avatars_0: 1883603647
+      people avatars_12: 1848600466
+      people avatars_13: 54820771
+      people avatars_18: -1532637330
+      people avatars_9: -1164544258
+      people avatars_19: 126866850
+      people avatars_26: -1386546426
+      people avatars_32: -1407235096
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

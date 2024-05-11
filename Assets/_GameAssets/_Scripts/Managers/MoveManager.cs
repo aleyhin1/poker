@@ -1,53 +1,87 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Monetization;
 
 public class MoveManager : MonoSingleton<MoveManager>
 {
-    public void SmallBlindBet(Player player , int bet)
+    public void SmallBlindBet(Player player , int betAmount)
     {
-        Debug.Log("Small Blind Player : " + player + " Bet : " + bet);
-        GameManager.Instance.NextPlayer();
+        Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);
+
+        player.TotalMoney -= betAmount;
+
+        player.ShowBetBox(betAmount);
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
-    public void BigBlindBet(Player player)
+    public void BigBlindBet(Player player, int betAmount)
     {
-        int minBet = GameManager.Instance.MinBet;
-        int newBetValue = minBet * 2;
+        Debug.Log("Big Blind Player : " + player.name + " Bet : " + betAmount);
 
-        GameManager.Instance.MinBet = newBetValue;
+        player.TotalMoney -= betAmount;
+        GameManager.Instance.MinBet = betAmount;
 
-        Debug.Log("Big Blind Player : " + player + " Bet : " + newBetValue);
+        player.ShowBetBox(betAmount);
 
-        PokerStateManager.Instance.EnterDealingCardsState();
-    }
-
-    public void Bet(Player player, int betAmount)
-    {
-        Debug.Log("Normal : " + player + " Bet : " + betAmount);
-
-        GameManager.Instance.NextPlayer();
-
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void Bob(Player player)
     {
-        throw new System.NotImplementedException();
+        var pokerState = PokerStateManager.Instance.CurrentState;
+        if (pokerState == PokerState.Preflop || pokerState == PokerState.StaringState) 
+            return;
+
+        Debug.Log(player.name + " : Bob");
+
+        player.IsBob = true;
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
-    public void Call(Player player)
+    public void Call(Player player , int minBet)
     {
-        throw new System.NotImplementedException();
+        Debug.Log(player.name + " : Call : " + minBet);
+
+        player.TotalMoney -= minBet;
+        player.IsCall = true;
+        player.ShowBetBox(minBet);
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void Fold(Player player)
     {
+        Debug.Log(player.name + " : Fold");
+
         player.IsFold = true;
-        GameManager.Instance.NextPlayer();
+        GameManager.Instance.LeaderBoardPlayerStack.Push(player);
+
+        if (player.GetType() == typeof(RealPlayer))
+        {
+            EndState.isForceToFold = true;
+            GameManager.Instance.EndGame();
+            return;
+        }
+
+        if (GameManager.Instance.LeaderBoardPlayerStack.Count >= GameManager.Instance.Players.Count - 1 && !EndState.isForceToFold)
+        {
+            GameManager.Instance.EndGame();
+            return;
+        }
+
+        if (!EndState.isForceToFold)
+            GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void Raise(Player player, int raiseAmount)
     {
-        throw new System.NotImplementedException();
+        Debug.Log(player.name + " : Raise :" + raiseAmount);
+
+        player.TotalMoney -= raiseAmount;
+
+        GameManager.Instance.MinBet = raiseAmount;
+        player.IsRaise = true;
+
+        player.ShowBetBox(raiseAmount);
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 }

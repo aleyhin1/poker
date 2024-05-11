@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,17 +20,12 @@ public class StartingState : IPokerState
         _player.IsSmallBlind = true;
         _nextPlayer.IsBigBlind = true;
 
-        GameManager.Instance.SetPlayerQueue(_playerIndex);
-    }
+        Queue<Player> playerQueue = new Queue<Player>();
 
-    public void UpdateState()
-    {
-        
-    }
+        playerQueue.Enqueue(_player);
+        playerQueue.Enqueue(_nextPlayer);
 
-    public void ExitState()
-    {
-         
+        GameManager.Instance.PlayerSequenceHandler.SetPlayers(playerQueue);
     }
 
     private void SetPlayers(List<Player> players)

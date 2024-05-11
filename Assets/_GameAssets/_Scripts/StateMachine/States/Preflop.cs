@@ -1,41 +1,35 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Preflop : IPokerState
 {
-    private int _bigBlindPlayerIndex;
-
     public void EnterState()
     {
         Debug.Log("-Preflop-");
 
+        GameManager.Instance.DealerController.CollectBets();
+
         List<Player> players = GameManager.Instance.Players;
+        Queue<Player> playerQueue = new Queue<Player>();
 
         for (int i = 0; i < players.Count; i++)
         {
             if (players[i].IsBigBlindPaid)
             {
                 int playerIndex = i;
-                playerIndex++;
+                 
+                for (int j = 0; j < players.Count; j++)
+                {
+                    playerIndex++;
 
-                if (playerIndex < players.Count)
-                    _bigBlindPlayerIndex = playerIndex;
-                else
-                    _bigBlindPlayerIndex = 0;
+                    if (playerIndex >= players.Count)
+                        playerIndex = 0;
+
+                    playerQueue.Enqueue(players[playerIndex]);
+                }
+                GameManager.Instance.PlayerSequenceHandler.SetPlayers(playerQueue);
                 break;
             }
         }
-        GameManager.Instance.SetPlayerQueue(_bigBlindPlayerIndex);
-    }
-
-    public void UpdateState()
-    {
-        
-    }
-
-    public void ExitState()
-    {
-   
     }
 }

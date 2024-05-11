@@ -5,11 +5,22 @@ public class AIPlayer : Player
 {
     private const float MOVE_TIME = 1f;
 
-    private void Awake()
+    private bool _isActive;
+
+    public bool IsActive 
     {
-        SpriteRenderer = GetComponent<SpriteRenderer>();   
+        get { return _isActive; }
+        set
+        {
+            _isActive = value;
+
+            if (!_isActive)
+                gameObject.SetActive(false);
+            else
+                gameObject.SetActive(true); 
+        } 
     }
- 
+
     public override bool IsMyTurn
     {
         get => base.IsMyTurn;
@@ -19,73 +30,90 @@ public class AIPlayer : Player
 
             if (IsMyTurn)
             {
-                SpriteRenderer.color = Color.green;
-                CheckState();
+                SelectedCircle.SetActive(true);
+
+                if (IsSmallBlind)
+                {
+                    StartCoroutine(SmallBlindBet());
+                }
+                else if (IsBigBlind)
+                {
+                    StartCoroutine(BigBlindBet());
+                }
+                else
+                {
+                    StartCoroutine(Move());
+                }
             }
-            else if (SpriteRenderer != null)
+            else
             {
-                SpriteRenderer.color = DefaultColor;
+                SelectedCircle.SetActive(false);
             }
         }
     }
-
-    private void CheckState()
-    {
-        var pokerState = PokerStateManager.Instance.CurrentState;
-
-        switch (pokerState)
-        {
-            case PokerState.StaringState:
-                HandleStaringState();
-                break;
-            case PokerState.Preflop:
-                StartCoroutine(PreflopStateMove());
-                break;
-            case PokerState.Flop:
-                break;
-            case PokerState.Turn:
-                break;
-            case PokerState.River:
-                break;
-            case PokerState.EndState:
-                break;
-            default:
-                break;
-        }
-    }
-
-    private void HandleStaringState()
-    {
-        if (IsSmallBlind)
-        {
-            StartCoroutine(SmallBlindBet());
-        }
-        else if (IsBigBlind)
-        {
-            StartCoroutine(BigBlindBet());
-        }
-    }
-
+ 
     private IEnumerator SmallBlindBet()
     {
         IsSmallBlind = false;
         IsSmallBlindPaid = true;
         yield return new WaitForSeconds(MOVE_TIME);
-        var smallBlindBet = GameManager.Instance.SmallBlindBet;
+        var smallBlindBet = GameManager.Instance.MinBet;
         MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
     }
 
     private IEnumerator BigBlindBet()
     {
+        int minBet = GameManager.Instance.MinBet;
+        int bigBlindBet = minBet * 2;
+
         IsBigBlind = false;
         IsBigBlindPaid = true;
+
+        GameManager.Instance.MinBet = bigBlindBet;
         yield return new WaitForSeconds(MOVE_TIME);
-        MoveManager.Instance.BigBlindBet(this);
+        MoveManager.Instance.BigBlindBet(this, bigBlindBet);
     }
 
-    private IEnumerator PreflopStateMove()
+    private IEnumerator Move()
     {
-        //Hamle yapacak 
-        yield break;
+        int minBet = GameManager.Instance.MinBet;
+
+        yield return new WaitForSeconds(MOVE_TIME);
+
+        if (ProbabilitySystem.BobProbability(PokerStateManager.Instance.CurrentState))
+        {
+            MoveManager.Instance.Bob(this);
+            yield break;
+        }
+
+        if (ProbabilitySystem.FoldProbability(TotalMoney,minBet))
+        {
+            MoveManager.Instance.Fold(this);
+            yield break;
+        }
+
+        if (ProbabilitySystem.CallProbability())
+        {
+            MoveManager.Instance.Call(this, minBet);
+            yield break;
+        }
+
+        minBet = ProbabilitySystem.SetBetRate(TotalMoney,minBet);
+
+        if (minBet > _totalMoney)
+        {
+            MoveManager.Instance.Fold(this);
+            yield break;
+        }
+
+        MoveManager.Instance.Raise(this,minBet);
+    }
+
+    public void ForceToFold()
+    {
+        if (ProbabilitySystem.ForceToFold())
+        {
+            MoveManager.Instance.Fold(this);
+        }
     }
 }

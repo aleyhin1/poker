@@ -1,14 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RealPlayer : Player
 {
-    private void Start()
-    {
-        SpriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
     public override bool IsMyTurn 
     { 
         get => base.IsMyTurn; 
@@ -18,14 +11,49 @@ public class RealPlayer : Player
 
             if(IsMyTurn)
             {
-                SpriteRenderer.color = Color.green;
-                //Oyuncuya butonlar açýlacak
+                SelectedCircle.SetActive(true);
+                if (IsSmallBlind)
+                {
+                    SmallBlindBet();
+                }
+                else if (IsBigBlind)
+                {
+                    BigBlindBet();
+                }
+                else
+                {
+                    GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(true);   
+                }
             }
             else
             {
-                if (SpriteRenderer != null)
-                    SpriteRenderer.color = DefaultColor;
+                SelectedCircle.SetActive(false);
+                GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(false);
             }
         } 
+    }
+ 
+    private void SmallBlindBet()
+    {
+        IsSmallBlind = false;
+        IsSmallBlindPaid = true;
+
+        var smallBlindBet = GameManager.Instance.MinBet;
+        MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
+        ShowBetBox(smallBlindBet);
+    }
+
+    private void BigBlindBet()
+    {
+        IsBigBlind = false;
+        IsBigBlindPaid = true;
+
+        int minbet = GameManager.Instance.MinBet;
+        int bigBlindBet = minbet * 2;
+
+        GameManager.Instance.MinBet = bigBlindBet;
+
+        MoveManager.Instance.BigBlindBet(this,bigBlindBet);
+        ShowBetBox(bigBlindBet);
     }
 }

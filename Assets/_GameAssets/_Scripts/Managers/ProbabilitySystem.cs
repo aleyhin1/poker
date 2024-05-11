@@ -4,22 +4,42 @@ public static class ProbabilitySystem
 {
     private static float _probabilityValue = 0f;
 
-    public static void PreflopStateMoveDeciding()
+    public static bool ForceToFold()
     {
-        // elindeki kartlar kötü gelmiþ ise oyunu býrak (olabilir)
-
-        // %5 olasýlýkla keyfi oyunu býrak 
-        // min bet tutarý total paradan fazla ise oyunu býrak
-        // min bet tutarý total paranýn %40 ýndan fazlasýný kapsýyorsa %30 ihtimalle oyunu býrak
         _probabilityValue = Random.value;
 
-        
+        if (_probabilityValue >= 0f && _probabilityValue <= 0.5f)
+            return true;
+         
+        return false;
+    }
 
+    public static bool BobProbability(PokerState currentState)
+    {
+        if (currentState == PokerState.Preflop)
+            return false;
 
+        _probabilityValue = Random.value;
+
+        if (_probabilityValue >= 0f && _probabilityValue < 0.3f)
+            return true;
+
+        return false;
+    }
+
+    public static bool CallProbability()
+    {
+        _probabilityValue = Random.value;
+
+        if (_probabilityValue >= 0f && _probabilityValue < 0.7f)
+            return true;
+
+        return false;
     }
 
     public static bool FoldProbability(int totalMoney, int minBet)
     {
+        _probabilityValue = Random.value;
         var money = totalMoney * 0.4f;
 
         if (minBet >= totalMoney)
@@ -36,19 +56,18 @@ public static class ProbabilitySystem
 
     public static int SetBetRate(int totalMoney, int minBet)
     {
-  
-        if (_probabilityValue >= 0f && _probabilityValue < 0.3f)
-        {
-            var betRate = (int)(totalMoney * 0.2f) + minBet;
-            var betAmount = Random.Range(minBet, betRate);
+        _probabilityValue = Random.value;
+        minBet *= 2;
 
-            if (betAmount < totalMoney)
-            {
-                GameManager.Instance.MinBet = betAmount;
-                return betAmount;
-            }
+        var betRate = (int)(totalMoney * 0.2f) + minBet;
+        var betAmount = Random.Range(minBet, betRate);
+
+        if (betAmount < totalMoney)
+        {
+            GameManager.Instance.MinBet = betAmount;
+            return betAmount;
         }
+
         return minBet;
     }
- 
 }
