@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "115776380554",
+    "project_id": "pokerproject-5b55c",
+    "storage_bucket": "pokerproject-5b55c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:115776380554:android:fe8b6aebe5378bdc465773",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.velopoker"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwpYbGUVtXMhMpYFJc_2dFD91-zfwDXgo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
