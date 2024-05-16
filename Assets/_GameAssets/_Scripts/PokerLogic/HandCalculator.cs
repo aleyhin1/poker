@@ -3,63 +3,89 @@ using System.Collections.Generic;
 
 public static class HandCalculator
 {
-    public static (HandRank, CardRank) GetHandValue(List<Card> hand)
+    // Returns HandRank, CardRanks for hand value, and the best hand.
+    public static (HandRank, CardRank[], List<Card>) GetHandInfo(List<Card> hand)
     {
-        if (IsHandRoyalFlush(hand, out List<Card> royalFlush))
+        if (IsHandRoyalFlush(hand, out List<Card> royalFlush, out CardRank[] royalFlushRank))
         {
-            return (HandRank.RoyalFlush, CardRank.Ace);
+            return (HandRank.RoyalFlush, royalFlushRank, royalFlush);
         }
-        else if (IsHandStraightFlush(hand, out List<Card> straightFlush))
+        else if (IsHandStraightFlush(hand, out List<Card> straightFlush, out CardRank[] straightFlushRank))
         {
-            return (HandRank.StraightFlush, straightFlush[0].Value.Item2);
+            return (HandRank.StraightFlush, straightFlushRank, straightFlush);
         }
-        else if (IsHandFourOfAKind(hand, out List<Card> fourOfAKind))
+        else if (IsHandFourOfAKind(hand, out List<Card> fourOfAKind, out CardRank[] fourOfAKindRank))
         {
-            return (HandRank.FourOfAKind, fourOfAKind[0].Value.Item2);
+            List<Card> bestHand = GetHandWithKickers(hand, fourOfAKind);
+            return (HandRank.FourOfAKind, fourOfAKindRank, bestHand);
         }
-        else if (IsHandFullHouse(hand, out List<Card> fullHouse))
+        else if (IsHandFullHouse(hand, out List<Card> fullHouse, out CardRank[] fullHouseRanks))
         {
-            return (HandRank.FullHouse, fullHouse[0].Value.Item2);
+            return (HandRank.FullHouse, fullHouseRanks, fullHouse);
         }
-        else if (IsHandFlush(hand, out List<Card> flush))
+        else if (IsHandFlush(hand, out List<Card> flush, out CardRank[] flushRank))
         {
-            return (HandRank.Flush, flush[0].Value.Item2);
+            return (HandRank.Flush, flushRank, flush);
         }
-        else if (IsHandStraight(hand, out List<Card> straight))
+        else if (IsHandStraight(hand, out List<Card> straight, out CardRank[] straightRank))
         {
-            return (HandRank.Straight, straight[0].Value.Item2);
+            return (HandRank.Straight, straightRank, straight);
         }
-        else if (IsHandThreeOfAKind(hand, out List<Card> threeOfAKind))
+        else if (IsHandThreeOfAKind(hand, out List<Card> threeOfAKind, out CardRank[] threeOfAKindRank))
         {
-            return (HandRank.ThreeOfAKind, threeOfAKind[0].Value.Item2);
+            List<Card> bestHand = GetHandWithKickers(hand, threeOfAKind);
+            return (HandRank.ThreeOfAKind, threeOfAKindRank, bestHand);
         }
-        else if (IsHandTwoPairs(hand, out List<Card> twoPairs))
+        else if (IsHandTwoPairs(hand, out List<Card> twoPairs, out CardRank[] twoPairsRanks))
         {
-            return (HandRank.TwoPairs, twoPairs[0].Value.Item2);
+            List<Card> bestHand = GetHandWithKickers(hand, twoPairs);
+            return (HandRank.TwoPairs, twoPairsRanks, bestHand);
         }
-        else if (IsHandPair(hand, out List<Card> pairs))
+        else if (IsHandPair(hand, out List<Card> pairs, out CardRank[] pairRank))
         {
-            return (HandRank.Pair, pairs[0].Value.Item2); 
+            List<Card> bestHand = GetHandWithKickers(hand, pairs);
+            return (HandRank.Pair, pairRank, bestHand); 
         }
+        else
+        {
+            List<Card> bestHand = GetTopFiveCards(hand);
 
-        Card highCard = GetHighCard(hand);
-        return (HandRank.HighCard, highCard.Value.Item2);
+            CardRank[] highestCardRank = new CardRank[1];
+            highestCardRank[0] = bestHand[0].Value.Item2;
+
+            return (HandRank.HighCard, highestCardRank, bestHand);
+        }
     }
 
-    private static bool IsHandRoyalFlush(List<Card> hand, out List<Card> royalFlush)
+    public static Card GetCardWithRank(List<Card> hand, CardRank rank)
+    {
+        foreach (Card card in hand)
+        {
+            if (card.Value.Item2 == rank)
+            {
+                return card;
+            }
+        }
+        return null;
+    }
+
+    private static bool IsHandRoyalFlush(List<Card> hand, out List<Card> royalFlush, out CardRank[] royalFlushRank)
     {
         royalFlush = null;
+        royalFlushRank = new CardRank[1];
 
-        if (IsHandStraight(hand, out List<Card> straightCards))
+        if (IsHandStraight(hand, out List<Card> straightCards, out CardRank[] straightHandRank))
         {
             Card aceCard = GetCardWithRank(straightCards, CardRank.Ace);
             Card kingCard = GetCardWithRank(straightCards,CardRank.King);
 
             if (aceCard != null && kingCard != null)
             {
-                if (IsHandFlush(straightCards, out List<Card> flushCards))
+                if (IsHandFlush(straightCards, out List<Card> flushCards, out CardRank[] flushHandRank))
                 {
                     royalFlush = flushCards;
+                    royalFlushRank = new CardRank[1];
+                    royalFlushRank[0] = CardRank.Ace;
                     return true;
                 }
             }
@@ -67,23 +93,26 @@ public static class HandCalculator
         return false;
     }
 
-    private static bool IsHandStraightFlush(List<Card> hand, out List<Card> straightFlush)
+    private static bool IsHandStraightFlush(List<Card> hand, out List<Card> straightFlush, out CardRank[] straightFlushRank)
     {
+        straightFlushRank = new CardRank[1];
         straightFlush = null;
 
-        if (IsHandFlush(hand, out List<Card> flushCards))
+        if (IsHandFlush(hand, out List<Card> flushCards, out CardRank[] flushHandRank))
         {
-            if (IsHandStraight(flushCards, out List<Card> straightCards))
+            if (IsHandStraight(flushCards, out List<Card> straightCards, out CardRank[] straightHandRank))
             {
                 straightFlush = straightCards;
+                straightFlushRank[0] = straightFlush[0].Value.Item2;
                 return true;
             }
         }
         return false;
     }
 
-    private static bool IsHandFourOfAKind(List<Card> hand, out List<Card> fourOfAKind)
+    private static bool IsHandFourOfAKind(List<Card> hand, out List<Card> fourOfAKind, out CardRank[] fourOfAKindRank)
     {
+        fourOfAKindRank = new CardRank[1];
         fourOfAKind = null;
         List<Card> tempHand = new List<Card>(hand);
         tempHand.Sort();
@@ -97,6 +126,7 @@ public static class HandCalculator
             if (duplicateCards != null)
             {
                 fourOfAKind = duplicateCards;
+                fourOfAKindRank[0] = card.Value.Item2;
                 return true;
             }
             else
@@ -107,14 +137,16 @@ public static class HandCalculator
         return false;
     }
 
-    private static bool IsHandFullHouse(List<Card> hand, out List<Card> fullHouse)
+    private static bool IsHandFullHouse(List<Card> hand, out List<Card> fullHouse, out CardRank[] fullHouseRanks)
     {
+        fullHouseRanks = new CardRank[2];
         fullHouse = null;
         List<Card> tempHand = new List<Card>(hand);
 
-        if (IsHandThreeOfAKind(tempHand, out List<Card> threeOfAKind))
+        if (IsHandThreeOfAKind(tempHand, out List<Card> threeOfAKind, out CardRank[] threeOfaKindRank))
         {
             fullHouse = new List<Card>();
+            fullHouseRanks[0] = threeOfaKindRank[0];
 
             foreach (Card card in threeOfAKind)
             {
@@ -122,8 +154,10 @@ public static class HandCalculator
                 tempHand.Remove(card);
             }
 
-            if (IsHandPair(tempHand, out List<Card> pairs))
+            if (IsHandPair(tempHand, out List<Card> pairs, out CardRank[] pairRank))
             {
+                fullHouseRanks[1] = pairRank[0];
+
                 foreach (Card card in pairs)
                 {
                     fullHouse.Add(card);
@@ -141,8 +175,9 @@ public static class HandCalculator
         return false;
     }
 
-    private static bool IsHandFlush(List<Card> hand, out List<Card> flushCards)
+    private static bool IsHandFlush(List<Card> hand, out List<Card> flushCards, out CardRank[] flushRank)
     {
+        flushRank = new CardRank[1];
         flushCards = null;
 
         if (hand.Count < 5) { return false; }
@@ -189,14 +224,16 @@ public static class HandCalculator
 
         if (flushCards != null && flushCards.Count >= 5)
         {
+            flushRank[0] = flushCards[0].Value.Item2;
             return true;
         }
 
         return false;
     }
 
-    private static bool IsHandStraight(List<Card> hand, out List<Card> straightCards)
+    private static bool IsHandStraight(List<Card> hand, out List<Card> straightCards, out CardRank[] straightRank)
     {
+        straightRank = new CardRank[1];
         straightCards = null;
 
         if (hand.Count < 5) { return false; }
@@ -210,6 +247,7 @@ public static class HandCalculator
             if (straightCards != null)
             {
                 straightCards.Reverse();
+                straightRank[0] = straightCards[0].Value.Item2;
                 return true;
             }
         }
@@ -219,14 +257,16 @@ public static class HandCalculator
 
         if (straightCards != null)
         {
+            straightRank[0] = straightCards[0].Value.Item2;
             return true;
         }
 
         return false;
     }
 
-    private static bool IsHandThreeOfAKind(List<Card> hand, out List<Card> threeOfAKind)
+    private static bool IsHandThreeOfAKind(List<Card> hand, out List<Card> threeOfAKind, out CardRank[] threeOfAKindRank)
     {
+        threeOfAKindRank = new CardRank[1];
         threeOfAKind = null;
         List<Card> tempHand = new List<Card>(hand);
         tempHand.Sort();
@@ -240,6 +280,7 @@ public static class HandCalculator
             if (duplicateCards != null)
             {
                 threeOfAKind = duplicateCards;
+                threeOfAKindRank[0] = card.Value.Item2;
                 return true;
             }
             else
@@ -250,13 +291,15 @@ public static class HandCalculator
         return false;
     }
 
-    private static bool IsHandTwoPairs(List<Card> hand, out List<Card> twoPairs)
+    private static bool IsHandTwoPairs(List<Card> hand, out List<Card> twoPairs, out CardRank[] twoPairsRanks)
     {
+        twoPairsRanks = new CardRank[2];
         twoPairs = null;
         List<Card> tempHand = new List<Card>(hand);
 
-        if (IsHandPair(hand, out List<Card> pairs))
+        if (IsHandPair(hand, out List<Card> pairs, out CardRank[] pairRank))
         {
+            twoPairsRanks[0] = pairRank[0];
             twoPairs = new List<Card>();
 
             foreach(Card card in pairs)
@@ -265,8 +308,9 @@ public static class HandCalculator
                 tempHand.Remove(card);
             }
 
-            if (IsHandPair(tempHand, out List<Card> anotherPairs))
+            if (IsHandPair(tempHand, out List<Card> anotherPairs, out CardRank[] secondPairRank))
             {
+                twoPairsRanks[1] = secondPairRank[0];
                 foreach(Card card in anotherPairs)
                 {
                     twoPairs.Add(card);
@@ -279,8 +323,9 @@ public static class HandCalculator
         return false;
     }
 
-    private static bool IsHandPair(List<Card> hand, out List<Card> pairs)
+    private static bool IsHandPair(List<Card> hand, out List<Card> pairs, out CardRank[] pairRank)
     {
+        pairRank = new CardRank[1];
         pairs = null;
         hand.Sort();
 
@@ -290,11 +335,31 @@ public static class HandCalculator
 
             if (pairs != null)
             {
+                pairRank[0] = card.Value.Item2;
                 return true;
             }
         }
 
         return false;
+    }
+
+    private static List<Card> GetHandWithKickers(List<Card> hand, List<Card> handWithValue)
+    {
+        List<Card> tempHand = new List<Card>(hand);
+        int numberOfCardsToAdd = 5 - handWithValue.Count;
+        
+        foreach(Card card in handWithValue)
+        {
+            tempHand.Remove(card);
+        }
+        tempHand.Sort();
+
+        for (int i = 0; i < numberOfCardsToAdd; i++)
+        {
+            handWithValue.Add(tempHand[i]);
+        }
+
+        return handWithValue;
     }
 
     private static List<Card> GetFiveChainCards(List<Card> hand, Card pivotCard, bool isIncreasing)
@@ -342,7 +407,7 @@ public static class HandCalculator
                 return hand;
             case 7:
                 hand.RemoveAt(6);
-                hand.RemoveAt(7);
+                hand.RemoveAt(5);
                 return hand;
         }
 
@@ -380,17 +445,7 @@ public static class HandCalculator
         return tempHand[0];
     }
 
-    private static Card GetCardWithRank(List<Card> hand, CardRank rank)
-    {
-        foreach (Card card in hand)
-        {
-            if (card.Value.Item2 == rank)
-            {
-                return card;
-            }
-        }
-        return null;
-    }
+    
 
     private static int GetCardRankCount()
     {
