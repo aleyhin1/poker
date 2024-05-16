@@ -44,3 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffff0cd8ab9c3541a88f9d15f607967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moveManager: {fileID: 0}
+  _buttonsPanel: {fileID: 0}
+  _foldButton: {fileID: 0}
+  _callButton: {fileID: 0}
+  _bobButton: {fileID: 0}
+  _raisePanelButton: {fileID: 0}
+  _raisePanelUI: {fileID: 0}
+  _raiseButton: {fileID: 0}
+  _raiseExitButton: {fileID: 0}
+  _raiseAmountSlider: {fileID: 0}
+  _raiseText: {fileID: 0}

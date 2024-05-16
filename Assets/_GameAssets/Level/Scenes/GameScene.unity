@@ -2108,26 +2108,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PokerTable
       objectReference: {fileID: 0}
-    - target: {fileID: 3019650805988675953, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019650805988675953, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.96
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019650806196693855, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019650806196693855, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.23
-      objectReference: {fileID: 0}
-    - target: {fileID: 3019650806792879198, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 2.58
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c21daac6c2197f40acffed7bd2f950d, type: 3}
 --- !u!114 &841933959113524828 stripped
@@ -2582,53 +2562,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: _settingsSO
-      value: 
-      objectReference: {fileID: 11400000, guid: e9128a8fc005c5c4289ae9cc3d9d6495, type: 2}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <UIManager>k__BackingField
       value: 
       objectReference: {fileID: 1385475225}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <SmallBlindBet>k__BackingField
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <DealerController>k__BackingField
       value: 
       objectReference: {fileID: 841933959113524828}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <AllPlayers>k__BackingField.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[0]
-      value: 
-      objectReference: {fileID: 201630662}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[1]
-      value: 
-      objectReference: {fileID: 274806524}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[2]
-      value: 
-      objectReference: {fileID: 86798008}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[3]
-      value: 
-      objectReference: {fileID: 2801572052067742485}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[4]
-      value: 
-      objectReference: {fileID: 262931006}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[5]
-      value: 
-      objectReference: {fileID: 38946644}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <Players>k__BackingField.Array.data[6]
-      value: 
-      objectReference: {fileID: 1268500587}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <AllPlayers>k__BackingField.Array.data[0]
       value: 
@@ -2658,10 +2598,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1268500587}
     - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: <CardLocationOnTheTable>k__BackingField.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4604134518607472346, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: <CardLocationOnTheTable>k__BackingField.Array.data[0]
       value: 
       objectReference: {fileID: 1539673658}
@@ -2684,10 +2620,6 @@ PrefabInstance:
     - target: {fileID: 4604134518607472347, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 4604134518607472347, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf20ff97decacb546b086ff0a10d2d29, type: 3}
