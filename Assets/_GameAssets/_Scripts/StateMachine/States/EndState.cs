@@ -19,6 +19,28 @@ public class EndState : IPokerState
         _leaderBoardPlayerStack = GameManager.Instance.LeaderBoardPlayerStack;
         _playerList = GameManager.Instance.Players;
 
+        foreach (Player player in _playerList)
+        {
+            player.Cards[0].FaceUp();
+            player.Cards[1].FaceUp();
+        }
+
+        // TEST
+        (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfoPairs = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
+
+        Debug.Log("Winners: ");
+        Player winner = null;
+
+        foreach (Player player in winnerHandInfoPairs.Item1.Keys)
+        {
+            winner = player;
+            Debug.Log(winner);
+        }
+
+        winnerHandInfoPairs.Item1.TryGetValue(winner, out (HandRank, CardRank[], List<Card>) winInfo);
+        Debug.Log("Winning Hand is " + winInfo.Item3.ToString());
+
+        // TEST
         if (isForceToFold)
         {
             ForceToFold();
