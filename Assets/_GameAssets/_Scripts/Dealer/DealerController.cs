@@ -17,6 +17,8 @@ public class DealerController : MonoSingleton<DealerController>
     private int _cardCount;
     private List<Transform> _cardLocationOnTheTable;
 
+    public bool BetsPlaced { get; set; }
+
     private void Start()
     {
         _betBox.SetActive(false);
@@ -24,6 +26,7 @@ public class DealerController : MonoSingleton<DealerController>
 
     public void StartDealing(int cardCount, int cardLocationIndex)
     {
+        BetsPlaced = false;
         CollectBets();
         _cardLocationOnTheTable = GameManager.Instance.CardLocationOnTheTable;
         _currentCardCount = 0;
@@ -36,7 +39,6 @@ public class DealerController : MonoSingleton<DealerController>
     public void CollectBets()
     {
         List<Player> players = GameManager.Instance.Players;
-
         int betAmount = 0;
 
         for (int i = 0; i < players.Count; i++)

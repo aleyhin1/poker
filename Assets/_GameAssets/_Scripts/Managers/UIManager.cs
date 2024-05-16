@@ -44,7 +44,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         _bobButton.onClick.AddListener(() =>
         {
-            if (_realPlayer.IsMyTurn)
+            if (_realPlayer.IsMyTurn && !DealerController.Instance.BetsPlaced)
             { 
                 _moveManager.Bob(_realPlayer);
             }
@@ -98,6 +98,7 @@ public class UIManager : MonoSingleton<UIManager>
 
     public void ChangeVisibilityBobButton(bool isActive)
     {
-        _bobButton.gameObject.SetActive(isActive);
+        if (!DealerController.Instance.BetsPlaced)
+            _bobButton.gameObject.SetActive(isActive);
     }
 }

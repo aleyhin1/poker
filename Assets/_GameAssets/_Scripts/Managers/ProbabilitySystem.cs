@@ -16,6 +16,9 @@ public static class ProbabilitySystem
 
     public static bool BobProbability(PokerState currentState)
     {
+        if (DealerController.Instance.BetsPlaced)
+            return false;
+
         if (currentState == PokerState.Preflop)
             return false;
 

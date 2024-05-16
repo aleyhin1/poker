@@ -77,21 +77,21 @@ public class EndState : IPokerState
 
     private void ShowLeaderBoard()
     {
-        Debug.Log("Lider Tablosu Görüntüleniyor...");
+        //Debug.Log("Lider Tablosu Görüntüleniyor...");
 
-        int count = 1;
+        //int count = 1;
 
-        while (_leaderBoardPlayerStack.Count > 0)
-        {
-            if (_leaderBoardPlayerStack.TryPop(out Player player))
-            {
-                Debug.Log($"{count}. oyuncu : {player.name}");
-                count++;
-            }
-            else
-            {
-                break;
-            }
-        }
+        //while (_leaderBoardPlayerStack.Count > 0)
+        //{
+        //    if (_leaderBoardPlayerStack.TryPop(out Player player))
+        //    {
+        //        Debug.Log($"{count}. oyuncu : {player.name}");
+        //        count++;
+        //    }
+        //    else
+        //    {
+        //        break;
+        //    }
+        //}
     }
 }

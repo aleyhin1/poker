@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Monetization;
 
 public class MoveManager : MonoSingleton<MoveManager>
 {
@@ -31,7 +29,7 @@ public class MoveManager : MonoSingleton<MoveManager>
         var pokerState = PokerStateManager.Instance.CurrentState;
         if (pokerState == PokerState.Preflop || pokerState == PokerState.StaringState) 
             return;
-
+         
         Debug.Log(player.name + " : Bob");
 
         player.IsBob = true;
@@ -40,6 +38,8 @@ public class MoveManager : MonoSingleton<MoveManager>
 
     public void Call(Player player , int minBet)
     {
+        DealerController.Instance.BetsPlaced = true;
+
         Debug.Log(player.name + " : Call : " + minBet);
 
         player.TotalMoney -= minBet;
@@ -74,6 +74,8 @@ public class MoveManager : MonoSingleton<MoveManager>
 
     public void Raise(Player player, int raiseAmount)
     {
+        DealerController.Instance.BetsPlaced = true;
+
         Debug.Log(player.name + " : Raise :" + raiseAmount);
 
         player.TotalMoney -= raiseAmount;
