@@ -14,6 +14,7 @@ public abstract class Player : MonoBehaviour
     public GameObject BetBox;
 
     private Vector2 _betBoxPos;
+    [SerializeField] private GameObject _winBox;
     [SerializeField] private GameObject _betBox => BetBox;
     [SerializeField] private TextMeshPro _betText;
 
@@ -121,6 +122,11 @@ public abstract class Player : MonoBehaviour
 
         _betBox.transform.DOMove(targetPos, 0.5f)
             .SetEase(Ease.Linear);
+    }
+
+    public void ShowWinBox(bool state)
+    {
+        _winBox.gameObject.SetActive(state);
     }
 
     public (Vector3 pos, Quaternion rot) AddCards(Card card)

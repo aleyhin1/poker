@@ -6,7 +6,7 @@ using UnityEngine;
 public class Card : MonoBehaviour, IComparable<Card>
 {
     public (CardSuit, CardRank) Value { get; private set; }
-    private Sprite _front;
+    public Sprite Front { get; private set; }
     private Sprite _back;
     private SpriteRenderer _renderer;
 
@@ -18,14 +18,14 @@ public class Card : MonoBehaviour, IComparable<Card>
     public void CreateCard(CardSuit suit, CardRank rank, Sprite front, Sprite back)
     {
         Value = (suit, rank);
-        _front = front;
+        Front = front;
         _back = back;
         FaceUp();
     }
 
     public void FaceUp()
     {
-        _renderer.sprite = _front;
+        _renderer.sprite = Front;
     }
 
     public void FaceDown()

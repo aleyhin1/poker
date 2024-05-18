@@ -25,22 +25,8 @@ public class EndState : IPokerState
             player.Cards[1].FaceUp();
         }
 
-        // TEST
-        (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfoPairs = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
+        GetWinnersAndShowOnUI();
 
-        Debug.Log("Winners: ");
-        Player winner = null;
-
-        foreach (Player player in winnerHandInfoPairs.Item1.Keys)
-        {
-            winner = player;
-            Debug.Log(winner);
-        }
-
-        winnerHandInfoPairs.Item1.TryGetValue(winner, out (HandRank, CardRank[], List<Card>) winInfo);
-        Debug.Log("Winning Hand is " + winInfo.Item3.ToString());
-
-        // TEST
         if (isForceToFold)
         {
             ForceToFold();
@@ -73,6 +59,21 @@ public class EndState : IPokerState
         };
 
         ShowLeaderBoard();
+    }
+
+    private void GetWinnersAndShowOnUI()
+    {
+        (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
+        ShowWinners(winnerHandInfo);
+        PokerCanvas.Instance.ShowWinInfo(winnerHandInfo);
+    }
+
+    private void ShowWinners((Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo)
+    {
+        foreach(Player player in winnerHandInfo.Item1.Keys)
+        {
+            player.ShowWinBox(true);
+        }
     }
 
     private void ShowLeaderBoard()
