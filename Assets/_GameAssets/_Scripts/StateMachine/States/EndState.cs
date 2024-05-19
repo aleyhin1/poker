@@ -63,7 +63,7 @@ public class EndState : IPokerState
 
     private void GetWinnersAndShowOnUI()
     {
-        UIManager.Instance.LowerCurtain();
+        PokerUIManager.Instance.LowerCurtain();
         (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
         ShowWinners(winnerHandInfo);
         PokerCanvas.Instance.ShowWinInfo(winnerHandInfo);

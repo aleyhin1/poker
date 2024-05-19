@@ -22,13 +22,13 @@ public class RealPlayer : Player
                 }
                 else
                 {
-                    GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(true);   
+                    PokerUIManager.Instance.ChangeVisibilityButtonsPanel(true);   
                 }
             }
             else
             {
                 SelectedCircle.SetActive(false);
-                GameManager.Instance.UIManager.ChangeVisibilityButtonsPanel(false);
+                PokerUIManager.Instance.ChangeVisibilityButtonsPanel(false);
             }
         } 
     }

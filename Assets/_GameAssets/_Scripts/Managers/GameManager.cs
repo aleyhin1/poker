@@ -7,7 +7,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     public int MinBet;
 
-    [field: SerializeField] public UIManager UIManager { get; private set; }
     [field: SerializeField] public DealerController DealerController { get; private set; }
 
     [field: SerializeField] public List<Player> AllPlayers { get; private set; } = new List<Player>();
@@ -25,7 +24,7 @@ public class GameManager : MonoSingleton<GameManager>
     private int _playerCount, _smallBlindBet, _totalMoney;
     #endregion
  
-    private void Start()
+    private void Awake()
     {
         _totalMoney = _settingsSO.PlayersTotalMoney;
         _smallBlindBet = _settingsSO.SmallBlindBet;

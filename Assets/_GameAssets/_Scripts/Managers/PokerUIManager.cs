@@ -4,10 +4,8 @@ using TMPro;
 using System.Collections;
 using DG.Tweening;
 
-public class UIManager : MonoSingleton<UIManager>
+public class PokerUIManager : MonoSingleton<PokerUIManager>
 {
-    [SerializeField] private MoveManager _moveManager;
-
     [SerializeField] private GameObject _buttonsPanel;
     [SerializeField] private Button _foldButton, _callButton, _bobButton , _raisePanelButton;
 
@@ -37,7 +35,7 @@ public class UIManager : MonoSingleton<UIManager>
         {
             if (_realPlayer.IsMyTurn)
             {
-                _moveManager.Fold(_realPlayer);
+                MoveManager.Instance.Fold(_realPlayer);
             }
         });
 
@@ -46,7 +44,7 @@ public class UIManager : MonoSingleton<UIManager>
             if (_realPlayer.IsMyTurn)
             {
                 var minBet = GameManager.Instance.MinBet;
-                _moveManager.Call(_realPlayer, minBet);
+                MoveManager.Instance.Call(_realPlayer, minBet);
             }
         });
 
@@ -54,7 +52,7 @@ public class UIManager : MonoSingleton<UIManager>
         {
             if (_realPlayer.IsMyTurn && !DealerController.Instance.BetsPlaced)
             { 
-                _moveManager.Bob(_realPlayer);
+                MoveManager.Instance.Bob(_realPlayer);
             }
         });
 
@@ -87,7 +85,7 @@ public class UIManager : MonoSingleton<UIManager>
 
         _raiseButton.onClick.AddListener(() =>
         {
-            _moveManager.Raise(_realPlayer, _sliderValue);
+            MoveManager.Instance.Raise(_realPlayer, _sliderValue);
             _raisePanelUI.SetActive(false);
         });
         #endregion

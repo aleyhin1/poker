@@ -17,7 +17,7 @@ public class StartingState : IPokerState
     {
         Debug.Log("-StartingState-");
 
-        UIManager.Instance.HigherCurtain();
+        PokerUIManager.Instance.HigherCurtain();
 
         _player.IsSmallBlind = true;
         _nextPlayer.IsBigBlind = true;
