@@ -53,23 +53,9 @@ public class MoveManager : MonoSingleton<MoveManager>
         Debug.Log(player.name + " : Fold");
 
         player.IsFold = true;
+        GameManager.Instance.Players.Remove(player);
         GameManager.Instance.LeaderBoardPlayerStack.Push(player);
-
-        if (player.GetType() == typeof(RealPlayer))
-        {
-            EndState.isForceToFold = true;
-            GameManager.Instance.EndGame();
-            return;
-        }
-
-        if (GameManager.Instance.LeaderBoardPlayerStack.Count >= GameManager.Instance.Players.Count - 1 && !EndState.isForceToFold)
-        {
-            GameManager.Instance.EndGame();
-            return;
-        }
-
-        if (!EndState.isForceToFold)
-            GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void Raise(Player player, int raiseAmount)
