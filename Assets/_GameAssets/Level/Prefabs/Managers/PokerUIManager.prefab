@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8555d5f5df214c4ebcef7198650ed5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveManager: {fileID: 0}
   _buttonsPanel: {fileID: 1295745630673593498}
   _foldButton: {fileID: 1295745630050798626}
   _callButton: {fileID: 1295745630918451915}
