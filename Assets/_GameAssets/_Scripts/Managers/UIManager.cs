@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using DG.Tweening;
 
 public class UIManager : MonoSingleton<UIManager>
 {
@@ -17,6 +19,12 @@ public class UIManager : MonoSingleton<UIManager>
     [SerializeField] private Button _raiseButton, _raiseExitButton;
     [SerializeField] private Slider _raiseAmountSlider;
     [SerializeField] private TextMeshProUGUI _raiseText;
+    [Header("Curtain Config")]
+    [Space]
+    [SerializeField] private SpriteRenderer _curtain;
+    [SerializeField] private float _curtainMaxAlphaValue;
+    [SerializeField] private float _curtainLowerTime;
+
 
     private void Start()
     {
@@ -100,5 +108,19 @@ public class UIManager : MonoSingleton<UIManager>
     {
         if (!DealerController.Instance.BetsPlaced)
             _bobButton.gameObject.SetActive(isActive);
+    }
+
+    public void LowerCurtain()
+    {
+        Color color = _curtain.color;
+
+        _curtain.DOColor(new Color(color.r, color.g, color.b, _curtainMaxAlphaValue), _curtainLowerTime);
+    }
+
+    public void HigherCurtain()
+    {
+        Color color = _curtain.color;
+
+        _curtain.DOColor(new Color(color.g, color.g, color.b, 0), _curtainLowerTime);
     }
 }

@@ -55,3 +55,6 @@ MonoBehaviour:
   _raiseExitButton: {fileID: 0}
   _raiseAmountSlider: {fileID: 0}
   _raiseText: {fileID: 0}
+  _curtain: {fileID: 0}
+  _curtainMaxAlphaValue: 0.5
+  _curtainLowerTime: 1
