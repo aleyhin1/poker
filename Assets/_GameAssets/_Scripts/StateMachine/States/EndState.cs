@@ -19,13 +19,21 @@ public class EndState : IPokerState
         _leaderBoardPlayerStack = GameManager.Instance.LeaderBoardPlayerStack;
         _playerList = GameManager.Instance.Players;
 
-        foreach (Player player in _playerList)
+        if (_playerList.Count > 1)
         {
-            player.Cards[0].FaceUp();
-            player.Cards[1].FaceUp();
-        }
+            foreach (Player player in _playerList)
+            {
+                player.Cards[0].FaceUp();
+                player.Cards[1].FaceUp();
+            }
 
-        GetWinnersAndShowOnUI();
+            GetWinnersAndShowOnUI();
+        }
+        else
+        {
+            PokerUIManager.Instance.LowerCurtain();
+            _playerList[0].ShowWinBox(true);
+        }
 
         if (isForceToFold)
         {

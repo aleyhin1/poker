@@ -55,7 +55,15 @@ public class MoveManager : MonoSingleton<MoveManager>
         player.IsFold = true;
         GameManager.Instance.Players.Remove(player);
         GameManager.Instance.LeaderBoardPlayerStack.Push(player);
-        GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+
+        if (GameManager.Instance.Players.Count == 1)
+        {
+            PokerStateManager.Instance.EnterState(PokerState.EndState);
+        }
+        else
+        {
+            GameManager.Instance.PlayerSequenceHandler.NextPlayer();
+        }
     }
 
     public void Raise(Player player, int raiseAmount)
