@@ -29,11 +29,11 @@ public class GameManager : MonoSingleton<GameManager>
     {
         _totalMoney = _settingsSO.PlayersTotalMoney;
         _smallBlindBet = _settingsSO.SmallBlindBet;
-        _playerCount = _settingsSO.PlayerCount;
+        _playerCount = _settingsSO.BotCount;
 
         SetPlayers();
     }
-
+ 
     private void SetPlayers()
     {
         List<AIPlayer> aiPlayers = new List<AIPlayer> ();
