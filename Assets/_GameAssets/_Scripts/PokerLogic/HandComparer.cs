@@ -26,7 +26,7 @@ public static class HandComparer
             return (winnersByCardRank, null);
         }
 
-        EliminateByCardValue(winnersByCardRank, out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnersByCardValue, out CardRank kickerCard);
+        EliminateByCardValue(winnersByCardRank, out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnersByCardValue, out CardRank? kickerCard);
 
         return (winnersByCardValue, kickerCard);
     }
@@ -65,7 +65,7 @@ public static class HandComparer
     }
 
     private static void EliminateByCardValue(Dictionary<Player, (HandRank, CardRank[], List<Card>)> playersToEliminate,
-        out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnerList, out CardRank kickerCard)
+        out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnerList, out CardRank? kickerCard)
     {
         winnerList = playersToEliminate;
         kickerCard = CardRank.Ace;
@@ -77,7 +77,7 @@ public static class HandComparer
 
             foreach (KeyValuePair<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPair in winnerList)
             {
-                if (HandCalculator.GetCardWithRank(playerHandInfoPair.Value.Item3, kickerCard) == null)
+                if (HandCalculator.GetCardWithRank(playerHandInfoPair.Value.Item3, kickerCard.Value) == null)
                 {
                     playersWithoutIndexedCard.Add(playerHandInfoPair.Key);
                 }
@@ -91,12 +91,16 @@ public static class HandComparer
                     winnerList.Remove(player);
                 }
             }
-            else if (winnerList.Count == 1)
+            if (winnerList.Count == 1)
             {
                 return;
             }
 
             kickerCard++;
+        }
+        if ((int)kickerCard == 13)
+        {
+            kickerCard = null;
         }
     }
 
