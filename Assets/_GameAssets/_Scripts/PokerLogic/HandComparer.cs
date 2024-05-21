@@ -53,16 +53,14 @@ public static class HandComparer
         for (int i = 0; i < cardRankArrayCount; i++)
         {
             CardRank winnerCardRank = GetWinnerCardRank(winnerList, i);
-            Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnersByCardRank = GetHandsWithCardRank(winnerList, winnerCardRank, i);
+            winnerList = GetHandsWithCardRank(winnerList, winnerCardRank, i);
 
             winnerCardRankArray[i] = winnerCardRank;
 
-            if (winnersByCardRank.Count == 1)
+            if (winnerList.Count == 1)
             {
                 return;
             }
-
-            winnerList = winnersByCardRank;
         }
     }
 
