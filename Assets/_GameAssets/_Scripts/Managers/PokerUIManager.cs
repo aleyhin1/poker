@@ -93,7 +93,7 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
 
     public void ChangeVisibilityButtonsPanel(bool isActive)
     {
-        if (_realPlayer.TotalMoney < GameManager.Instance.MinBet)
+        if (_realPlayer != null && _realPlayer.TotalMoney < GameManager.Instance.MinBet)
         {
             _callButton.gameObject.SetActive(false);
             _raisePanelButton.gameObject.SetActive(false);

@@ -4,6 +4,6 @@ using UnityEngine;
 public class GameSettingsSO : ScriptableObject
 {
     public int PlayersTotalMoney;
-    public int PlayerCount;
+    public int BotCount;
     public int SmallBlindBet;
 }
