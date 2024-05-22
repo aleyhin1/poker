@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89a603f8d402b4540a7daedaa09b7070, type: 3}
   m_Name: Game Settings
   m_EditorClassIdentifier: 
-  PlayersTotalMoney: 10000
-  BotCount: 1
-  SmallBlindBet: 100
+  PlayersTotalMoney: 200
+  PlayerCount: 4
+  SmallBlindBet: 2
