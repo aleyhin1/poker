@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Game Settings
   m_EditorClassIdentifier: 
   PlayersTotalMoney: 10000
-  BotCount: 1
+  BotCount: 6
   SmallBlindBet: 100

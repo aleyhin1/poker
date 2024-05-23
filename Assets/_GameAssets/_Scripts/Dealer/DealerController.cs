@@ -26,7 +26,8 @@ public class DealerController : MonoSingleton<DealerController>
 
     public void StartDealing(int cardCount, int cardLocationIndex)
     {
-        BetsPlaced = false;
+        Debug.Log("BetsPlaced : " + BetsPlaced);
+
         CollectBets();
         _cardLocationOnTheTable = GameManager.Instance.CardLocationOnTheTable;
         _currentCardCount = 0;
@@ -75,6 +76,7 @@ public class DealerController : MonoSingleton<DealerController>
         }
         else
         {
+            BetsPlaced = false;
             SetPlayers();
         }
     }

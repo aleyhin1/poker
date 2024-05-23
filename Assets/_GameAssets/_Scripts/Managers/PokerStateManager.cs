@@ -104,7 +104,6 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
         _flopState = new Flop();
         CurrentState = PokerState.Flop;
         _stateContext.TransitionTo(_flopState);
-        PokerUIManager.Instance.ChangeVisibilityBobButton(true);
     }
 
     private void EnterTurnState()

@@ -4,7 +4,7 @@ public class MoveManager : MonoSingleton<MoveManager>
 {
     public void SmallBlindBet(Player player , int betAmount)
     {
-        Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);
+        //Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);
 
         player.TotalMoney -= betAmount;
 
@@ -14,7 +14,7 @@ public class MoveManager : MonoSingleton<MoveManager>
 
     public void BigBlindBet(Player player, int betAmount)
     {
-        Debug.Log("Big Blind Player : " + player.name + " Bet : " + betAmount);
+      //  Debug.Log("Big Blind Player : " + player.name + " Bet : " + betAmount);
 
         player.TotalMoney -= betAmount;
         GameManager.Instance.MinBet = betAmount;
@@ -30,7 +30,7 @@ public class MoveManager : MonoSingleton<MoveManager>
         if (pokerState == PokerState.Preflop || pokerState == PokerState.StaringState) 
             return;
          
-        Debug.Log(player.name + " : Bob");
+       // Debug.Log(player.name + " : Bob");
 
         player.IsBob = true;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
@@ -38,19 +38,19 @@ public class MoveManager : MonoSingleton<MoveManager>
 
     public void Call(Player player , int minBet)
     {
-        DealerController.Instance.BetsPlaced = true;
-
-        Debug.Log(player.name + " : Call : " + minBet);
+       // Debug.Log(player.name + " : Call : " + minBet);
 
         player.TotalMoney -= minBet;
         player.IsCall = true;
         player.ShowBetBox(minBet);
+
+        DealerController.Instance.BetsPlaced = true;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
     public void Fold(Player player)
     {
-        Debug.Log(player.name + " : Fold");
+        //Debug.Log(player.name + " : Fold");
 
         player.IsFold = true;
         GameManager.Instance.Players.Remove(player);
@@ -68,9 +68,7 @@ public class MoveManager : MonoSingleton<MoveManager>
 
     public void Raise(Player player, int raiseAmount)
     {
-        DealerController.Instance.BetsPlaced = true;
-
-        Debug.Log(player.name + " : Raise :" + raiseAmount);
+       // Debug.Log(player.name + " : Raise :" + raiseAmount);
 
         player.TotalMoney -= raiseAmount;
 
@@ -78,6 +76,8 @@ public class MoveManager : MonoSingleton<MoveManager>
         player.IsRaise = true;
 
         player.ShowBetBox(raiseAmount);
+        DealerController.Instance.BetsPlaced = true;
+
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 }

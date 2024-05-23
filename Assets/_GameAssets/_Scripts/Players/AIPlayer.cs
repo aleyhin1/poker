@@ -108,12 +108,4 @@ public class AIPlayer : Player
 
         MoveManager.Instance.Raise(this,minBet);
     }
-
-    public void ForceToFold()
-    {
-        if (ProbabilitySystem.ForceToFold())
-        {
-            MoveManager.Instance.Fold(this);
-        }
-    }
 }

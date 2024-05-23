@@ -61,10 +61,13 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
             if (_realPlayer.IsMyTurn)
             {
                 var minValue = GameManager.Instance.MinBet * 2;
+                
 
+                //All In 
                 if (minValue > _realPlayer.TotalMoney)
                     minValue = 0;
-                 
+                // 
+
                 _raiseAmountSlider.minValue = minValue;
                 _raiseAmountSlider.maxValue = _realPlayer.TotalMoney;
                 _raisePanelUI.SetActive(true);
@@ -93,19 +96,25 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
 
     public void ChangeVisibilityButtonsPanel(bool isActive)
     {
-        if (_realPlayer != null && _realPlayer.TotalMoney < GameManager.Instance.MinBet)
+        if (_realPlayer != null)
         {
-            _callButton.gameObject.SetActive(false);
-            _raisePanelButton.gameObject.SetActive(false);
-        }
+            if (_realPlayer.TotalMoney < GameManager.Instance.MinBet)
+            {
+                //all in 
+                _callButton.gameObject.SetActive(false);
+                _raisePanelButton.gameObject.SetActive(false);
+            }
+            _buttonsPanel.SetActive(isActive);
 
-        _buttonsPanel.SetActive(isActive);
+            if (!isActive)
+                _raisePanelUI.SetActive(isActive);
+        }
     }
+ 
 
     public void ChangeVisibilityBobButton(bool isActive)
     {
-        if (!DealerController.Instance.BetsPlaced)
-            _bobButton.gameObject.SetActive(isActive);
+        _bobButton.gameObject.SetActive(isActive);
     }
 
     public void LowerCurtain()

@@ -35,40 +35,10 @@ public class EndState : IPokerState
             _playerList[0].ShowWinBox(true);
         }
 
-        if (isForceToFold)
-        {
-            ForceToFold();
-            return;
-        }
-
+        
         ShowLeaderBoard();
     }
     
-    private void ForceToFold()
-    {
-        Queue<AIPlayer> aIPlayers = new Queue<AIPlayer>();
-
-        while (aIPlayers.Count >= 0)
-        {
-            if (aIPlayers.Count == 0)
-            {
-                foreach (var player in _playerList)
-                {
-                    if (player.GetType() == typeof(AIPlayer) && !player.IsFold)
-                        aIPlayers.Enqueue((AIPlayer)player);
-                }
-
-                if (aIPlayers.Count <= 0)
-                    break;
-            }
-
-            if (aIPlayers.TryDequeue(out AIPlayer aIPlayer))
-                aIPlayer.ForceToFold();
-        };
-
-        ShowLeaderBoard();
-    }
-
     private void GetWinnersAndShowOnUI()
     {
         PokerUIManager.Instance.LowerCurtain();

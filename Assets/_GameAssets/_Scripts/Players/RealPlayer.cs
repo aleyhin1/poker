@@ -22,6 +22,7 @@ public class RealPlayer : Player
                 }
                 else
                 {
+                    PokerUIManager.Instance.ChangeVisibilityBobButton(!DealerController.Instance.BetsPlaced);
                     PokerUIManager.Instance.ChangeVisibilityButtonsPanel(true);   
                 }
             }
