@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class RealPlayer : Player
@@ -14,14 +15,19 @@ public class RealPlayer : Player
                 SelectedCircle.SetActive(true);
                 if (IsSmallBlind)
                 {
-                    SmallBlindBet();
+                    StartCoroutine(SmallBlindBet());
                 }
                 else if (IsBigBlind)
                 {
-                    BigBlindBet();
+                    StartCoroutine(BigBlindBet());
                 }
                 else
                 {
+                    if (CallingTheBet)
+                    {
+                        PokerUIManager.Instance.CallingBetVisibilityButton();
+                        return;
+                    }
                     PokerUIManager.Instance.ChangeVisibilityBobButton(!DealerController.Instance.BetsPlaced);
                     PokerUIManager.Instance.ChangeVisibilityButtonsPanel(true);   
                 }
@@ -32,29 +38,5 @@ public class RealPlayer : Player
                 PokerUIManager.Instance.ChangeVisibilityButtonsPanel(false);
             }
         } 
-    }
- 
-    private void SmallBlindBet()
-    {
-        IsSmallBlind = false;
-        IsSmallBlindPaid = true;
-
-        var smallBlindBet = GameManager.Instance.MinBet;
-        MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
-        ShowBetBox(smallBlindBet);
-    }
-
-    private void BigBlindBet()
-    {
-        IsBigBlind = false;
-        IsBigBlindPaid = true;
-
-        int minbet = GameManager.Instance.MinBet;
-        int bigBlindBet = minbet * 2;
-
-        GameManager.Instance.MinBet = bigBlindBet;
-
-        MoveManager.Instance.BigBlindBet(this,bigBlindBet);
-        ShowBetBox(bigBlindBet);
     }
 }

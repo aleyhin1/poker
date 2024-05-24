@@ -4,8 +4,6 @@ using System.Collections.Generic;
 public class EndState : IPokerState
 {
     public static bool isForceToFold { get; set; }
-
-    private Stack<Player> _leaderBoardPlayerStack;
     private List<Player> _playerList;
 
     public void EnterState()
@@ -13,11 +11,9 @@ public class EndState : IPokerState
         Debug.Log("-------EndState--------");
         GameManager.Instance.DealerController.CollectBets();
 
-
         Debug.Log("oyuncularýn kartlarý hesaplanýyor..");
 
-        _leaderBoardPlayerStack = GameManager.Instance.LeaderBoardPlayerStack;
-        _playerList = GameManager.Instance.Players;
+        _playerList = GameManager.Instance.LeaderboardManager.GetWinnersPlayerList();
 
         if (_playerList.Count > 1)
         {
@@ -35,10 +31,21 @@ public class EndState : IPokerState
             _playerList[0].ShowWinBox(true);
         }
 
-        
-        ShowLeaderBoard();
+        Debug.Log("-------Winners--------");
+
+        foreach (var player in _playerList)
+        {
+            Debug.Log($"Winners {player}");
+        }
+
+        Debug.Log("-------Losers--------");
+        foreach (var player in GameManager.Instance.LeaderboardManager.GetFoldList())
+        {
+            Debug.Log($"Losers {player}");
+        }
+        Debug.Log("---------------");
     }
-    
+
     private void GetWinnersAndShowOnUI()
     {
         PokerUIManager.Instance.LowerCurtain();
@@ -53,25 +60,5 @@ public class EndState : IPokerState
         {
             player.ShowWinBox(true);
         }
-    }
-
-    private void ShowLeaderBoard()
-    {
-        //Debug.Log("Lider Tablosu Görüntüleniyor...");
-
-        //int count = 1;
-
-        //while (_leaderBoardPlayerStack.Count > 0)
-        //{
-        //    if (_leaderBoardPlayerStack.TryPop(out Player player))
-        //    {
-        //        Debug.Log($"{count}. oyuncu : {player.name}");
-        //        count++;
-        //    }
-        //    else
-        //    {
-        //        break;
-        //    }
-        //}
     }
 }

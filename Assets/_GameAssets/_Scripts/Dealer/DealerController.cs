@@ -10,7 +10,7 @@ public class DealerController : MonoSingleton<DealerController>
     [SerializeField] private GameObject _betBox;
     [SerializeField] private TextMeshPro _betText;
 
-    private int _totalBet = 0;
+    [SerializeField] private int _totalBet = 0;
 
     private int _startingIndex;
     private int _currentCardCount;
@@ -18,6 +18,7 @@ public class DealerController : MonoSingleton<DealerController>
     private List<Transform> _cardLocationOnTheTable;
 
     public bool BetsPlaced { get; set; }
+    public int HighestBet {  get; set; }
 
     private void Start()
     {
@@ -26,8 +27,6 @@ public class DealerController : MonoSingleton<DealerController>
 
     public void StartDealing(int cardCount, int cardLocationIndex)
     {
-        Debug.Log("BetsPlaced : " + BetsPlaced);
-
         CollectBets();
         _cardLocationOnTheTable = GameManager.Instance.CardLocationOnTheTable;
         _currentCardCount = 0;
@@ -120,4 +119,32 @@ public class DealerController : MonoSingleton<DealerController>
                 RevealingCards();
             });
     }
+
+    public void CheckPlayers()
+    {
+        List<Player> playerList = GameManager.Instance.Players;
+     
+        foreach (var player in playerList)
+        {
+            if (!player.IsFold && player.IsRaise && player.LastBet > HighestBet)
+                HighestBet = player.LastBet;
+        }
+
+        Queue<Player> lastPlayers = new Queue<Player>();
+
+        foreach (var player in playerList)
+        {
+            if (!player.IsFold && player.LastBet < HighestBet)
+            {
+                player.CallingTheBet = true;
+                lastPlayers.Enqueue(player);
+            }
+        }
+
+        if (lastPlayers.Count > 0)
+            GameManager.Instance.PlayerSequenceHandler.SetPlayers(lastPlayers);
+        else
+            PokerStateManager.Instance.NextState();
+    }
+
 }

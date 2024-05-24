@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PokerStateManager : MonoSingleton<PokerStateManager>
@@ -48,6 +49,13 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
 
     public void NextState()
     {
+        StartCoroutine(NextStateEnumerator());
+    }
+
+    private IEnumerator NextStateEnumerator()
+    {
+        yield return new WaitForSeconds(1);
+        
         PokerState nextState = CurrentState;
         switch (CurrentState)
         {

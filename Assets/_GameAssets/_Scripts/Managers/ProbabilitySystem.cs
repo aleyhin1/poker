@@ -4,16 +4,6 @@ public static class ProbabilitySystem
 {
     private static float _probabilityValue = 0f;
 
-    public static bool ForceToFold()
-    {
-        _probabilityValue = Random.value;
-
-        if (_probabilityValue >= 0f && _probabilityValue <= 0.5f)
-            return true;
-         
-        return false;
-    }
-
     public static bool BobProbability(PokerState currentState)
     {
         if (DealerController.Instance.BetsPlaced)
@@ -34,7 +24,7 @@ public static class ProbabilitySystem
     {
         _probabilityValue = Random.value;
 
-        if (_probabilityValue >= 0f && _probabilityValue < 0.7f)
+        if (_probabilityValue >= 0f && _probabilityValue < 0.8f)
             return true;
 
         return false;
@@ -62,7 +52,7 @@ public static class ProbabilitySystem
         _probabilityValue = Random.value;
         minBet *= 2;
 
-        var betRate = (int)(totalMoney * 0.2f) + minBet;
+        var betRate = (int)(totalMoney * 0.05f) + minBet;
         var betAmount = Random.Range(minBet, betRate);
 
         if (betAmount < totalMoney)

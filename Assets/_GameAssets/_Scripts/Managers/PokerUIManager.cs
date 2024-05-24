@@ -44,7 +44,7 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
             if (_realPlayer.IsMyTurn)
             {
                 var minBet = GameManager.Instance.MinBet;
-                MoveManager.Instance.Call(_realPlayer, minBet);
+                MoveManager.Instance.Call(_realPlayer, minBet, _realPlayer.CallingTheBet);
             }
         });
 
@@ -61,12 +61,9 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
             if (_realPlayer.IsMyTurn)
             {
                 var minValue = GameManager.Instance.MinBet * 2;
-                
 
-                //All In 
                 if (minValue > _realPlayer.TotalMoney)
-                    minValue = 0;
-                // 
+                    return;
 
                 _raiseAmountSlider.minValue = minValue;
                 _raiseAmountSlider.maxValue = _realPlayer.TotalMoney;
@@ -94,23 +91,45 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
         #endregion
     }
 
+    public void CallingBetVisibilityButton()
+    {
+        if (_realPlayer != null)
+        {
+            if (_realPlayer.TotalMoney >= GameManager.Instance.MinBet)
+                _callButton.gameObject.SetActive(true);
+            else
+                _callButton.gameObject.SetActive(false);
+
+            ChangeVisibilityBobButton(false);
+            _raisePanelButton.gameObject.SetActive(false);
+            
+            _foldButton.gameObject.SetActive(true);
+            
+            _buttonsPanel.SetActive(true);
+        }
+    }
+
     public void ChangeVisibilityButtonsPanel(bool isActive)
     {
         if (_realPlayer != null)
         {
+            if (_realPlayer.TotalMoney < GameManager.Instance.MinBet * 2)
+            {
+                _raisePanelButton.gameObject.SetActive(false);
+                _raisePanelUI.gameObject.SetActive(false);
+            }
+            
             if (_realPlayer.TotalMoney < GameManager.Instance.MinBet)
             {
-                //all in 
                 _callButton.gameObject.SetActive(false);
-                _raisePanelButton.gameObject.SetActive(false);
             }
+
             _buttonsPanel.SetActive(isActive);
 
             if (!isActive)
                 _raisePanelUI.SetActive(isActive);
         }
     }
- 
 
     public void ChangeVisibilityBobButton(bool isActive)
     {

@@ -6,6 +6,8 @@ using System.Collections;
 
 public abstract class Player : MonoBehaviour
 {
+    public const float MOVE_TIME = 1f;
+
     [field: SerializeField] public List<Card> Cards { get; private set; } = new List<Card>(2);
     [SerializeField] private Transform _cardPos1, _cardPos2;
 
@@ -25,8 +27,11 @@ public abstract class Player : MonoBehaviour
 
     public virtual bool IsMyTurn { get; set; }
 
-    public int _totalMoney;
+    private int _totalMoney;
+    public int TotalBet;
     public int LastBet;
+
+    public bool CallingTheBet;
 
     public bool IsBet;
     public bool IsSmallBlindPaid;
@@ -96,6 +101,7 @@ public abstract class Player : MonoBehaviour
             if (_isFold)
             {
                 StartCoroutine(ShowDialogue("Fold"));
+                DealerController.Instance.CollectBets();
                 PutDownCards();
             }
         } 
@@ -103,6 +109,7 @@ public abstract class Player : MonoBehaviour
 
     public void ResetBetBox()
     {
+        LastBet = 0;
         IsBet = false;
         _betBox.SetActive(false);
         _betBox.transform.position = _betBoxPos;
@@ -113,7 +120,7 @@ public abstract class Player : MonoBehaviour
         IsBet = true;
 
         LastBet = bet;
-
+        TotalBet += LastBet;
         var targetPos = _betBox.transform.position;
         _betBox.transform.position = transform.position;
 
@@ -178,5 +185,26 @@ public abstract class Player : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         
         _dialogBox.gameObject.SetActive(false);
+    }
+
+    public IEnumerator SmallBlindBet()
+    {
+        IsSmallBlind = false;
+        IsSmallBlindPaid = true;
+        yield return new WaitForSeconds(MOVE_TIME);
+        var smallBlindBet = GameManager.Instance.MinBet;
+        MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
+    }
+    public IEnumerator BigBlindBet()
+    {
+        int minBet = GameManager.Instance.MinBet;
+        int bigBlindBet = minBet * 2;
+
+        IsBigBlind = false;
+        IsBigBlindPaid = true;
+
+        GameManager.Instance.MinBet = bigBlindBet;
+        yield return new WaitForSeconds(MOVE_TIME);
+        MoveManager.Instance.BigBlindBet(this, bigBlindBet);
     }
 }

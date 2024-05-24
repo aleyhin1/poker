@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
-    private const float MOVE_TIME = 1f;
 
     private bool _isActive;
 
@@ -52,33 +51,21 @@ public class AIPlayer : Player
         }
     }
  
-    private IEnumerator SmallBlindBet()
-    {
-        IsSmallBlind = false;
-        IsSmallBlindPaid = true;
-        yield return new WaitForSeconds(MOVE_TIME);
-        var smallBlindBet = GameManager.Instance.MinBet;
-        MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
-    }
-
-    private IEnumerator BigBlindBet()
-    {
-        int minBet = GameManager.Instance.MinBet;
-        int bigBlindBet = minBet * 2;
-
-        IsBigBlind = false;
-        IsBigBlindPaid = true;
-
-        GameManager.Instance.MinBet = bigBlindBet;
-        yield return new WaitForSeconds(MOVE_TIME);
-        MoveManager.Instance.BigBlindBet(this, bigBlindBet);
-    }
-
     private IEnumerator Move()
     {
         int minBet = GameManager.Instance.MinBet;
 
         yield return new WaitForSeconds(MOVE_TIME);
+
+        if (CallingTheBet)
+        {
+            if (minBet > TotalMoney)
+                MoveManager.Instance.Fold(this);
+            else
+                MoveManager.Instance.Call(this, minBet, true);
+
+            yield break;
+        }
 
         if (ProbabilitySystem.BobProbability(PokerStateManager.Instance.CurrentState))
         {
@@ -92,20 +79,20 @@ public class AIPlayer : Player
             yield break;
         }
 
-        if (ProbabilitySystem.CallProbability())
+        if (ProbabilitySystem.CallProbability() && minBet <= TotalMoney)
         {
-            MoveManager.Instance.Call(this, minBet);
+            MoveManager.Instance.Call(this, minBet, false);
             yield break;
         }
 
-        minBet = ProbabilitySystem.SetBetRate(TotalMoney,minBet);
+        minBet = ProbabilitySystem.SetBetRate(TotalMoney, minBet);
 
-        if (minBet > _totalMoney)
+        if (minBet > TotalMoney)
         {
             MoveManager.Instance.Fold(this);
             yield break;
         }
 
-        MoveManager.Instance.Raise(this,minBet);
+        MoveManager.Instance.Raise(this, minBet);
     }
 }

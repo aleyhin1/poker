@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class MoveManager : MonoSingleton<MoveManager>
 {
@@ -36,13 +37,26 @@ public class MoveManager : MonoSingleton<MoveManager>
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
-    public void Call(Player player , int minBet)
+    public void Call(Player player , int betAmount, bool callingTheBet)
     {
-       // Debug.Log(player.name + " : Call : " + minBet);
+        // Debug.Log(player.name + " : Call : " + minBet);
 
-        player.TotalMoney -= minBet;
+        if (callingTheBet)
+        {
+            player.CallingTheBet = false;
+
+            int bet = DealerController.Instance.HighestBet - player.LastBet;
+            player.TotalMoney -= bet;
+            player.LastBet += bet;
+            betAmount = player.LastBet;
+        }
+        else
+        {
+            player.TotalMoney -= betAmount;
+        }
+
         player.IsCall = true;
-        player.ShowBetBox(minBet);
+        player.ShowBetBox(betAmount);
 
         DealerController.Instance.BetsPlaced = true;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
@@ -51,12 +65,11 @@ public class MoveManager : MonoSingleton<MoveManager>
     public void Fold(Player player)
     {
         //Debug.Log(player.name + " : Fold");
-
         player.IsFold = true;
-        GameManager.Instance.Players.Remove(player);
-        GameManager.Instance.LeaderBoardPlayerStack.Push(player);
 
-        if (GameManager.Instance.Players.Count == 1)
+        GameManager.Instance.LeaderboardManager.AddFoldPlayer(player);
+
+        if (GameManager.Instance.LeaderboardManager.GetFoldList().Count == GameManager.Instance.Players.Count - 1)
         {
             PokerStateManager.Instance.EnterState(PokerState.EndState);
         }

@@ -1,7 +1,5 @@
 using UnityEngine;
-using System;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class PlayerSequenceHandler
 {
@@ -20,20 +18,6 @@ public class PlayerSequenceHandler
         _currentPlayer.IsMyTurn = true;
     }
 
-    private bool SetPlayers()
-    {
-        //bet miktarý eþitleme
-
-        List<Player> playerList = GameManager.Instance.Players;
-        playerList.Reverse();
-
-
-
-
-
-        return false;
-    }
-
     public void NextPlayer()
     {
         _currentPlayer = _playersQueue.Dequeue();
@@ -42,11 +26,6 @@ public class PlayerSequenceHandler
         if (_playersQueue.Count > 0)
             SelectPlayer();
         else
-        {
-            if (!SetPlayers())
-            {
-                PokerStateManager.Instance.NextState();
-            }
-        }    
+            GameManager.Instance.DealerController.CheckPlayers();
     }
 }
