@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 public class EndState : IPokerState
 {
-    public static bool isForceToFold { get; set; }
     private List<Player> _playerList;
 
     public void EnterState()
@@ -31,19 +30,8 @@ public class EndState : IPokerState
             _playerList[0].ShowWinBox(true);
         }
 
-        Debug.Log("-------Winners--------");
-
-        foreach (var player in _playerList)
-        {
-            Debug.Log($"Winners {player}");
-        }
-
-        Debug.Log("-------Losers--------");
-        foreach (var player in GameManager.Instance.LeaderboardManager.GetFoldList())
-        {
-            Debug.Log($"Losers {player}");
-        }
-        Debug.Log("---------------");
+        GameManager.Instance.LeaderboardManager.ShowLeaderboard();
+        GameManager.Instance.DealerController.PayingOut(GameManager.Instance.LeaderboardManager.GetWonPlayer(), GameManager.Instance.LeaderboardManager.GetWinnersPlayerList());
     }
 
     private void GetWinnersAndShowOnUI()
@@ -52,6 +40,11 @@ public class EndState : IPokerState
         (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
         ShowWinners(winnerHandInfo);
         PokerCanvas.Instance.ShowWinInfo(winnerHandInfo);
+
+        foreach (var item in winnerHandInfo.Item1.Keys)
+        {
+            GameManager.Instance.LeaderboardManager.AddWonPlayer(item);       
+        }
     }
 
     private void ShowWinners((Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo)

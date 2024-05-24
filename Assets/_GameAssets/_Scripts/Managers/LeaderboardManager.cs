@@ -1,15 +1,20 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class LeaderboardManager
 {
     public List<Player> Leaderboard = new List<Player>();
- 
+
+    private List<Player> _wonPlayers = new List<Player>();
     private List<Player> _winnersPlayerList = new List<Player>();
     private List<Player> _foldList = new List<Player>();
  
+    public void AddWonPlayer(Player player)
+    {
+        _wonPlayers.Add(player);
+    }
+
     public void AddFoldPlayer(Player player)
     {
         _foldList.Add(player);
@@ -18,6 +23,10 @@ public class LeaderboardManager
     public List<Player> GetFoldList()
     {
         return _foldList;
+    }
+    public List<Player> GetWonPlayer()
+    {
+        return _wonPlayers;
     }
 
     public List<Player> GetWinnersPlayerList()
@@ -31,20 +40,33 @@ public class LeaderboardManager
                 _winnersPlayerList.Add(player);
             }
         }
-        
         return _winnersPlayerList;
     }
 
-    public void ShowLeaderboard(List<Player> winners , List<Player> losers)
+    public void ShowLeaderboard()
     {
-        foreach (var winnersPlayer in winners)
+       Leaderboard.Clear();
+
+        foreach (var player in _wonPlayers)
         {
-            Leaderboard.Add(winnersPlayer);
+            Leaderboard.Add(player);
         }
 
-        foreach (var losersPlayer in losers)
+        foreach (var player in _winnersPlayerList)
         {
-            Leaderboard.Add(losersPlayer);
+            Leaderboard.Add(player);
         }
+        
+        foreach (var player in _foldList)
+        {
+            Leaderboard.Add(player);
+        }
+
+        Debug.Log("----------Leaderboard-----------");
+        foreach (var item in Leaderboard)
+        {
+            Debug.Log(item);
+        }
+        Debug.Log("--------------------------------");
     }
 }

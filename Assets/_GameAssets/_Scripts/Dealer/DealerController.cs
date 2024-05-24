@@ -9,12 +9,12 @@ public class DealerController : MonoSingleton<DealerController>
 
     [SerializeField] private GameObject _betBox;
     [SerializeField] private TextMeshPro _betText;
-
     [SerializeField] private int _totalBet = 0;
 
     private int _startingIndex;
     private int _currentCardCount;
     private int _cardCount;
+
     private List<Transform> _cardLocationOnTheTable;
 
     public bool BetsPlaced { get; set; }
@@ -134,7 +134,7 @@ public class DealerController : MonoSingleton<DealerController>
 
         foreach (var player in playerList)
         {
-            if (!player.IsFold && player.LastBet < HighestBet)
+            if (!player.IsFold && player.LastBet < HighestBet && !player.IsBob)
             {
                 player.CallingTheBet = true;
                 lastPlayers.Enqueue(player);
@@ -147,4 +147,51 @@ public class DealerController : MonoSingleton<DealerController>
             PokerStateManager.Instance.NextState();
     }
 
+    public void PayingOut(List<Player> wonPlayers, List<Player> winnerPlayers)
+    {
+        _betBox.SetActive(false);
+
+        if (wonPlayers.Count > 0)
+        {
+            int playerCount = wonPlayers.Count;
+            int payoutAmount = _totalBet / playerCount;
+
+            foreach (var player in wonPlayers)
+            {
+                GameObject betBox = Instantiate(_betBox, transform);
+                betBox.SetActive(true);
+
+                if (betBox.transform.GetChild(1).TryGetComponent(out TextMeshPro betText))
+                {
+                    betBox.transform.position = _betBox.transform.position;
+                    betText.text = payoutAmount.ToString();
+                    PayoutAnimation(player, betBox, betText);
+                }
+            }
+        }
+        else
+        {
+            int payoutAmount = _totalBet;
+
+            GameObject betBox = Instantiate(_betBox, transform);
+            if (betBox.transform.GetChild(1).TryGetComponent(out TextMeshPro betText))
+            {
+                betBox.transform.position = _betBox.transform.position;
+                betText.text = payoutAmount.ToString();
+                PayoutAnimation(winnerPlayers[0], betBox, betText);
+            }
+        }
+    }
+
+    private void PayoutAnimation(Player player , GameObject betBox, TextMeshPro betText)
+    {
+        betBox.transform.DOMove(player.transform.position, 2f)
+            .SetEase(Ease.Linear)
+            .OnComplete(() =>
+            {
+                int money = int.Parse(betText.text);
+                player.TotalMoney += money;
+                Destroy(betBox);
+            });
+    }
 }
