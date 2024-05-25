@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using System.Collections;
 
 public class PokerStateManager : MonoSingleton<PokerStateManager>
 {
@@ -79,7 +79,6 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
                 break;
 
             case PokerState.EndState:
-                
                 break;
         }
         EnterState(nextState);
@@ -134,5 +133,4 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
         CurrentState = PokerState.EndState;
         _stateContext.TransitionTo(_endState);
     }
-
 }

@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class EndState : IPokerState
 {
-    private List<Player> _playerList;
+    private List<Player> _playerList = new List<Player>();
 
     public void EnterState()
     {
@@ -12,7 +13,13 @@ public class EndState : IPokerState
 
         Debug.Log("oyuncularýn kartlarý hesaplanýyor..");
 
-        _playerList = GameManager.Instance.LeaderboardManager.GetWinnersPlayerList();
+        foreach (var player in GameManager.Instance.Players)
+        {
+            if (!player.IsFold)
+            {
+                _playerList.Add(player);        
+            }
+        }
 
         if (_playerList.Count > 1)
         {
@@ -29,9 +36,10 @@ public class EndState : IPokerState
             PokerUIManager.Instance.LowerCurtain();
             _playerList[0].ShowWinBox(true);
         }
+ 
+        GameManager.Instance.DealerController.PayingOut(_playerList);
 
-        GameManager.Instance.LeaderboardManager.ShowLeaderboard();
-        GameManager.Instance.DealerController.PayingOut(GameManager.Instance.LeaderboardManager.GetWonPlayer(), GameManager.Instance.LeaderboardManager.GetWinnersPlayerList());
+        GameManager.Instance.NewGame();
     }
 
     private void GetWinnersAndShowOnUI()
@@ -41,9 +49,13 @@ public class EndState : IPokerState
         ShowWinners(winnerHandInfo);
         PokerCanvas.Instance.ShowWinInfo(winnerHandInfo);
 
-        foreach (var item in winnerHandInfo.Item1.Keys)
+        if (winnerHandInfo.Item1.Keys.Count > 0)
         {
-            GameManager.Instance.LeaderboardManager.AddWonPlayer(item);       
+            _playerList.Clear();
+            foreach (var item in winnerHandInfo.Item1.Keys)
+            {
+                _playerList.Add(item);
+            }
         }
     }
 

@@ -54,7 +54,7 @@ public class UIMainMenuManager : MonoBehaviour
             gameSettingsSO.PlayersTotalMoney = _money;
             gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(TotalMoney * SMALL_BET_RADÝO);
 
-            SceneLoaderManager.Instance.LoadGameScene();
+            SceneLoaderManager.LoadGameScene();
         });
 
         _customGameButton.onClick.AddListener(() =>
@@ -86,7 +86,7 @@ public class UIMainMenuManager : MonoBehaviour
             gameSettingsSO.PlayersTotalMoney = _money;
             gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(_money * SMALL_BET_RADÝO);
 
-            SceneLoaderManager.Instance.LoadGameScene();
+            SceneLoaderManager.LoadGameScene();
         });
 
         InitializeBotPanel();

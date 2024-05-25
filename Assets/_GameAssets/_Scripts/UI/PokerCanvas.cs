@@ -22,9 +22,14 @@ public class PokerCanvas : MonoSingleton<PokerCanvas>
         _winningHandCardSize = _winningHandCards[0].GetComponent<RectTransform>().sizeDelta;
     }
 
+    public void ChangeVisibilityWinInfoPanel(bool isValue)
+    {
+        _winInfoPanel.SetActive(isValue);
+    }
+
     public void ShowWinInfo((Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winInfo)
     {
-        _winInfoPanel.SetActive(true);
+        ChangeVisibilityWinInfoPanel(true);
 
         (HandRank, CardRank[], List<Card>) handInfo = winInfo.Item1.Values.FirstOrDefault();
         HandRank handRank = handInfo.Item1;

@@ -1,11 +1,13 @@
-using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+ using UnityEngine.SceneManagement;
 
-public class SceneLoaderManager : MonoSingleton<SceneLoaderManager>
+public static class SceneLoaderManager
 {
-    public void LoadGameScene()
+    public static void LoadMainMenuScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public static void LoadGameScene()
     {
         SceneManager.LoadScene(3);
     }

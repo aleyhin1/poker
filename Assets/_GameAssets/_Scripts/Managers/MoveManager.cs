@@ -67,9 +67,17 @@ public class MoveManager : MonoSingleton<MoveManager>
         //Debug.Log(player.name + " : Fold");
         player.IsFold = true;
 
-        GameManager.Instance.LeaderboardManager.AddFoldPlayer(player);
+        int foldCount = 0;
 
-        if (GameManager.Instance.LeaderboardManager.GetFoldList().Count == GameManager.Instance.Players.Count - 1)
+        foreach (var item in GameManager.Instance.Players)
+        {
+            if (item.IsFold)
+            {
+                foldCount++;
+            }
+        }
+
+        if (foldCount == GameManager.Instance.Players.Count - 1)
         {
             PokerStateManager.Instance.EnterState(PokerState.EndState);
         }

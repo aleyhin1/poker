@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,8 +14,7 @@ public class GameManager : MonoSingleton<GameManager>
     [field: SerializeField] public List<Transform> CardLocationOnTheTable { get; private set;} = new List<Transform>();
     [field: SerializeField] public List<Card> CardsOnTheTable { get; private set;} = new List<Card>();
 
-    public PlayerSequenceHandler PlayerSequenceHandler { get; private set; }
-    public LeaderboardManager LeaderboardManager { get; private set; }
+    public PlayerSequenceHandler PlayerSequenceHandler { get; private set; } = new PlayerSequenceHandler();
     public RealPlayer RealPlayer { get; private set;}
 
     #region Setting SO
@@ -26,13 +26,17 @@ public class GameManager : MonoSingleton<GameManager>
         _totalMoney = _settingsSO.PlayersTotalMoney;
         _smallBlindBet = _settingsSO.SmallBlindBet;
         _playerCount = _settingsSO.BotCount;
-
-        SetPlayers();
     }
- 
+
+    private void Start()
+    {
+        SetPlayers();
+        StartGame();
+    }
+
     private void SetPlayers()
     {
-        List<AIPlayer> aiPlayers = new List<AIPlayer> ();
+        List<AIPlayer> aiPlayers = new List<AIPlayer>();
         List<AIPlayer> activePlayers = new List<AIPlayer>();
 
         foreach (Player player in AllPlayers)
@@ -48,7 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         if (_playerCount > aiPlayers.Count)
         {
-            Debug.Log("Geçersiz bot sayýsý");
+            Debug.LogError("Geçersiz bot sayýsý");
             return;
         }
 
@@ -64,13 +68,6 @@ public class GameManager : MonoSingleton<GameManager>
             }
         }
 
-        StartGame();
-    }
-
-    private void StartGame()
-    {
-        MinBet = _smallBlindBet;
-
         foreach (Player player in AllPlayers)
         {
             if (player.GetType() == typeof(AIPlayer))
@@ -79,16 +76,77 @@ public class GameManager : MonoSingleton<GameManager>
                 if (!aiPlayer.IsActive)
                     continue;
             }
-            else if(player.GetType() == typeof(RealPlayer))
+            else if (player.GetType() == typeof(RealPlayer))
             {
                 RealPlayer = (RealPlayer)player;
             }
             player.TotalMoney = _totalMoney;
             Players.Add(player);
         }
+    }
 
-        PlayerSequenceHandler = new PlayerSequenceHandler();
-        LeaderboardManager = new LeaderboardManager();
+    public void StartGame()
+    {
+        MinBet = _smallBlindBet;
         PokerStateManager.Instance.EnterState(PokerState.StaringState);
+    }
+
+    public void NewGame()
+    {
+        StartCoroutine(NewGameDelay());
+    }
+
+    private IEnumerator NewGameDelay()
+    {
+        yield return new WaitForSeconds(2f);
+
+        int count = Players.Count;
+
+        Stack<Player> removedPlayer = new Stack<Player>();
+
+        foreach (Player player in Players)
+        {
+            if (player.TotalMoney <= 0 || player.TotalMoney <= MinBet)
+            {
+                if (player.GetType() == typeof(RealPlayer))
+                {
+                    SceneLoaderManager.LoadMainMenuScene();
+                    break;
+                }
+                count--;
+                removedPlayer.Push(player);
+            }
+        }
+
+        while (removedPlayer.Count > 0)
+        {
+            Player player = removedPlayer.Pop();
+            player.gameObject.SetActive(false);
+            Players.Remove(player);
+        }
+
+        foreach (var player in Players)
+        {
+            player.ResetPlayer();
+        }
+
+        CardsOnTheTable.Clear();
+        DealerController.ResetDealer();
+        DeckManager.ResetDeck();
+
+        MinBet = _settingsSO.SmallBlindBet; 
+
+        yield return new WaitForSeconds(1f);
+
+        PokerCanvas.Instance.ChangeVisibilityWinInfoPanel(false);
+
+        if (count > 1)
+        {
+            StartGame();
+        }
+        else
+        {
+            SceneLoaderManager.LoadMainMenuScene();
+        }
     }
 }
