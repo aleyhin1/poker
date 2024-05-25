@@ -1,8 +1,9 @@
 using System.Collections;
 using UnityEngine;
 
-public class PokerStateManager : MonoSingleton<PokerStateManager>
+public class PokerStateManager : MonoBehaviour
 {
+    public static PokerStateManager Instance { get; private set; }
     public PokerState CurrentState { get; private set; }
     private StateContext _stateContext;
 
@@ -16,6 +17,15 @@ public class PokerStateManager : MonoSingleton<PokerStateManager>
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _stateContext = new StateContext();
     }
 

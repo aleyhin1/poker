@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using DG.Tweening;
 using TMPro;
 
-public class DealerController : MonoSingleton<DealerController>
+public class DealerController : MonoBehaviour
 {
+    public static DealerController Instance { get; private set; }
     private const float DURATION = 0.5f;
 
     [SerializeField] private GameObject _betBox;
@@ -20,6 +21,17 @@ public class DealerController : MonoSingleton<DealerController>
     public bool BetsPlaced { get; set; }
     public int HighestBet {  get; set; }
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     private void Start()
     {
         _betBox.SetActive(false);

@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoSingleton<GameManager>
+public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance { get; private set; }
     [SerializeField] private GameSettingsSO _settingsSO;
 
     public int MinBet;
@@ -23,13 +24,26 @@ public class GameManager : MonoSingleton<GameManager>
  
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _totalMoney = _settingsSO.PlayersTotalMoney;
         _smallBlindBet = _settingsSO.SmallBlindBet;
         _playerCount = _settingsSO.BotCount;
 
+    }
+
+    private void Start()
+    {
         SetPlayers();
     }
- 
+
     private void SetPlayers()
     {
         List<AIPlayer> aiPlayers = new List<AIPlayer> ();

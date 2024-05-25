@@ -342,8 +342,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LoadUserData()
     {
-
-
         //Get the currently logged in user data
         Task<DataSnapshot> DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
 
