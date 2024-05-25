@@ -101,7 +101,7 @@ public abstract class Player : MonoBehaviour
             if (_isFold)
             {
                 StartCoroutine(ShowDialogue("Fold"));
-                DealerController.Instance.CollectBets();
+                DealerController.Instance.CollectBet(this);
                 PutDownCards();
             }
         } 

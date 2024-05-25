@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class AIPlayer : Player
 {
-
     private bool _isActive;
 
     public bool IsActive 
@@ -59,11 +58,17 @@ public class AIPlayer : Player
 
         if (CallingTheBet)
         {
-            if (minBet > TotalMoney)
-                MoveManager.Instance.Fold(this);
+            if (DealerController.Instance.BetsPlaced)
+            {
+                if (minBet > TotalMoney)
+                    MoveManager.Instance.Fold(this);
+                else
+                    MoveManager.Instance.Call(this, minBet, true);
+            }
             else
-                MoveManager.Instance.Call(this, minBet, true);
-
+            {
+                MoveManager.Instance.Fold(this);
+            }
             yield break;
         }
 
@@ -79,7 +84,7 @@ public class AIPlayer : Player
             yield break;
         }
 
-        if (ProbabilitySystem.CallProbability() && minBet <= TotalMoney)
+        if (DealerController.Instance.BetsPlaced && ProbabilitySystem.CallProbability() && minBet <= TotalMoney)
         {
             MoveManager.Instance.Call(this, minBet, false);
             yield break;

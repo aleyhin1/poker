@@ -57,6 +57,13 @@ public class DealerController : MonoBehaviour
         RevealingCards();
     }
 
+    public void CollectBet(Player player)
+    {
+        _totalBet += player.LastBet;
+        CollectAnimation(player);
+        _betText.text = "$" + _totalBet.ToString();
+    }
+
     public void CollectBets()
     {
         List<Player> players = GameManager.Instance.Players;

@@ -23,6 +23,8 @@ public class MoveManager : MonoBehaviour
         player.TotalMoney -= betAmount;
 
         player.ShowBetBox(betAmount);
+        DealerController.Instance.BetsPlaced = true;
+
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
@@ -34,6 +36,7 @@ public class MoveManager : MonoBehaviour
         GameManager.Instance.MinBet = betAmount;
 
         player.ShowBetBox(betAmount);
+        DealerController.Instance.BetsPlaced = true;
 
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
@@ -47,6 +50,7 @@ public class MoveManager : MonoBehaviour
        // Debug.Log(player.name + " : Bob");
 
         player.IsBob = true;
+
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 
@@ -71,7 +75,6 @@ public class MoveManager : MonoBehaviour
         player.IsCall = true;
         player.ShowBetBox(betAmount);
 
-        DealerController.Instance.BetsPlaced = true;
         GameManager.Instance.PlayerSequenceHandler.NextPlayer();
     }
 

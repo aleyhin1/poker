@@ -57,7 +57,7 @@ public class MainMenuUIManager : MonoBehaviour
         _quickPlayButton.onClick.AddListener(() =>
         {
             gameSettingsSO.BotCount = MAX_BOT_COUNT;
-            gameSettingsSO.PlayersTotalMoney = _money;
+            gameSettingsSO.PlayersTotalMoney = TotalMoney;
             gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(TotalMoney * SMALL_BET_RADÝO);
 
             SceneManager.Instance.LoadGameScene(Scene.Game);
