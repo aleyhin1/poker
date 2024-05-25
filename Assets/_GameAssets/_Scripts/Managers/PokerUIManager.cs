@@ -35,6 +35,7 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
         {
             if (_realPlayer.IsMyTurn)
             {
+                _realPlayer.IsMyTurn = false;
                 MoveManager.Instance.Fold(_realPlayer);
             }
         });
@@ -43,6 +44,7 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
         {
             if (_realPlayer.IsMyTurn)
             {
+                _realPlayer.IsMyTurn = false;
                 var minBet = GameManager.Instance.MinBet;
                 MoveManager.Instance.Call(_realPlayer, minBet, _realPlayer.CallingTheBet);
             }
@@ -51,7 +53,8 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
         _bobButton.onClick.AddListener(() =>
         {
             if (_realPlayer.IsMyTurn && !DealerController.Instance.BetsPlaced)
-            { 
+            {
+                _realPlayer.IsMyTurn = false;
                 MoveManager.Instance.Bob(_realPlayer);
             }
         });
@@ -60,6 +63,7 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
         {
             if (_realPlayer.IsMyTurn)
             {
+                _realPlayer.IsMyTurn = false;
                 var minValue = GameManager.Instance.MinBet * 2;
 
                 if (minValue > _realPlayer.TotalMoney)
@@ -118,10 +122,18 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
                 _raisePanelButton.gameObject.SetActive(false);
                 _raisePanelUI.gameObject.SetActive(false);
             }
-            
+            else
+            {
+                _raisePanelButton.gameObject.SetActive(true);
+            }
+
             if (_realPlayer.TotalMoney < GameManager.Instance.MinBet)
             {
                 _callButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                _callButton.gameObject.SetActive(true);
             }
 
             _buttonsPanel.SetActive(isActive);

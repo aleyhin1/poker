@@ -54,6 +54,8 @@ public class DeckManager : MonoBehaviour
 
     private void FillDeck()
     {
+        Cards.Clear();
+
         foreach (CardSuit suit in Enum.GetValues(typeof(CardSuit)))
         {
             foreach (CardRank rank in Enum.GetValues(typeof(CardRank)))
@@ -75,8 +77,8 @@ public class DeckManager : MonoBehaviour
         Card spawnedCard = Instantiate<Card>(_cardPrefab, transform);
         spawnedCard.gameObject.SetActive(false);
         spawnedCard.GetComponent<SpriteRenderer>().sortingOrder = 3;
+       
         Cards.Add(spawnedCard);
-
         return spawnedCard;
     }
 
