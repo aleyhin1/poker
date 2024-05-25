@@ -157,11 +157,7 @@ public class PokerUIManager : MonoBehaviour
 
     public void ChangeVisibilityBobButton(bool isActive)
     {
-        var pokerState = PokerStateManager.Instance.CurrentState;
-        if (pokerState != PokerState.Preflop || pokerState != PokerState.StaringState)
-        { 
-            _bobButton.gameObject.SetActive(isActive);
-        }
+        _bobButton.gameObject.SetActive(isActive);
     }
 
     public void LowerCurtain()

@@ -99,6 +99,7 @@ public class PokerStateManager : MonoBehaviour
         _startingState = new StartingState(GameManager.Instance.Players);
         CurrentState = PokerState.StaringState;
         _stateContext.TransitionTo(_startingState);
+        PokerUIManager.Instance.ChangeVisibilityBobButton(false);
     }
 
     private void EnterDealingCardsState()
@@ -114,6 +115,7 @@ public class PokerStateManager : MonoBehaviour
         _preflopState = new Preflop();
         CurrentState = PokerState.Preflop;
         _stateContext.TransitionTo(_preflopState);
+        PokerUIManager.Instance.ChangeVisibilityBobButton(false);
     }
 
     private void EnterFlopState()
