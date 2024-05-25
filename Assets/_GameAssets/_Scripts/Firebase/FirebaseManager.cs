@@ -186,8 +186,11 @@ public class FirebaseManager : MonoBehaviour
             yield return new WaitForSeconds(2);
 
             usernameText.text ="UserName:"+ User.DisplayName;
-            FirebaseUIManager.instance.UserDataScreen(); // Change to user data UI
-            ScoreboardButton(); // Load the scoreboard
+
+            //FirebaseUIManager.instance.UserDataScreen(); // Change to user data UI
+            //ScoreboardButton(); // Load the scoreboard
+            FirebaseUIManager.instance.ClearScreen();
+            SceneManager.Instance.LoadGameScene(Scene.Menu);
             confirmLoginText.text = "";
             ClearLoginFeilds();
             ClearRegisterFeilds();

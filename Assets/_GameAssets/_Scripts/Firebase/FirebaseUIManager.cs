@@ -51,7 +51,7 @@ public class FirebaseUIManager : MonoBehaviour
     public void UserDataScreen() //Logged in
     {
         ClearScreen();
-        SceneManager.LoadScene(1);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         userDataUI.SetActive(true);
     }
 
