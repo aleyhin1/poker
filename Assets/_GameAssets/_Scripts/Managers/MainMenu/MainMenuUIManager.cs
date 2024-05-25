@@ -12,8 +12,8 @@ public class MainMenuUIManager : MonoBehaviour
 
     private const int MAX_BOT_COUNT = 6;
     private const int Min_BOT_COUNT = 1;
-    private const float TOTAL_MONEY_RADÝO= 0.1f;
-    private const float SMALL_BET_RADÝO = 0.05f;
+    private const float TOTAL_MONEY_RATIO = 0.1f;
+    private const float SMALL_BET_RATIO = 0.025f;
 
     [Header("User Data")]
     [SerializeField] private TextMeshProUGUI _userNameTextMesh;
@@ -58,7 +58,7 @@ public class MainMenuUIManager : MonoBehaviour
         {
             gameSettingsSO.BotCount = MAX_BOT_COUNT;
             gameSettingsSO.PlayersTotalMoney = TotalMoney;
-            gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(TotalMoney * SMALL_BET_RADÝO);
+            gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(TotalMoney * SMALL_BET_RATIO);
 
             SceneManager.Instance.LoadGameScene(Scene.Game);
         });
@@ -83,7 +83,7 @@ public class MainMenuUIManager : MonoBehaviour
     
     private void InitializeCustomGameButtons()
     {
-        _money = Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RADÝO);
+        _money = Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RATIO);
         _totalMoneyText.text = _money.ToString();
 
         _backButton.onClick.AddListener(() =>
@@ -96,7 +96,7 @@ public class MainMenuUIManager : MonoBehaviour
         {
             gameSettingsSO.BotCount = _botCount;
             gameSettingsSO.PlayersTotalMoney = _money;
-            gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(_money * SMALL_BET_RADÝO);
+            gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(_money * SMALL_BET_RATIO);
 
             SceneManager.Instance.LoadGameScene(Scene.Game);
         });
@@ -170,7 +170,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     private void IncreaseMoney()
     {
-        _money += Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RADÝO);
+        _money += Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RATIO);
 
         if (_money > TotalMoney)
             _money = TotalMoney;
@@ -180,10 +180,10 @@ public class MainMenuUIManager : MonoBehaviour
 
     private void DecreaseMoney()
     {
-        _money -= Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RADÝO);
+        _money -= Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RATIO);
 
         if (_money <= 0)
-            _money = Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RADÝO);
+            _money = Mathf.FloorToInt(TotalMoney * TOTAL_MONEY_RATIO);
         
         _totalMoneyText.text = _money.ToString();
     }

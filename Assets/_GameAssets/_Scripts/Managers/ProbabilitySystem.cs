@@ -14,7 +14,7 @@ public static class ProbabilitySystem
 
         _probabilityValue = Random.value;
 
-        if (_probabilityValue >= 0f && _probabilityValue < 0.3f)
+        if (_probabilityValue >= 0f && _probabilityValue < 0.75f)
             return true;
 
         return false;
@@ -24,7 +24,7 @@ public static class ProbabilitySystem
     {
         _probabilityValue = Random.value;
 
-        if (_probabilityValue >= 0f && _probabilityValue < 0.8f)
+        if (_probabilityValue >= 0f && _probabilityValue < 0.75f)
             return true;
 
         return false;
@@ -50,10 +50,11 @@ public static class ProbabilitySystem
     public static int SetBetRate(int totalMoney, int minBet)
     {
         _probabilityValue = Random.value;
-        minBet *= 2;
+        // minBet *= 2;
 
-        var betRate = (int)(totalMoney * 0.05f) + minBet;
+        var betRate = (int)(totalMoney * _probabilityValue * _probabilityValue) + minBet;
         var betAmount = Random.Range(minBet, betRate);
+        betAmount = (betAmount / 100) * 100;
 
         if (betAmount < totalMoney)
         {
