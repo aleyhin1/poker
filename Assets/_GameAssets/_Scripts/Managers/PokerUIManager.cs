@@ -54,7 +54,7 @@ public class PokerUIManager : MonoBehaviour
 
         _callButton.onClick.AddListener(() =>
         {
-            if (_realPlayer.IsMyTurn)
+            if (_realPlayer.IsMyTurn && DealerController.Instance.BetsPlaced)
             {
                 _realPlayer.IsMyTurn = false;
                 var minBet = GameManager.Instance.MinBet;
@@ -111,7 +111,7 @@ public class PokerUIManager : MonoBehaviour
     {
         if (_realPlayer != null)
         {
-            if (_realPlayer.TotalMoney >= GameManager.Instance.MinBet)
+            if (_realPlayer.TotalMoney >= GameManager.Instance.MinBet && DealerController.Instance.BetsPlaced)
                 _callButton.gameObject.SetActive(true);
             else
                 _callButton.gameObject.SetActive(false);
@@ -146,6 +146,10 @@ public class PokerUIManager : MonoBehaviour
             else if(DealerController.Instance.BetsPlaced)
             {
                 _callButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                _callButton.gameObject.SetActive(false);
             }
 
             _buttonsPanel.SetActive(isActive);
