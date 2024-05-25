@@ -1,8 +1,21 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class MoveManager : MonoSingleton<MoveManager>
+public class MoveManager : MonoBehaviour
 {
+    public static MoveManager Instance {  get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void SmallBlindBet(Player player , int betAmount)
     {
         //Debug.Log("Small Blind Player : " + player.name + " Bet : " + betAmount);

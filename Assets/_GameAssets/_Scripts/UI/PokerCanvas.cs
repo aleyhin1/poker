@@ -7,8 +7,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
 
-public class PokerCanvas : MonoSingleton<PokerCanvas>
+public class PokerCanvas : MonoBehaviour
 {
+    public static PokerCanvas Instance { get; private set; }
     [Header("Win Info Panel Fields")]
     [Space]
     [SerializeField] private GameObject _winInfoPanel;
@@ -19,6 +20,15 @@ public class PokerCanvas : MonoSingleton<PokerCanvas>
 
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         _winningHandCardSize = _winningHandCards[0].GetComponent<RectTransform>().sizeDelta;
     }
 

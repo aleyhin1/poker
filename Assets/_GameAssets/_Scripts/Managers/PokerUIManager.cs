@@ -4,8 +4,9 @@ using TMPro;
 using System.Collections;
 using DG.Tweening;
 
-public class PokerUIManager : MonoSingleton<PokerUIManager>
+public class PokerUIManager : MonoBehaviour
 {
+    public static PokerUIManager Instance { get; private set; }
     [SerializeField] private GameObject _buttonsPanel;
     [SerializeField] private Button _foldButton, _callButton, _bobButton , _raisePanelButton;
 
@@ -23,6 +24,17 @@ public class PokerUIManager : MonoSingleton<PokerUIManager>
     [SerializeField] private float _curtainMaxAlphaValue;
     [SerializeField] private float _curtainLowerTime;
 
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {

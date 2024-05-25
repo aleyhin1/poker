@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIMainMenuManager : MonoBehaviour
+public class MainMenuUIManager : MonoBehaviour
 {
     public GameSettingsSO gameSettingsSO;
     public string UserName { get; set; }
@@ -15,9 +15,13 @@ public class UIMainMenuManager : MonoBehaviour
     private const float TOTAL_MONEY_RADÝO= 0.1f;
     private const float SMALL_BET_RADÝO = 0.05f;
 
+    [Header("User Data")]
+    [SerializeField] private TextMeshProUGUI _userNameTextMesh;
+    [SerializeField] private TextMeshProUGUI _userMoneyTextMesh;
+
     [Header("Main Menu")]
     [SerializeField] private GameObject _mainMenuPanel;
-    [SerializeField] private Button _quickPlayButton, _customGameButton, _exitGameButton;
+    [SerializeField] private Button _quickPlayButton, _customGameButton, _leaderBoardButton, _exitGameButton;
 
     [Header("Custom Game")]
     [SerializeField] private GameObject _customGamePanel;
@@ -44,6 +48,8 @@ public class UIMainMenuManager : MonoBehaviour
 
         InitializeMainMenuButtons();
         InitializeCustomGameButtons();
+        UpdateUserName();
+        UpdateMoney();
     }
 
     private void InitializeMainMenuButtons()
@@ -54,13 +60,19 @@ public class UIMainMenuManager : MonoBehaviour
             gameSettingsSO.PlayersTotalMoney = _money;
             gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(TotalMoney * SMALL_BET_RADÝO);
 
-            SceneLoaderManager.LoadGameScene();
+            SceneManager.Instance.LoadGameScene(Scene.Game);
         });
 
         _customGameButton.onClick.AddListener(() =>
         {
             _mainMenuPanel.SetActive(false);
             _customGamePanel.SetActive(true);
+        });
+
+        _leaderBoardButton.onClick.AddListener(() =>
+        {
+            FirebaseUIManager.instance.UserDataScreen();
+            FirebaseManager.Instance.ScoreboardButton();
         });
 
         _exitGameButton.onClick.AddListener(() =>
@@ -86,7 +98,7 @@ public class UIMainMenuManager : MonoBehaviour
             gameSettingsSO.PlayersTotalMoney = _money;
             gameSettingsSO.SmallBlindBet = Mathf.FloorToInt(_money * SMALL_BET_RADÝO);
 
-            SceneLoaderManager.LoadGameScene();
+            SceneManager.Instance.LoadGameScene(Scene.Game);
         });
 
         InitializeBotPanel();
@@ -128,6 +140,16 @@ public class UIMainMenuManager : MonoBehaviour
             _botCount = MAX_BOT_COUNT;
 
         _botCountText.text = _botCount.ToString();
+    }
+
+    private void UpdateUserName()
+    {
+        _userNameTextMesh.text = FirebaseManager.Instance.User.DisplayName;
+    }
+
+    private void UpdateMoney()
+    {
+        _userMoneyTextMesh.text = FirebaseManager.Instance.myScore.ToString();
     }
 
     #endregion BotPanel

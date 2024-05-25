@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/_GameAssets/Level/Scenes/LoginScene.unity
     guid: 39bc427245085aa438f72dc1591f71bb
   - enabled: 1
-    path: Assets/_GameAssets/Level/Scenes/LoginSuccessScene.unity
-    guid: 3cc61608ce93bab4eb6a7e07cfa74796
-  - enabled: 1
     path: Assets/_GameAssets/Level/Scenes/MainMenu.unity
     guid: d7c56aa87f495424e834538bea062051
   - enabled: 1

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 public class FirebaseManager : MonoBehaviour
 {
+    public static FirebaseManager Instance { get; private set; }
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -34,8 +35,6 @@ public class FirebaseManager : MonoBehaviour
 
     //User Data variables
     [Header("UserData")]
-    public TMP_Text usernameText;
-    public TMP_Text scoreText;
     public GameObject scoreElement;
     public Transform scoreboardContent;
     public int myScore;
@@ -43,6 +42,15 @@ public class FirebaseManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
@@ -116,10 +124,8 @@ public class FirebaseManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             StartCoroutine(LoadScoreboardData());
         }
-
-       
-
     }
+
     //Function for the save button
     public void SaveDataButton()
     {
@@ -185,9 +191,10 @@ public class FirebaseManager : MonoBehaviour
 
             yield return new WaitForSeconds(2);
 
-            usernameText.text ="UserName:"+ User.DisplayName;
-            FirebaseUIManager.instance.UserDataScreen(); // Change to user data UI
-            ScoreboardButton(); // Load the scoreboard
+            //FirebaseUIManager.instance.UserDataScreen(); // Change to user data UI
+            //ScoreboardButton(); // Load the scoreboard
+            FirebaseUIManager.instance.ClearScreen();
+            SceneManager.Instance.LoadGameScene(Scene.Menu);
             confirmLoginText.text = "";
             ClearLoginFeilds();
             ClearRegisterFeilds();
@@ -339,8 +346,6 @@ public class FirebaseManager : MonoBehaviour
 
     private IEnumerator LoadUserData()
     {
-
-
         //Get the currently logged in user data
         Task<DataSnapshot> DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();
 
@@ -354,8 +359,6 @@ public class FirebaseManager : MonoBehaviour
         {
             //No data exists yet
             myScore = 0;
-            scoreText.text = "0";
-
         }
         else
         {
@@ -363,8 +366,6 @@ public class FirebaseManager : MonoBehaviour
             DataSnapshot snapshot = DBTask.Result;
 
             myScore =int.Parse(snapshot.Child("score").Value.ToString());
-            scoreText.text ="MyScore:"+ myScore.ToString();
-
         }
     }
 
