@@ -66,8 +66,8 @@ public class PokerUIManager : MonoBehaviour
         {
             if (_realPlayer.IsMyTurn && !DealerController.Instance.BetsPlaced)
             {
-                _realPlayer.IsMyTurn = false;
                 MoveManager.Instance.Bob(_realPlayer);
+                _realPlayer.IsMyTurn = false;
             }
         });
 
@@ -157,7 +157,11 @@ public class PokerUIManager : MonoBehaviour
 
     public void ChangeVisibilityBobButton(bool isActive)
     {
-        _bobButton.gameObject.SetActive(isActive);
+        var pokerState = PokerStateManager.Instance.CurrentState;
+        if (pokerState != PokerState.Preflop || pokerState != PokerState.StaringState)
+        { 
+            _bobButton.gameObject.SetActive(isActive);
+        }
     }
 
     public void LowerCurtain()
