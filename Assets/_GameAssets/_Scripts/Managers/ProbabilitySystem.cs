@@ -52,7 +52,7 @@ public static class ProbabilitySystem
         _probabilityValue = Random.value;
         // minBet *= 2;
 
-        var betRate = (int)(totalMoney * _probabilityValue * _probabilityValue) + minBet;
+        var betRate = (int)(totalMoney * Mathf.Pow(_probabilityValue, 10)) + minBet;
         var betAmount = Random.Range(minBet, betRate);
         betAmount = (betAmount / 100) * 100;
 
