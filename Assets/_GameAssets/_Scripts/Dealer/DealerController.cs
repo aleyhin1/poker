@@ -34,6 +34,15 @@ public class DealerController : MonoBehaviour
     }
     private void Start()
     {
+        ResetDealer();
+    }
+
+    public void ResetDealer()
+    {
+        HighestBet = 0;
+        _totalBet = 0;
+
+        BetsPlaced = false; 
         _betBox.SetActive(false);
     }
 
@@ -159,16 +168,16 @@ public class DealerController : MonoBehaviour
             PokerStateManager.Instance.NextState();
     }
 
-    public void PayingOut(List<Player> wonPlayers, List<Player> winnerPlayers)
+    public void PayingOut(List<Player> winnerPlayers)
     {
         _betBox.SetActive(false);
 
-        if (wonPlayers.Count > 0)
+        if (winnerPlayers.Count > 0)
         {
-            int playerCount = wonPlayers.Count;
+            int playerCount = winnerPlayers.Count;
             int payoutAmount = _totalBet / playerCount;
 
-            foreach (var player in wonPlayers)
+            foreach (var player in winnerPlayers)
             {
                 GameObject betBox = Instantiate(_betBox, transform);
                 betBox.SetActive(true);
@@ -183,15 +192,7 @@ public class DealerController : MonoBehaviour
         }
         else
         {
-            int payoutAmount = _totalBet;
-
-            GameObject betBox = Instantiate(_betBox, transform);
-            if (betBox.transform.GetChild(1).TryGetComponent(out TextMeshPro betText))
-            {
-                betBox.transform.position = _betBox.transform.position;
-                betText.text = payoutAmount.ToString();
-                PayoutAnimation(winnerPlayers[0], betBox, betText);
-            }
+            Debug.LogError("kazanan yok !!!");
         }
     }
 

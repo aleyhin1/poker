@@ -195,6 +195,7 @@ public abstract class Player : MonoBehaviour
         var smallBlindBet = GameManager.Instance.MinBet;
         MoveManager.Instance.SmallBlindBet(this, smallBlindBet);
     }
+
     public IEnumerator BigBlindBet()
     {
         int minBet = GameManager.Instance.MinBet;
@@ -206,5 +207,29 @@ public abstract class Player : MonoBehaviour
         GameManager.Instance.MinBet = bigBlindBet;
         yield return new WaitForSeconds(MOVE_TIME);
         MoveManager.Instance.BigBlindBet(this, bigBlindBet);
+    }
+
+    public void ResetPlayer()
+    {
+        Cards.Clear();
+
+        CallingTheBet = false;
+        _isBob = false;
+        _isCall = false;
+        _isFold = false;
+        _isRaise = false;
+        
+        IsMyTurn = false;
+        IsBigBlind = false;
+        IsSmallBlind = false;
+        
+        LastBet = 0;
+        TotalBet = 0;
+
+        _betBoxPos = _betBox.transform.position;
+        _betBox.SetActive(false);
+        _dialogBox.SetActive(false);
+
+        ShowWinBox(false);
     }
 }

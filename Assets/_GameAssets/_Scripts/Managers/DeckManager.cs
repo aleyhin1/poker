@@ -2,10 +2,13 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading.Tasks;
 
 public class DeckManager : MonoBehaviour
 {
     public static Stack<Card> Deck { get; private set; } = new Stack<Card>();
+    private static List<Card> Cards = new List<Card>();
+
     [SerializeField] private Card _cardPrefab;
     [Header("Card Textures")]
     [Tooltip("Order in according to CardRank Enum")]
@@ -23,6 +26,19 @@ public class DeckManager : MonoBehaviour
     {
         FillSuitTexturesPairs();
         FillDeck();
+    }
+
+    public static void ResetDeck()
+    {
+        foreach (var card in Cards)
+        {
+            card.FaceDown();
+            card.transform.position = Vector3.zero;
+            card.transform.rotation = Quaternion.Euler(0,0,0);
+            card.gameObject.SetActive(false);
+        }
+
+        ShuffleTheCards(Cards);
     }
 
     private void FillSuitTexturesPairs()
@@ -51,7 +67,7 @@ public class DeckManager : MonoBehaviour
             }
         }
 
-        ShuffleTheCards(Deck);
+        ShuffleTheCards(Cards);
     }
 
     private Card CreateCardObject()
@@ -59,23 +75,23 @@ public class DeckManager : MonoBehaviour
         Card spawnedCard = Instantiate<Card>(_cardPrefab, transform);
         spawnedCard.gameObject.SetActive(false);
         spawnedCard.GetComponent<SpriteRenderer>().sortingOrder = 3;
-        Deck.Push(spawnedCard);
+        Cards.Add(spawnedCard);
 
         return spawnedCard;
     }
 
-    private void ShuffleTheCards(Stack<Card> deck)
+    private static void ShuffleTheCards(List<Card> cards)
     {
-        Card[] array = deck.ToArray();
+        Card[] array = cards.ToArray();
 
         var rnd = new System.Random();
         var shuffledArray = array.OrderBy(item => rnd.Next()).ToArray();
 
-        deck.Clear(); 
+        Deck.Clear(); 
 
         foreach (var card in shuffledArray)
         {
-            deck.Push(card);
+            Deck.Push(card);
         }
     }
 }
