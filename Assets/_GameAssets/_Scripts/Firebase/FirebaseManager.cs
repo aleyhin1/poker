@@ -135,7 +135,7 @@ public class FirebaseManager : MonoBehaviour
         //StartCoroutine(UpdateScore(int.Parse(scoreText.text)));
 
         StartCoroutine(UpdateUsernameDatabase(usernameRegisterField.text));
-        StartCoroutine(UpdateScore(0));
+        StartCoroutine(UpdateScore(10000));
 
     }
     //Function for the scoreboard button

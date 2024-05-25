@@ -692,6 +692,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirebaseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1298649879382165046, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1539627756}
+    - target: {fileID: 1298649879382165046, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RegisterButton
+      objectReference: {fileID: 0}
     - target: {fileID: 1298649879995934695, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

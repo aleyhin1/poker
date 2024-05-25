@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator NewGameDelay()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(7.5f);
 
         int count = Players.Count;
 
