@@ -642,6 +642,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1539627756}
+    - target: {fileID: 1298649879995934695, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoginButton
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
 --- !u!1001 &9100031594960215563

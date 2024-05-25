@@ -4011,64 +4011,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348948750}
   m_CullTransparentMesh: 1
---- !u!1 &1382298994
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1382298996}
-  - component: {fileID: 1382298995}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1382298995
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382298994}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2437b1481becfb479921e59781ad249, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameSettingsSO: {fileID: 11400000, guid: e9128a8fc005c5c4289ae9cc3d9d6495, type: 2}
-  _mainMenuPanel: {fileID: 1416539273}
-  _quickPlayButton: {fileID: 640063045}
-  _customGameButton: {fileID: 1655174423}
-  _exitGameButton: {fileID: 615368707}
-  _customGamePanel: {fileID: 2097299288}
-  _backButton: {fileID: 2025678374}
-  _playGameButton: {fileID: 694006038}
-  _botCountText: {fileID: 164761225}
-  _increaseBotCountButton: {fileID: 1882694464}
-  _decreaseBotCountButton: {fileID: 250705203}
-  _totalMoneyText: {fileID: 609721187}
-  _increaseMoneyButton: {fileID: 1236381320}
-  _decreaseMoneyButton: {fileID: 1348948752}
---- !u!4 &1382298996
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382298994}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 826.1848, y: 350.92847, z: -1.9965013}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1416539273
 GameObject:
   m_ObjectHideFlags: 0
@@ -6161,6 +6103,123 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1001 &636447187216606847
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490635, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _backButton
+      value: 
+      objectReference: {fileID: 2025678374}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _botCountText
+      value: 
+      objectReference: {fileID: 164761225}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _mainMenuPanel
+      value: 
+      objectReference: {fileID: 1416539273}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _exitGameButton
+      value: 
+      objectReference: {fileID: 615368707}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _playGameButton
+      value: 
+      objectReference: {fileID: 694006038}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _totalMoneyText
+      value: 
+      objectReference: {fileID: 609721187}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _customGamePanel
+      value: 
+      objectReference: {fileID: 2097299288}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _quickPlayButton
+      value: 
+      objectReference: {fileID: 640063045}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _customGameButton
+      value: 
+      objectReference: {fileID: 1655174423}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _userNameTextMesh
+      value: 
+      objectReference: {fileID: 875601780}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _userMoneyTextMesh
+      value: 
+      objectReference: {fileID: 1259298559}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _decreaseMoneyButton
+      value: 
+      objectReference: {fileID: 1348948752}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _increaseMoneyButton
+      value: 
+      objectReference: {fileID: 1236381320}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _decreaseBotCountButton
+      value: 
+      objectReference: {fileID: 250705203}
+    - target: {fileID: 636447186442490636, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: _increaseBotCountButton
+      value: 
+      objectReference: {fileID: 1882694464}
+    - target: {fileID: 636447186442490637, guid: 906f56a2415f25b4998db309735fb817, type: 3}
+      propertyPath: m_Name
+      value: MainMenuUIManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 906f56a2415f25b4998db309735fb817, type: 3}
 --- !u!1001 &8817063415550507859
 PrefabInstance:
   m_ObjectHideFlags: 0

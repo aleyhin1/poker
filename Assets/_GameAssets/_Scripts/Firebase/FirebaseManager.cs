@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 public class FirebaseManager : MonoBehaviour
 {
+    public static FirebaseManager Instance { get; private set; }
     //Firebase variables
     [Header("Firebase")]
     public DependencyStatus dependencyStatus;
@@ -43,6 +44,15 @@ public class FirebaseManager : MonoBehaviour
 
     void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
         //Check that all of the necessary dependencies for Firebase are present on the system
         FirebaseApp.CheckAndFixDependenciesAsync().ContinueWith(task =>
         {
