@@ -21,7 +21,7 @@ public class MainMenuUIManager : MonoBehaviour
 
     [Header("Main Menu")]
     [SerializeField] private GameObject _mainMenuPanel;
-    [SerializeField] private Button _quickPlayButton, _customGameButton, _exitGameButton;
+    [SerializeField] private Button _quickPlayButton, _customGameButton, _leaderBoardButton, _exitGameButton;
 
     [Header("Custom Game")]
     [SerializeField] private GameObject _customGamePanel;
@@ -67,6 +67,12 @@ public class MainMenuUIManager : MonoBehaviour
         {
             _mainMenuPanel.SetActive(false);
             _customGamePanel.SetActive(true);
+        });
+
+        _leaderBoardButton.onClick.AddListener(() =>
+        {
+            FirebaseUIManager.instance.UserDataScreen();
+            FirebaseManager.Instance.ScoreboardButton();
         });
 
         _exitGameButton.onClick.AddListener(() =>

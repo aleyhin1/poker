@@ -128,17 +128,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1298649878248847634, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
   m_PrefabInstance: {fileID: 1298649878233243258}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &313295607 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1298649878458457229, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
-  m_PrefabInstance: {fileID: 1298649878233243258}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &390933170 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1298649878389290184, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
@@ -271,17 +260,6 @@ Transform:
 --- !u!114 &872174140 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1298649878981643334, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
-  m_PrefabInstance: {fileID: 1298649878233243258}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &926325832 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1298649878918119986, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
   m_PrefabInstance: {fileID: 1298649878233243258}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -630,22 +608,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FirebaseCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 1298649878405747287, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1539627756}
-    - target: {fileID: 1298649879382165046, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1539627756}
     - target: {fileID: 1298649879995934695, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1539627756}
-    - target: {fileID: 1298649879995934695, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoginButton
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37d3d34084cdcfa4cb991718e978cf86, type: 3}
 --- !u!1001 &9100031594960215563
@@ -706,11 +672,11 @@ PrefabInstance:
     - target: {fileID: 9100031596423775463, guid: 3f324f034d2adcb45a1333fd26778594, type: 3}
       propertyPath: scoreText
       value: 
-      objectReference: {fileID: 313295607}
+      objectReference: {fileID: 0}
     - target: {fileID: 9100031596423775463, guid: 3f324f034d2adcb45a1333fd26778594, type: 3}
       propertyPath: usernameText
       value: 
-      objectReference: {fileID: 926325832}
+      objectReference: {fileID: 0}
     - target: {fileID: 9100031596423775463, guid: 3f324f034d2adcb45a1333fd26778594, type: 3}
       propertyPath: emailLoginField
       value: 

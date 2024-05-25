@@ -35,8 +35,6 @@ public class FirebaseManager : MonoBehaviour
 
     //User Data variables
     [Header("UserData")]
-    public TMP_Text usernameText;
-    public TMP_Text scoreText;
     public GameObject scoreElement;
     public Transform scoreboardContent;
     public int myScore;
@@ -126,10 +124,8 @@ public class FirebaseManager : MonoBehaviour
             yield return new WaitForSeconds(2);
             StartCoroutine(LoadScoreboardData());
         }
-
-       
-
     }
+
     //Function for the save button
     public void SaveDataButton()
     {
@@ -194,8 +190,6 @@ public class FirebaseManager : MonoBehaviour
             StartCoroutine(LoadUserData());
 
             yield return new WaitForSeconds(2);
-
-            usernameText.text ="UserName:"+ User.DisplayName;
 
             //FirebaseUIManager.instance.UserDataScreen(); // Change to user data UI
             //ScoreboardButton(); // Load the scoreboard
@@ -365,8 +359,6 @@ public class FirebaseManager : MonoBehaviour
         {
             //No data exists yet
             myScore = 0;
-            scoreText.text = "0";
-
         }
         else
         {
@@ -374,8 +366,6 @@ public class FirebaseManager : MonoBehaviour
             DataSnapshot snapshot = DBTask.Result;
 
             myScore =int.Parse(snapshot.Child("score").Value.ToString());
-            scoreText.text ="MyScore:"+ myScore.ToString();
-
         }
     }
 
