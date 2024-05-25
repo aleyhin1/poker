@@ -327,7 +327,7 @@ public class FirebaseManager : MonoBehaviour
     }
 
 
-    private IEnumerator UpdateScore(int _score)
+    public IEnumerator UpdateScore(int _score)
     {
         //Set the currently logged in user score
         Task DBTask = DBreference.Child("users").Child(User.UserId).Child("score").SetValueAsync(_score);
@@ -344,7 +344,7 @@ public class FirebaseManager : MonoBehaviour
         }
     }
 
-    private IEnumerator LoadUserData()
+    public IEnumerator LoadUserData()
     {
         //Get the currently logged in user data
         Task<DataSnapshot> DBTask = DBreference.Child("users").Child(User.UserId).GetValueAsync();

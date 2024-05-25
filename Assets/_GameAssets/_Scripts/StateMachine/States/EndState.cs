@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class EndState : IPokerState
 {
@@ -39,6 +40,7 @@ public class EndState : IPokerState
  
         GameManager.Instance.DealerController.PayingOut(_playerList);
 
+        SaveManager.Instance.SaveMoney();
         GameManager.Instance.NewGame();
     }
 

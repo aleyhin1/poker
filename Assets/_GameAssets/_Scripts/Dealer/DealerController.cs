@@ -195,6 +195,8 @@ public class DealerController : MonoBehaviour
                     betText.text = payoutAmount.ToString();
                     PayoutAnimation(player, betBox, betText);
                 }
+
+                player.TotalMoney = Mathf.Max(0, player.TotalMoney + payoutAmount);
             }
         }
         else
@@ -209,8 +211,8 @@ public class DealerController : MonoBehaviour
             .SetEase(Ease.Linear)
             .OnComplete(() =>
             {
-                int money = int.Parse(betText.text);
-                player.TotalMoney += money;
+                //int money = int.Parse(betText.text);
+                //player.TotalMoney += money;
                 Destroy(betBox);
             });
     }
