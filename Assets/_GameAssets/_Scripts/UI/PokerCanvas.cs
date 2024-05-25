@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor.Sprites;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Text;
@@ -37,15 +36,15 @@ public class PokerCanvas : MonoBehaviour
         _winInfoPanel.SetActive(isValue);
     }
 
-    public void ShowWinInfo((Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winInfo)
+    public void ShowWinInfo((Dictionary<Player, HandInfo>, CardRank?) winInfo)
     {
         ChangeVisibilityWinInfoPanel(true);
 
-        (HandRank, CardRank[], List<Card>) handInfo = winInfo.Item1.Values.FirstOrDefault();
-        HandRank handRank = handInfo.Item1;
-        CardRank[] cardRanks = handInfo.Item2;
+        HandInfo handInfo = winInfo.Item1.Values.FirstOrDefault();
+        HandRank handRank = handInfo.HandRank;
+        CardRank[] cardRanks = handInfo.HandRankCards;
         CardRank? kicker = winInfo.Item2;
-        List<Card> cards = handInfo.Item3;
+        List<Card> cards = handInfo.BestHand;
 
         SetHandInfoText(handRank, cards, cardRanks, kicker);
     }

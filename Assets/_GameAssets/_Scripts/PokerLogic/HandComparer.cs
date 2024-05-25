@@ -10,7 +10,7 @@ public static class HandComparer
     /// For example: 'Player1' won, winner hand is 'two pairs' with '7' and '4' and with a kicker card of 'A'.
     /// </summary>
 
-    public static (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) GetWinnerHands(List<Player> players, List<Card> sharedCards)
+    public static (Dictionary<Player, HandInfo>, CardRank?) GetWinnerHands(List<Player> players, List<Card> sharedCards)
     {
         EliminateByHandRank(players, sharedCards, out var winnersByHandRank);
 
@@ -19,34 +19,33 @@ public static class HandComparer
             return (winnersByHandRank, null);
         }
 
-        EliminateByCardRank(winnersByHandRank, out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnersByCardRank);
+        EliminateByCardRank(winnersByHandRank, out Dictionary<Player, HandInfo> winnersByCardRank);
 
         if (winnersByCardRank.Count == 1)
         {
             return (winnersByCardRank, null);
         }
 
-        EliminateByCardValue(winnersByCardRank, out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnersByCardValue, out CardRank? kickerCard);
+        EliminateByCardValue(winnersByCardRank, out Dictionary<Player, HandInfo> winnersByCardValue, out CardRank? kickerCard);
 
         return (winnersByCardValue, kickerCard);
     }
 
     private static void EliminateByHandRank(List<Player> players, List<Card> sharedCards,
-        out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnersByHandRank)
+        out Dictionary<Player, HandInfo> winnersByHandRank)
     {
-        Dictionary<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPairs = GetPlayerHandInfoPairs(players, sharedCards);
+        Dictionary<Player, HandInfo> playerHandInfoPairs = GetPlayerHandInfoPairs(players, sharedCards);
         HandRank winnerHandRank = GetWinnerHandRank(playerHandInfoPairs);
         winnersByHandRank = GetHandsWithHandRank(playerHandInfoPairs, winnerHandRank);
     }
 
-    private static void EliminateByCardRank(Dictionary<Player, (HandRank, CardRank[], List<Card>)> playersToEliminate, 
-        out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnerList)
+    private static void EliminateByCardRank(Dictionary<Player, HandInfo> playersToEliminate, out Dictionary<Player, HandInfo> winnerList)
     {
         winnerList = playersToEliminate;
 
         Player anyPlayer = playersToEliminate.Keys.FirstOrDefault();
-        playersToEliminate.TryGetValue(anyPlayer, out (HandRank, CardRank[], List<Card>) handInfo);
-        int cardRankArrayCount = handInfo.Item2.Length;
+        playersToEliminate.TryGetValue(anyPlayer, out HandInfo handInfo);
+        int cardRankArrayCount = handInfo.HandRankCards.Length;
 
         CardRank[] winnerCardRankArray = new CardRank[cardRankArrayCount];
 
@@ -64,8 +63,7 @@ public static class HandComparer
         }
     }
 
-    private static void EliminateByCardValue(Dictionary<Player, (HandRank, CardRank[], List<Card>)> playersToEliminate,
-        out Dictionary<Player, (HandRank, CardRank[], List<Card>)> winnerList, out CardRank? kickerCard)
+    private static void EliminateByCardValue(Dictionary<Player, HandInfo> playersToEliminate, out Dictionary<Player, HandInfo> winnerList, out CardRank? kickerCard)
     {
         winnerList = playersToEliminate;
         kickerCard = CardRank.Ace;
@@ -75,9 +73,9 @@ public static class HandComparer
         {
             playersWithoutIndexedCard.Clear();
 
-            foreach (KeyValuePair<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPair in winnerList)
+            foreach (KeyValuePair<Player, HandInfo> playerHandInfoPair in winnerList)
             {
-                if (HandCalculator.GetCardWithRank(playerHandInfoPair.Value.Item3, kickerCard.Value) == null)
+                if (HandCalculator.GetCardWithRank(playerHandInfoPair.Value.BestHand, kickerCard.Value) == null)
                 {
                     playersWithoutIndexedCard.Add(playerHandInfoPair.Key);
                 }
@@ -104,17 +102,17 @@ public static class HandComparer
         }
     }
 
-    private static Dictionary<Player, (HandRank, CardRank[], List<Card>)> GetPlayerHandInfoPairs(List<Player> players, List<Card> sharedCards)
+    private static Dictionary<Player, HandInfo> GetPlayerHandInfoPairs(List<Player> players, List<Card> sharedCards)
     {
         List<Card> playerHand = new List<Card>();
-        Dictionary<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPairs = new Dictionary<Player, (HandRank, CardRank[], List<Card>)>();
+        Dictionary<Player, HandInfo> playerHandInfoPairs = new Dictionary<Player, HandInfo>();
 
         foreach (Player player in players)
         {
             playerHand.AddRange(player.Cards);
             playerHand.AddRange(sharedCards);
 
-            (HandRank, CardRank[], List<Card>) handInfo = HandCalculator.GetHandInfo(playerHand);
+            HandInfo handInfo = HandCalculator.GetHandInfo(playerHand);
 
             playerHandInfoPairs.Add(player, handInfo);
 
@@ -124,29 +122,28 @@ public static class HandComparer
         return playerHandInfoPairs;
     }
 
-    private static HandRank GetWinnerHandRank(Dictionary<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPairs)
+    private static HandRank GetWinnerHandRank(Dictionary<Player, HandInfo> playerHandInfoPairs)
     {
         HandRank winnerRank = HandRank.HighCard;
 
-        foreach ((HandRank, CardRank[], List<Card>) handInfo in playerHandInfoPairs.Values)
+        foreach (HandInfo handInfo in playerHandInfoPairs.Values)
         {
-            if (handInfo.Item1 < winnerRank)
+            if (handInfo.HandRank < winnerRank)
             {
-                winnerRank = handInfo.Item1;
+                winnerRank = handInfo.HandRank;
             }
         }
 
         return winnerRank;
     }
 
-    private static Dictionary<Player, (HandRank, CardRank[], List<Card>)> GetHandsWithHandRank
-        (Dictionary<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPairs, HandRank rank)
+    private static Dictionary<Player, HandInfo> GetHandsWithHandRank(Dictionary<Player, HandInfo> playerHandInfoPairs, HandRank rank)
     {
-        Dictionary<Player, (HandRank, CardRank[], List<Card>)> handsWithRank = new Dictionary<Player, (HandRank, CardRank[], List<Card>)>();
+        Dictionary<Player, HandInfo> handsWithRank = new Dictionary<Player, HandInfo>();
 
-        foreach(KeyValuePair<Player, (HandRank, CardRank[], List<Card>)> playerHandValuePair in playerHandInfoPairs)
+        foreach(KeyValuePair<Player, HandInfo> playerHandValuePair in playerHandInfoPairs)
         {
-            if (playerHandValuePair.Value.Item1 == rank)
+            if (playerHandValuePair.Value.HandRank == rank)
             {
                 handsWithRank.Add(playerHandValuePair.Key, playerHandValuePair.Value);
             }
@@ -155,29 +152,28 @@ public static class HandComparer
         return handsWithRank;
     }
 
-    private static CardRank GetWinnerCardRank(Dictionary<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPairs, int rankIndex)
+    private static CardRank GetWinnerCardRank(Dictionary<Player, HandInfo> playerHandInfoPairs, int rankIndex)
     {
         CardRank winnerCardRank = CardRank.Two;
 
-        foreach ((HandRank, CardRank[], List<Card>) handInfo in playerHandInfoPairs.Values)
+        foreach (HandInfo handInfo in playerHandInfoPairs.Values)
         {
-            if (handInfo.Item2[rankIndex] < winnerCardRank)
+            if (handInfo.HandRankCards[rankIndex] < winnerCardRank)
             {
-                winnerCardRank = handInfo.Item2[rankIndex];
+                winnerCardRank = handInfo.HandRankCards[rankIndex];
             }
         }
 
         return winnerCardRank;
     }
 
-    private static Dictionary<Player, (HandRank, CardRank[], List<Card>)> GetHandsWithCardRank
-        (Dictionary<Player, (HandRank, CardRank[], List<Card>)> playerHandInfoPairs, CardRank rank, int rankIndex)
+    private static Dictionary<Player, HandInfo> GetHandsWithCardRank(Dictionary<Player, HandInfo> playerHandInfoPairs, CardRank rank, int rankIndex)
     {
-        Dictionary<Player, (HandRank, CardRank[], List<Card>)> handsWithCardRank = new Dictionary<Player, (HandRank, CardRank[], List<Card>)>();
+        Dictionary<Player, HandInfo> handsWithCardRank = new Dictionary<Player, HandInfo>();
 
-        foreach (KeyValuePair<Player, (HandRank, CardRank[], List<Card>)> playerHandValuePair in playerHandInfoPairs)
+        foreach (KeyValuePair<Player, HandInfo> playerHandValuePair in playerHandInfoPairs)
         {
-            if (playerHandValuePair.Value.Item2[rankIndex] == rank)
+            if (playerHandValuePair.Value.HandRankCards[rankIndex] == rank)
             {
                 handsWithCardRank.Add(playerHandValuePair.Key, playerHandValuePair.Value);
             }
