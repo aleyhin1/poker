@@ -45,7 +45,7 @@ public class EndState : IPokerState
     private void GetWinnersAndShowOnUI()
     {
         PokerUIManager.Instance.LowerCurtain();
-        (Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
+        (Dictionary<Player, HandInfo>, CardRank?) winnerHandInfo = HandComparer.GetWinnerHands(_playerList, GameManager.Instance.CardsOnTheTable);
         ShowWinners(winnerHandInfo);
         PokerCanvas.Instance.ShowWinInfo(winnerHandInfo);
 
@@ -59,7 +59,7 @@ public class EndState : IPokerState
         }
     }
 
-    private void ShowWinners((Dictionary<Player, (HandRank, CardRank[], List<Card>)>, CardRank?) winnerHandInfo)
+    private void ShowWinners((Dictionary<Player, HandInfo>, CardRank?) winnerHandInfo)
     {
         foreach(Player player in winnerHandInfo.Item1.Keys)
         {
